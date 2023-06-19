@@ -1,0 +1,659 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+	{% load mathfilters %}
+
+		<body
+				class="woocommerce-active page-template-template-homepage-v2 can-uppercase"
+		>
+
+				<style>
+            .ship_icons {
+                height: 70px;
+                width: 70px;
+            }
+
+            .ship_icons i {
+                font-size: 40px;
+            }
+
+            .shipping_content h3 {
+                font-size: 20px;
+            }
+
+            #menu-departments-menu {
+                visibility: visible;
+            }
+				</style>
+				<div id="page" class="hfeed site">
+						<!-- topbar home section start -->
+						<!-- .header-v1 -->
+						<!-- ============================================================= Header End ============================================================= -->
+						<div id="content" class="site-content" tabindex="-1">
+								<div class="col-full">
+										<div class="row">
+												<div id="primary" class="content-area">
+														<main id="main" class="site-main">
+																<div class="slider-with-banners row">
+
+																		<div class="slider-block column-1-slider-block">
+
+																				<div class="home-v2-slider home-slider">
+																						{% for s in main_slider %}
+																								<div
+																										class="slider-1"
+																										style="
+																												background-image: url({{ s.image.url }});
+																												background-size:100% 100% !important;
+																												"
+																								>
+{#																								<img style="position: relative;left: 0;top: 0;height: 100%;width: auto" src="{{ s.image.url }}" alt="">#}
+
+																								</div>
+																						{% endfor %}
+																				</div>
+
+
+																		</div>
+
+																		<div class=" banners-block column-2-banners-block">
+																				{% for m in static_files %}
+																						{% if m.title == 'home-page-top-banner-1' %}
+																								<div class="banner text-in-left">
+
+																										<div
+																												style="
+																														background-size: cover;
+																														background-position: center center;
+																														background-image: url({{ m.image1.url }});
+																														height: 256px;
+																														"
+																												class="banner-bg"
+																										>
+{#																											<img style="position: relative;left: 0;top: 0;height: 100%;width: auto" src="{{ m.image1.url }}" alt="">#}
+
+																												<div class="off_btns">
+																														<a href="">Click to view
+																																<span><i
+																																		class="fa fa-chevron-right"
+																																		aria-hidden="true"></i></span>
+																														</a>
+																												</div>
+																												<!-- .caption -->
+																										</div>
+																										<!-- .banner-bg -->
+
+																								</div>
+																						{% endif %}
+																						<!-- .banner -->
+																						{% if m.title == 'home-page-top-banner-2' %}
+																								<div class="banner text-in-left">
+
+																										<div
+																												style="
+																														background-size: cover;
+																														background-position: center center;
+																														background-image: url({{ m.image1.url }});
+																														height: 256px;
+																														"
+																												class="banner-bg"
+																										>
+{#																											<img style="position: relative;left: 0;top: 0;height: 100%;width: auto" src="{{ m.image1.url }}" alt="">#}
+
+																												<div class="off_btns">
+																														<a href="">Click to view
+																																<span><i
+																																		class="fa fa-chevron-right"
+																																		aria-hidden="true"></i></span>
+																														</a>
+																												</div>
+																												<!-- .caption -->
+																										</div>
+																										<!-- .banner-bg -->
+
+																								</div>
+																						{% endif %}
+																				{% endfor %}
+																		</div>
+																		<!-- .banners-block -->
+																</div>
+																<!-- Shipping section -->
+
+																<section class="py-5">
+																		<div class="container">
+																				<div class="row justify-content-center">
+																						<div class="col-md-3 py-2">
+																								<div class="row">
+																										<div class="col-md-5 col-lg-5 col-5">
+																												<div class="ship_icons d-flex align-items-center">
+																														<h2>
+																																<i class="fa fa-truck" aria-hidden="true"></i>
+																														</h2>
+																												</div>
+																										</div>
+																										<div class="col-md-7 col-lg-7 col-7 d-flex align-items-center">
+																												<div class="shipping_content d-flex align-items-center">
+																														<h3>Free
+																																<br>
+																														    Delivery
+																														</h3>
+																												</div>
+																										</div>
+																								</div>
+																						</div>
+																						<div class="col-md-3 py-2">
+																								<div class="row">
+																										<div class="col-md-5 col-lg-5 col-5">
+																												<div class="ship_icons d-flex align-items-center">
+																														<h2>
+																																<i class="fa fa-handshake-o" aria-hidden="true"></i>
+																														</h2>
+																												</div>
+																										</div>
+																										<div class="col-md-7 col-lg-7 col-7 d-flex align-items-center">
+																												<div class="shipping_content d-flex align-items-center">
+																														<h3>EMI
+																																<br>
+																														    Facility
+																														</h3>
+																												</div>
+																										</div>
+																								</div>
+																						</div>
+																						<div class="col-md-3 py-2">
+																								<div class="row">
+																										<div class="col-md-5 col-lg-5 col-5">
+																												<div class="ship_icons d-flex align-items-center">
+																														<h2>
+																																<i class="fa fa-users" aria-hidden="true"></i>
+																														</h2>
+																												</div>
+																										</div>
+																										<div class="col-md-7 col-lg-7 col-7 d-flex align-items-center">
+																												<div class="shipping_content d-flex align-items-center">
+																														<h3>Help
+																																<br>
+																														    Center
+																														</h3>
+																												</div>
+																										</div>
+																								</div>
+																						</div>
+																						<div class="col-md-3 py-2">
+																								<div class="row">
+																										<div class="col-md-5 col-lg-5 col-5">
+																												<div class="ship_icons d-flex align-items-center">
+																														<h2>
+																																<i class="fa fa-credit-card" aria-hidden="true"></i>
+																														</h2>
+																												</div>
+																										</div>
+																										<div class="col-md-7 col-lg-5 col-7 d-flex align-items-center">
+																												<div class="shipping_content d-flex align-items-center">
+																														<h3>Secure
+																																<br>
+																														    Payment
+																														</h3>
+																												</div>
+																										</div>
+																								</div>
+																						</div>
+																				</div>
+																		</div>
+																</section>
+																<section
+																		class="section-top-categories section-categories-carousel card"
+																		id="categories-carousel-3"
+																		style="background-color: #fa9a9e21;"
+																>
+																		<div
+																				class="product-categories product-categories-carousel mx-auto bg-transparent"
+																				data-ride="tm-slick-carousel"
+																				data-wrap=".products"
+																				data-slick='{"infinite":false,"slidesToShow":7,"slidesToScroll":1,"dots":false,"arrows":true,"prevArrow":"&lt;a href=\"#\"&gt;&lt;i class=\"tm tm-arrow-left\"&gt;&lt;\/i&gt;&lt;\/a&gt;","nextArrow":"&lt;a href=\"#\"&gt;&lt;i class=\"tm tm-arrow-right\"&gt;&lt;\/i&gt;&lt;\/a&gt;","appendArrows":"#categories-carousel-3 .custom-slick-nav","responsive":[{"breakpoint":1200,"settings":{"slidesToShow":2,"slidesToScroll":2}},{"breakpoint":1400,"settings":{"slidesToShow":5,"slidesToScroll":5}},{"breakpoint":1700,"settings":{"slidesToShow":6,"slidesToScroll":6}}]}'
+																		>
+																				<div class="woocommerce columns-7">
+																						<div class="products bg-transparent">
+																								{% for d in departments %}
+																										<div class="product-category product bg-transparent">
+																												<a href="{% url 'department_view' d.slug %}">
+																														<img
+																																width="224"
+																																height="197"
+																																alt="Perfumes"
+																																class="shadow rounded"
+																																src="{{ d.image.thumbnail.url }}"
+																																style="border-radius: 50% !important; height:120px !important;width:120px !important"
+																														/>
+																														<h2 class="woocommerce-loop-category__title">
+																																{{ d.name }}
+																														</h2>
+																												</a>
+																										</div>
+																								{% endfor %}
+																						</div>
+																						<!-- .products-->
+																				</div>
+																				<!-- .woocommerce-->
+																		</div>
+																		<!-- .product-categories -->
+																</section>
+														{% if vendors %}
+																<section
+																		class="section-top-categories section-categories-carousel card"
+																		id="categories-carousel-3"
+
+																>
+																<div class="row pb-3">
+
+																		<div class="solar_pan">
+																				<h5>
+																						<a href="javascript: void(0);" style="cursor:text">Brows Shops</a>
+																				</h5>
+																		</div>
+
+																</div>
+																<div class="row justify-content-center">
+																		<div
+																				class="product-categories product-categories-carousel mx-auto bg-transparent"
+																				data-ride="tm-slick-carousel"
+																				data-wrap=".products"
+																				data-slick='{"infinite":false,"slidesToShow":7,"slidesToScroll":1,"dots":false,"arrows":true,"prevArrow":"&lt;a href=\"#\"&gt;&lt;i class=\"tm tm-arrow-left\"&gt;&lt;\/i&gt;&lt;\/a&gt;","nextArrow":"&lt;a href=\"#\"&gt;&lt;i class=\"tm tm-arrow-right\"&gt;&lt;\/i&gt;&lt;\/a&gt;","appendArrows":"#categories-carousel-3 .custom-slick-nav","responsive":[{"breakpoint":1200,"settings":{"slidesToShow":2,"slidesToScroll":2}},{"breakpoint":1400,"settings":{"slidesToShow":5,"slidesToScroll":5}},{"breakpoint":1700,"settings":{"slidesToShow":6,"slidesToScroll":6}}]}'
+																		>
+																				<div class="woocommerce columns-7">
+																						<div class="products bg-transparent">
+																								{% for v in vendors %}
+																										<div class="product-category product bg-transparent">
+																												<a href="{% url 'VendorShop' v.id %}">
+																													{% if v.profile_image %}
+																														<img
+																																width="224"
+																																height="197"
+																																alt="{{ v.name }}"
+																																class="shadow rounded"
+																																src="{{ v.profile_image.url }}"
+																														/>
+																														{% else %}
+																														<img
+																																width="224"
+																																height="197"
+																																class="shadow rounded"
+																																src="{% static 'assets\img\banner.png' %}" alt="{{ v.name }}"
+																														/>
+																													{% endif %}
+																														<h2 class="woocommerce-loop-category__title">
+																																{{ v.name }}
+																														</h2>
+																												</a>
+																										</div>
+																								{% endfor %}
+																						</div>
+																						<!-- .products-->
+																				</div>
+																				<!-- .woocommerce-->
+																		</div>
+																</div>
+																		<!-- .product-categories -->
+																</section>
+														{% endif %}
+																<!-- .section-top-categories -->
+
+																<section
+																		class="section-hot-new-arrivals section-products-carousel-tabs techmarket-tabs custom_margin">
+																		<div class="container-fluid">
+																				<div class="row pb-3">
+
+																						<div class="solar_pan">
+																								<h5>
+																										<a href="/shop/panel/">solar panels</a>
+																								</h5>
+																						</div>
+
+																				</div>
+																				<div class="row justify-content-center">
+																						<div class="products new_slider">
+																								{% for sp in solar_panels %}
+																										<!--product-outer-->
+																										<div class="col-md-12">
+																												<div class="product">
+																														<div class="yith-wcwl-add-to-wishlist">
+																																<a
+																																		href="javascript:void(0)"
+																																		rel="nofollow"
+																																		class="add_to_wishlist"
+																																		data-action="ADD_TO_WISHLIST"
+																																>
+																																		Add to Wishlist
+																																</a
+																																>
+																														</div>
+																														<a
+																																href="{% url 'single-product-fullwidth' sp.id %}"
+																																class="woocommerce-LoopProduct-link"
+																														>
+																		                            {% if sp.discounted_price < sp.price %}
+																		                            <span class="onsale">
+																		                              <span
+																		                                      class="woocommerce-Price-amount amount"
+																		                              >
+																		                                <span
+																		                                        class="woocommerce-Price-currencySymbol"
+																		                                >৳</span
+																		                                >{{ sp.price|sub:sp.discounted_price }} OFF</span
+																		                              >
+																		                            </span>
+																															{% endif %}
+																																<img
+																																		src="{{ sp.product_images.all.0.image.thumbnail.url }}"
+																																		width="224"
+																																		height="197"
+																																		class="wp-post-image"
+																																		alt=""
+																																/>
+																																<span class="price">
+                                                                  <ins>
+                                                                    <span class="amount">৳ {{ sp.discounted_price }}</span>
+                                                                  </ins>
+																																	{% if sp.discounted_price < sp.price %}
+                                                                  <del>
+                                                                    <span class="amount">{{ sp.price }}</span>
+                                                                  </del>
+																																	{% endif %}
+                                                                  <span class="amount"> </span>
+                                                                </span>
+																																<!--price -->
+																																<h2 class="woocommerce-loop-product__title">
+																																		{{ sp.name }}
+																																</h2>
+																														</a>
+																														<div class="hover-area cartable">
+																																<p hidden
+																																   class="product__image_src">{{ sp.product_images.all.0.image.thumbnail.url }}</p>
+																																<p hidden class="product__name">{{ sp.id }}</p>
+																																<p hidden class="product__title">{{ sp.name }}</p>
+																																<p hidden class="product__price">{{ sp.discounted_price }}</p>
+																																<a class="button quick-btn" name="{{ sp.id }}">
+																																		Quick View
+																																</a>
+																																<a class="button" name="btn{{ sp.id }}"
+																																   data-action="ADD_TO_CART">Add to cart
+																																</a>
+																														</div>
+																												</div>
+																										</div>
+																										<!--product-outer -->
+																								{% endfor %}
+																						</div>
+																				</div>
+																		</div>
+																</section>
+
+
+																<section
+																		class="section-hot-new-arrivals section-products-carousel-tabs techmarket-tabs">
+																		<div class="container-fluid">
+																				<div class="row pb-3">
+
+																						<div class="solar_pan">
+																								<h5>
+																										<a href="/shop/solar-street-light/">solar street lights</a>
+																								</h5>
+																						</div>
+
+																				</div>
+																				<div class="row justify-content-center">
+																						<div class="products new_slider">
+																								<!-- /.product-outer -->
+																								{% for ss in solar_street_light %}
+																										<div class="col-md-12">
+																												<div class="product">
+																														<div class="yith-wcwl-add-to-wishlist">
+																																<a
+																																		href="javascript:void(0)"
+																																		rel="nofollow"
+																																		class="add_to_wishlist"
+																																		data-action="ADD_TO_WISHLIST"
+																																>
+																																		Add to Wishlist
+																																</a
+																																>
+																														</div>
+																														<a
+																																href="{% url 'single-product-fullwidth' ss.id %}"
+																																class="woocommerce-LoopProduct-link"
+																														>
+																															{% if ss.discounted_price < ss.price %}
+																		                            <span class="onsale">
+																		                              <span
+																		                                      class="woocommerce-Price-amount amount"
+																		                              >
+																		                                <span
+																		                                        class="woocommerce-Price-currencySymbol"
+																		                                >৳</span
+																		                                >{{ ss.price|sub:ss.discounted_price }} OFF</span
+																		                              >
+																		                            </span>
+																															{% endif %}
+																																<img
+																																		src="{{ ss.product_images.all.0.image.thumbnail.url }}"
+																																		width="224"
+																																		height="197"
+																																		class="wp-post-image"
+																																		alt=""
+																																/>
+																																<span class="price">
+																		                              <ins>
+																		                                <span class="amount"> ৳ {{ ss.discounted_price }}</span>
+																		                              </ins>
+																		                              {% if ss.discounted_price < ss.price %}
+                                                                  <del>
+                                                                    <span class="amount">{{ ss.price }}</span>
+                                                                  </del>
+																																	{% endif %}
+																		                              <span class="amount"> </span>
+																		                            </span>
+																																<!-- /.price -->
+																																<h2 class="woocommerce-loop-product__title">
+																																		{{ ss.name }}
+																																</h2>
+																														</a>
+																														<div class="hover-area cartable">
+																																<p hidden
+																																   class="product__image_src">{{ ss.product_images.all.0.image.thumbnail.url }}</p>
+																																<p hidden class="product__name">{{ ss.id }}</p>
+																																<p hidden class="product__title">{{ ss.name }}</p>
+																																<p hidden class="product__price">{{ ss.discounted_price }}</p>
+																																<a class="button quick-btn" name="{{ ss.id }}">
+																																		Quick View
+																																</a>
+																																<a class="button" name="btn{{ ss.id }}"
+																																   data-action="ADD_TO_CART">Add to cart
+																																</a>
+																														</div>
+																												</div>
+																										</div>
+																								{% endfor %}
+																								<!-- /.product-outer -->
+
+
+																						</div>
+																				</div>
+																		</div>
+																</section>
+
+																<section class="py-5">
+																		<div class="container-fluid">
+																				<div class="row justify-content-center">
+																						{% for g in static_files %}
+																								{% if g.title == 'home-page-grid-banner-1' %}
+																										<div class="col-md-6 my-2">
+																												<div class="solar_grid_body">
+																														<div class="grid_img">
+																																<img src="{{ g.image1.url }}" alt="Off Grid Sloar"
+																																     class="img-responsive img-fluid">
+																														</div>
+																														<div class="info_btn">
+																																<a href="{{ g.link }}">Click to view
+																																		<span><i
+																																				class="fa fa-chevron-right"
+																																				aria-hidden="true"></i></span>
+																																</a>
+																														</div>
+																												</div>
+																										</div>
+																								{% endif %}
+																								{% if g.title == 'home-page-grid-banner-2' %}
+																										<div class="col-md-6 my-2">
+																												<div class="solar_grid_body">
+																														<div class="grid_img">
+																																<img src="{{ g.image1.url }}" alt="Off Grid Sloar"
+																																     class="img-responsive img-fluid">
+																														</div>
+																														<div class="info_btn">
+																																<a href="{{ g.link }}">Click to view
+																																		<span><i
+																																				class="fa fa-chevron-right"
+																																				aria-hidden="true"></i></span>
+																																</a>
+																														</div>
+																												</div>
+																										</div>
+																								{% endif %}
+																						{% endfor %}
+																				</div>
+																		</div>
+																</section>
+																<section
+																		class="section-hot-new-arrivals section-products-carousel-tabs techmarket-tabs">
+																		<div class="container-fluid">
+																				<div class="row pb-3">
+
+																						<div class="solar_pan">
+																								<h5>
+																										<a href="/shop/solar-pump/">Solar Pam System</a>
+																								</h5>
+																						</div>
+
+																				</div>
+																				<div class="row justify-content-center">
+																						<div class="products new_slider">
+
+																								<!-- /.product-outer -->
+																								{% for s in solar_pam_system %}
+																										<div class="col-md-12">
+																												<div class="product">
+																														<div class="yith-wcwl-add-to-wishlist">
+																																<a
+																																		href="wishlist.html"
+																																		rel="nofollow"
+																																		class="add_to_wishlist"
+																																		data-action="ADD_TO_WISHLIST"
+																																>
+																																		Add to Wishlist
+																																</a
+																																>
+																														</div>
+																														<a
+																																href="{% url 'single-product-fullwidth' s.id %}"
+																																class="woocommerce-LoopProduct-link"
+																														>
+																																{% if s.discounted_price < s.price %}
+																		                            <span class="onsale">
+																		                              <span
+																		                                      class="woocommerce-Price-amount amount"
+																		                              >
+																		                                <span
+																		                                        class="woocommerce-Price-currencySymbol"
+																		                                >৳</span
+																		                                >{{ s.price|sub:s.discounted_price }} OFF</span
+																		                              >
+																		                            </span>
+																															{% endif %}
+																																<img
+																																		src="{{ s.product_images.all.0.image.thumbnail.url }}"
+																																		width="224"
+																																		height="197"
+																																		class="wp-post-image"
+																																		alt=""
+																																/>
+																																<span class="price">
+																		                              <ins>
+																		                                <span class="amount"> ৳ {{ s.discounted_price }}</span>
+																		                              </ins>
+																		                              {% if s.discounted_price < s.price %}
+                                                                  <del>
+                                                                    <span class="amount">{{ s.price }}</span>
+                                                                  </del>
+																																	{% endif %}
+																		                              <span class="amount"> </span>
+																		                            </span>
+																																<!-- /.price -->
+																																<h2 class="woocommerce-loop-product__title">
+																																		{{ s.name }}
+																																</h2>
+																														</a>
+																														<div class="hover-area cartable">
+																																<p hidden
+																																   class="product__image_src">{{ s.product_images.all.0.image.thumbnail.url }}</p>
+																																<p hidden class="product__name">{{ s.id }}</p>
+																																<p hidden class="product__title">{{ s.name }}</p>
+																																<p hidden class="product__price">{{ s.discounted_price }}</p>
+																																<a class="button quick-btn" name="{{ s.id }}">
+																																		Quick View
+																																</a>
+																																<a class="button" name="btn{{ s.id }}"
+																																   data-action="ADD_TO_CART">Add to cart
+																																</a>
+																														</div>
+																												</div>
+																										</div>
+																								{% endfor %}
+																								<!-- /.product-outer -->
+
+
+																						</div>
+																				</div>
+																		</div>
+																</section>
+
+																<section class="py-5 advertise_section">
+																		<div class="container-fluid">
+																				<div class="row justify-content-center">
+																						{% for b in static_files %}
+																								{% if b.title == 'home-page-bottom-banner-1' %}
+																										<div class="col-md-12">
+																												<div class=""
+																												     style="height:unset !important">
+																													<img src="{{ b.image1.url }}" alt="">
+
+																												</div>
+																										</div>
+																								{% endif %}
+																						{% endfor %}
+																				</div>
+																		</div>
+																</section>
+														</main>
+														<!-- #main -->
+												</div>
+												<!-- #primary -->
+										</div>
+										<!-- .row -->
+								</div>
+								<!-- .col-full -->
+						</div>
+						<!-- #content -->
+						<!-- .site-footer -->
+				</div>
+
+		</body>
+		<script>
+		{#localStorage.clear();#}
+		</script>
+{% endblock content %}
+
+
+
+{# main slider: 658:374 #}
+{# top offer: 207:128 #}

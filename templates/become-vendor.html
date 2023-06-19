@@ -1,0 +1,606 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+	<body
+			class="woocommerce-active page-template-default woocommerce-checkout woocommerce-page can-uppercase"
+	>
+	<div id="page" class="hfeed site">
+		<!-- .top-bar-v1 -->
+		<!-- .header-v1 -->
+		<!-- ============================================================= Header End ============================================================= -->
+		<div id="content" class="site-content">
+			<div class="col-full container">
+				<div class="row">
+					<!-- .woocommerce-breadcrumb -->
+					<div class="content-area" id="primary">
+						<main class="site-main" id="main">
+							<div class="type-page hentry">
+								<div class="entry-content">
+									<div class="woocommerce">
+										<div class="woocommerce-info">
+											Already have an account?
+											<a
+{#													data-toggle="collapse"#}
+{#													href="#login-form"#}
+													href="/vendor/"
+													aria-expanded="false"
+{#													aria-controls="login-form"#}
+													class="showlogin"
+													target="_blank"
+											>Click here to login</a
+											>
+										</div>
+										<div class="collapse" id="login-form">
+											<form
+													method="post"
+													class="woocomerce-form woocommerce-form-login login"
+											>
+												<p class="form-row form-row-first">
+													<label
+															for="username"
+													>Username or email
+														<span class="required">*</span>
+													</label>
+													<input
+															type="text"
+															id="username"
+															name="username"
+															class="input-text"
+													/>
+												</p>
+												<p class="form-row form-row-last">
+													<label
+															for="password"
+													>Password
+														<span class="required">*</span>
+													</label>
+													<input
+															type="password"
+															id="password"
+															name="password"
+															class="input-text"
+													/>
+												</p>
+												<div class="clear"></div>
+												<p class="form-row">
+													<input
+															type="submit"
+															value="Login"
+															name="login"
+															class="button"
+													/>
+													<label
+															class="woocommerce-form__label woocommerce-form__label-for-checkbox inline"
+													>
+														<input
+																type="checkbox"
+																value="forever"
+																id="rememberme"
+																name="rememberme"
+																class="woocommerce-form__input woocommerce-form__input-checkbox"
+														/>
+														<span>Remember me</span>
+													</label>
+												</p>
+												<p class="lost_password">
+													<a href="#">Lost your password?</a>
+												</p>
+												<div class="clear"></div>
+											</form>
+										</div>
+										<!-- .collapse -->
+										<div class="card shadow-sm pt-3 pb-5">
+											<form
+													style="width: 80%; margin: auto"
+													action="#"
+													class="checkout woocommerce-checkout"
+													method="post"
+													name="checkout"
+													id="vendor_form"
+											>
+												<div class="woocommerce-billing-fields">
+													<h3 class="text-center">Vendor Application</h3>
+													<div
+															class="woocommerce-billing-fields__field-wrapper-outer"
+													>
+														<div
+																class="woocommerce-billing-fields__field-wrapper"
+														>
+															<p
+																	id="billing_first_name_field"
+																	class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+															>
+																<label
+																		class="" for="billing_first_name"
+																>Shop Name
+																	<abbr
+																			title="required" class="required"
+																	>*</abbr
+																	>
+																</label>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_first_name"
+																		name="name"
+																		class="input-text"
+																		required
+																/>
+															</p>
+															<p
+																	id="billing_last_name_field"
+																	class="form-row form-row-last validate-required"
+															>
+																<label
+																		class="" for="billing_last_name"
+																>Company Name
+																	<abbr
+																			title="required" class="required"
+																	>*</abbr
+																	>
+																</label>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_last_name"
+																		name="company_name"
+																		class="input-text"
+																		required
+																/>
+															</p>
+															<div class="clear"></div>
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first validate-required"
+															>
+																<label
+																		class="" for="billing_company"
+																>Mobile
+																	<abbr
+																			title="required" class="required"
+																	>*</abbr
+																	></label
+																>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_company"
+																		name="mobile"
+																		class="input-text"
+																		required
+																/>
+															</p>
+
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first"
+															>
+																<label
+																		class="" for="billing_company"
+																>Tel-Phone</label
+																>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_company"
+																		name="telephone"
+																		class="input-text"
+																/>
+															</p>
+															<p
+																	id="emailp"
+																	class="form-row form-row-first validate-required"
+															>
+																<label class="" for="email">
+																	Email Address<abbr title="required" class="required">*</abbr>
+																</label
+																>
+																<input
+																		type="email"
+																		value=""
+																		placeholder=""
+																		id="email"
+																		name="email"
+																		class="input-text"
+																		required
+																/>
+															</p><p
+																	id="billing_address_2_field"
+																	class="form-row form-row-first address-field"
+															>
+																<label
+																		class="" for="billing_address_2"
+																>Type of business</label>
+
+
+																<select class="form-control select2" name="type_of_business"  required id="product-sub-category">
+																	<option>Select</option>
+																		<option value="Private Limited Company">Private Limited Company</option>
+																		<option value="Public Limited Company">Public Limited Company</option>
+																		<option value="Proprietorship Company">Proprietorship Company</option>
+
+																</select>
+
+															</p>
+
+															<div class="clear"></div>
+															<p
+																	id="billing_address_1_field"
+																	class="form-row form-row-wide address-field validate-required"
+															>
+																<label
+																		class="" for="billing_address_1"
+																>Physical Address
+																	<abbr
+																			title="required" class="required"
+																	>*</abbr
+																	>
+																</label>
+																<textarea
+																		cols="5"
+																		rows="3"
+																		placeholder="Physical address of your company"
+																		id="billing_address_1"
+																		name="address"
+																		class="input-text"
+																		required
+																></textarea>
+															</p>
+
+
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first validate-required"
+															>
+																<label
+																		class="" for="billing_city"
+																>NID Front Page<abbr title="required" class="required">*</abbr>
+																</label>
+																<input
+																		type="file"
+																		value=""
+																		placeholder=""
+																		id="billing_city"
+																		name="nid_front_image"
+																		class="input-text"
+																		required
+																/>
+															</p>
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first"
+															>
+																<label
+																		class="" for="billing_city"
+																>NID Back Page<abbr title="required" class="required">*</abbr>
+																</label>
+																<input
+																		type="file"
+																		value=""
+																		placeholder=""
+																		id="billing_city"
+																		name="nid_back_image"
+																		class="input-text"
+																		required
+																/>
+															</p>
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first"
+															>
+																<label
+																		class="" for="billing_city"
+																>Attach Legal Doc Image:(Trade License/Others)
+																	<abbr title="required" class="required">*</abbr>
+																</label>
+																<input
+																		type="file"
+																		value=""
+																		placeholder=""
+																		name="legal_document_img"
+																		class="input-text"
+																		required
+																/>
+															</p>
+	{#														<p#}
+	{#																id="billing_company_field"#}
+	{#																class="form-row form-row-first"#}
+	{#														>#}
+	{#															<label#}
+	{#																	class="" for="billing_city"#}
+	{#															>or image #}
+	{#																<abbr title="required" class="required">*</abbr>#}
+	{#															</label>#}
+	{#															<input#}
+	{#																	type="file"#}
+	{#																	value=""#}
+	{#																	placeholder=""#}
+	{#																	id="billing_city"#}
+	{#																	name="legal_document_file"#}
+	{#																	class="input-text"#}
+	{#																	required#}
+	{#															/>#}
+	{#														</p>#}
+															<br>
+
+
+
+														</div>
+													</div>
+													<br>
+													<h3 class="text-center">Bank Account Details</h3>
+													<div
+															class="woocommerce-billing-fields__field-wrapper-outer"
+													>
+														<div
+																class="woocommerce-billing-fields__field-wrapper"
+														>
+															<p
+																	id="billing_first_name_field"
+																	class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+															>
+																<label
+																		class="" for="billing_first_name"
+																>Account Name
+																	<abbr
+																			title="required" class="required"
+																	>*</abbr
+																	>
+																</label>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_first_name"
+																		name="account_name"
+																		class="input-text"
+																		required
+																/>
+															</p>
+															<p
+																	id="billing_last_name_field"
+																	class="form-row form-row-last validate-required"
+															>
+																<label
+																		class="" for="billing_last_name"
+																>Account No
+																	<abbr
+																			title="required" class="required"
+																	>*</abbr
+																	>
+																</label>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_last_name"
+																		name="account_number"
+																		class="input-text"
+																		required
+																/>
+															</p>
+															<div class="clear"></div>
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first validate-required"
+															>
+																<label
+																		class="" for="billing_company"
+																>Bank Name
+																	<abbr
+																			title="required" class="required"
+																	>*</abbr
+																	></label
+																>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_company"
+																		name="bank_name"
+																		class="input-text"
+																		required
+																/>
+															</p>
+
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first"
+															>
+																<label
+																		class="" for="billing_company"
+																>Branch Name<abbr
+																		title="required" class="required"
+																>*</abbr
+																></label
+																>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="billing_company"
+																		name="branch_name"
+																		class="input-text"
+																/>
+															</p>
+															<p
+																	id="emailp"
+																	class="form-row form-row-first validate-required"
+															>
+																<label class="" for="email">
+																	Router No<abbr title="required" class="required">*</abbr>
+																</label
+																>
+																<input
+																		type="text"
+																		value=""
+																		placeholder=""
+																		id="email"
+																		name="routing_no"
+																		class="input-text"
+																		required
+																/>
+															</p>
+
+															<p
+																	id="billing_company_field"
+																	class="form-row form-row-first"
+															>
+																<label
+																		class="" for="billing_city"
+																>Upload Cheque Copy
+																	<abbr title="required" class="required">*</abbr>
+																</label>
+																<input
+																		type="file"
+																		value=""
+																		placeholder=""
+																		name="cheque_img"
+																		class="input-text"
+																		required
+																/>
+															</p>
+															<br>
+															<p
+																data-priority=""
+																id="account_password_field"
+																class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+														>
+															<label
+																	class="" for="account_password"
+															>Account password
+																<abbr
+																		title="required" class="required"
+																>*</abbr
+																>
+															</label>
+															<input
+																	type="password"
+																	value=""
+																	placeholder="Password"
+																	id="new-password"
+																	name="password"
+																	class="input-text"
+															/>
+														</p>
+															<p
+																data-priority=""
+																id="account_password_field"
+																class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+														>
+															<label
+																	class="" for="account_password"
+															>Confirm password
+																<abbr
+																		title="required" class="required"
+																>*</abbr
+																>
+															</label>
+															<input
+																	type="password"
+																	value=""
+																	placeholder="Password"
+																	id="confirm-password"
+																	name="confirm-password"
+																	class="input-text"
+															/>
+														</p>
+
+
+
+														</div>
+													</div>
+													<!-- .woocommerce-billing-fields__field-wrapper-outer -->
+												</div>
+												<!-- .woocommerce-billing-fields -->
+												<div class="woocommerce-account-fields" style="width: 80%; margin: auto;">
+													<div
+															class="create-account "
+															id="createLogin"
+													>
+
+														<div class="clear"></div>
+														<div style="width: 50%; margin: auto">
+															<button class="button text-center btn-block submit-btn" type="submit">Submit Application</button>
+														</div>
+														<!-- .woocommerce-account-fields -->
+													</div>
+													<!-- .col-1 -->
+													<!-- .shipping_address -->
+												</div>
+											</form>
+										</div>
+									</div>
+									<!-- .col-2 -->
+								</div>
+								<!-- .woocommerce-checkout -->
+							</div>
+							<!-- .woocommerce -->
+						</main>
+					</div>
+					<!-- .entry-content -->
+				</div>
+				<!-- #post-## -->
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+		</div>
+		<!-- .row -->
+	</div>
+		<!-- .col-full -->
+		</div>
+		<!-- #content -->
+		<!-- .site-footer -->
+		</div>
+		<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script>
+      $(document).on('submit', '#vendor_form', function (e) {
+
+          //prevent Default functionality
+          e.preventDefault();
+
+          //get the action-url of the form
+          {#var actionurl = e.currentTarget.action;#}
+          {#console.log(actionurl);#}
+		      {#alert($('#new-password').val())#}
+		      {#alert($('#confirm-password').val())#}
+		      if (!$('#new-password').val() === $('#confirm-password').val()){
+		          alert("Password doesn't match!")
+				      return false;
+		      }
+
+          var form = document.getElementById('vendor_form');
+          var formData = new FormData(form);
+          console.log(formData);
+          //do your own request an handle the results
+          $.ajax({
+              url: '/api/v1/vendor/vendor-list/',
+              type: 'post',
+              data: formData,
+              headers: {
+                  "X-CSRFToken": '{{ csrf_token }}'
+              },
+              success: function (data) {
+                  console.log("success");
+                  console.log(data);
+                  window.location = '/vendor/login/';
+              },
+              error: function (data) {
+                  console.log("error");
+                  console.log(data);
+              },
+              cache: false,
+              contentType: false,
+              processData: false
+          });
+
+      })
+      ;
+	</script>
+	</body>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+
+	<!-- ============================================================== -->
+	<!-- Start Page Content here -->
+	<!-- ============================================================== -->
+
+	<div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        {#                                <div class="page-title-box">#}
+                        {#                                    <div class="page-title-right">#}
+                        {#                                        <ol class="breadcrumb m-0">#}
+                        {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>#}
+                        {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>#}
+                        {#                                            <li class="breadcrumb-item active">Customers</li>#}
+                        {#                                        </ol>#}
+                        {#                                    </div>#}
+                        <h4 class="page-title">Agent Applications</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                {#                                            <div class="col-sm-4">#}
+                                {#                                                <a href="javascript:void(0);" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle mr-2"></i> Add Customers</a>#}
+                                {#                                            </div>#}
+                                {#                                            <div class="col-sm-8">#}
+                                {#                                                <div class="text-sm-right">#}
+                                {#                                                    <button type="button" class="btn btn-success mb-2 mr-1"><i class="mdi mdi-cog"></i></button>#}
+                                {#                                                    <button type="button" class="btn btn-light mb-2 mr-1">Import</button>#}
+                                {#                                                    <button type="button" class="btn btn-light mb-2">Export</button>#}
+                                {#                                                </div>#}
+                                {#                                            </div><!-- end col-->#}
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-centered table-striped dt-responsive nowrap w-100"
+                                       id="products-datatable">
+                                    <thead>
+	                                    <tr>
+	                                        {#                                                        <th style="width: 20px;">#}
+	                                        {#                                                            <div class="custom-control custom-checkbox">#}
+	                                        {#                                                                <input type="checkbox" class="custom-control-input" id="customCheck1">#}
+	                                        {#                                                                <label class="custom-control-label" for="customCheck1">&nbsp;</label>#}
+	                                        {#                                                            </div>#}
+	                                        {#                                                        </th>#}
+	                                        <th style="width: 20%">Agent</th>
+	                                        <th style="width: 20%">BC ID</th>
+	                                        <th style="width: 20%">Phone</th>
+	                                        <th style="width: 20%">Email</th>
+	                                        <th style="width: 10%;">Status</th>
+	                                        <th style="width: 20%">Action</th>
+	                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for a in agent_list %}
+	                                    <tr>
+                                        <td class="table-user">
+{#                                            <img src="{{ a.image }}" alt="table-user"#}
+{#                                                 class="mr-2 rounded-circle">#}
+                                            <a href="javascript:void(0);" class="text-body font-weight-semibold">{{ a.full_name }}</a>
+                                        </td>
+                                        <td>
+                                            {{ a.business_center_id }}
+                                        </td>
+		                                    <td>
+                                            {{ a.phone }}
+                                        </td>
+	                                    <td>{{ a.email }}</td>
+                                        <td>
+                                            <span class="badge badge-soft-warning">{{ a.status }}</span>
+                                        </td>
+                                        <td>
+                                            <a href="/superadmin/agent-details/{{ a.id }}" class="btn btn-success btn-sm" type="button">Details</a>
+{#                                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" type="button">Reject</a>#}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+{% endblock content %}

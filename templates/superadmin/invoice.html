@@ -1,0 +1,208 @@
+{% extends 'vendor/master.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <form method="post" id="cat_form"
+                      enctype="multipart/form-data">{% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-12">
+
+                            <div class="row">
+                                <div class="col-1">
+
+                                </div>
+                                <div class="col-10" id="printableArea">
+                                    <div class="card-box mt-2">
+                                        <div class="row">
+                                            <div class="col-8 pl-4">
+                                                <a class="custom-logo-link" rel="home">
+                                                    <img src="{% static 'assets/img/fortunes-ecommerce-log.png' %}"
+                                                         width="160"/>
+                                                </a>
+                                            </div>
+                                            <div class="col-4">
+                                                <h5>Order ID: #112255</h5>
+                                                <h5>Date : 12/01/2021</h5>
+
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="card-body">
+                                                    <h4 class="header-title mb-3">Shipping Information</h4>
+
+                                                    <h5 class="font-family-primary font-weight-semibold">Brent
+                                                        Jones</h5>
+
+                                                    <p class="mb-2"><span
+                                                            class="font-weight-semibold mr-2">Address:</span> 3559
+                                                        Roosevelt Wilson Lane San Bernardino, CA 92405</p>
+                                                    <p class="mb-2"><span
+                                                            class="font-weight-semibold mr-2">Phone:</span> (123)
+                                                        456-7890</p>
+                                                    <p class="mb-0"><span
+                                                            class="font-weight-semibold mr-2">Mobile:</span> (+01) 12345
+                                                        67890</p>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6 pl-lg-5">
+                                                <div class="card-body">
+                                                    <h4 class="header-title mb-3">Billing Information</h4>
+
+                                                    <ul class="list-unstyled mb-0">
+                                                        <li>
+                                                            <p class="mb-2"><span class="font-weight-semibold mr-2">Payment Type:</span>
+                                                                Credit Card</p>
+                                                            <p class="mb-2"><span class="font-weight-semibold mr-2">Provider:</span>
+                                                                Visa ending in 2851</p>
+                                                            <p class="mb-2"><span class="font-weight-semibold mr-2">Valid Date:</span>
+                                                                02/2020</p>
+                                                            <p class="mb-0"><span
+                                                                    class="font-weight-semibold mr-2">CVV:</span> xxx
+                                                            </p>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card-body">
+
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-centered mb-0">
+                                                            <thead class="thead-light">
+                                                            <tr>
+                                                                <th>Product name</th>
+                                                                <th>Quantity</th>
+                                                                <th>Price</th>
+                                                                <th>Total</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <th scope="row">Polo Navy blue T-shirt</th>
+                                                                <td>1</td>
+                                                                <td>$39</td>
+                                                                <td>$39</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Red Hoodie for men</th>
+                                                                <td>2</td>
+                                                                <td>$46</td>
+                                                                <td>$92</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Red Hoodie for men</th>
+                                                                <td>1</td>
+                                                                <td>$46</td>
+                                                                <td>$46</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row" colspan="3" class="text-right">Sub Total
+                                                                    :
+                                                                </th>
+                                                                <td>
+                                                                    <div class="font-weight-bold">$177</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row" colspan="3" class="text-right">Coupon
+                                                                    :
+                                                                </th>
+                                                                <td>$24</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row" colspan="3" class="text-right">Shipping
+                                                                    Charge :
+                                                                </th>
+                                                                <td>$24</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row" colspan="3" class="text-right">Estimated
+                                                                    Tax :
+                                                                </th>
+                                                                <td>$12</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row" colspan="3" class="text-right">Total :
+                                                                </th>
+                                                                <td>
+                                                                    <div class="font-weight-bold">$213</div>
+                                                                </td>
+                                                            </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-3">
+
+                                </div>
+
+
+                            </div> <!-- end card-box -->
+                        </div> <!-- end col -->
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center mb-3">
+                                <button type="button" class="btn w-sm btn-light waves-effect">Cancel</button>
+                                <button type="button" id="submit_btn"
+                                        class="btn w-sm btn-success waves-effect waves-light submit_btn" onclick="printDiv('printableArea')">Print
+                                </button>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                </form>
+                <!-- file preview template -->
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+    </div>
+
+
+
+	<script>
+	function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+	</script>
+{% endblock content %}

@@ -1,0 +1,189 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <form method="post" id="cat_form" action="/product-categories/"
+                      enctype="multipart/form-data">{% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Add Brand </h5>
+                                {#                                        <div class="form-group mb-3">#}
+                                {#                                            {% if request.user.is_vendor %}#}
+                                {#                                                <input type="hidden" value="{{ request.user.id }}" name="vendor_id">#}
+                                {#                                            {% else %}#}
+                                {#                                                <div class="form-group mb-3">#}
+                                {#                                                    <label for="product-sub-category">Vendor <span#}
+                                {#                                                            class="text-danger">*</span></label>#}
+                                {#                                                    <select class="form-control select2" name="vendor_id"#}
+                                {#                                                            id="vendor_id">#}
+                                {#                                                        <option>Select</option>#}
+                                {#                                                        {% for v in vendor %}#}
+                                {#                                                            <option name="vendor_id" value="{{ v.id }}">{{ v.company_name }}</option>#}
+                                {#                                                        {% endfor %}#}
+                                {##}
+                                {#                                                    </select>#}
+                                {#                                                </div>#}
+                                {#                                            {% endif %}#}
+                                {#                                        </div>#}
+
+                                <div class="form-group mb-3">
+                                    <label for="brand-name">Brand Name <span class="text-danger">*</span></label>
+                                    <input type="text" id="brand-name" name="brand_name" class="form-control">
+                                </div>
+
+
+                                <div class="form-group mb-3">
+                                    <label for="product-code">Type (optional)<span
+                                            class="text-danger"></span></label>
+                                    <input type="text" id="product-code" name="Type"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="supplier">Description (optional)</label>
+                                    <input type="email" id="supplier" name="description"
+                                           class="form-control">
+                                </div>
+                            </div> <!-- end card-box -->
+                        </div> <!-- end col -->
+
+                        {#                    <div class="col-lg-6">#}
+                        {##}
+                        {#                        <div class="card-box">#}
+                        {#                            <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Product Images</h5>#}
+                        {##}
+                        {#                            <form action="https://coderthemes.com/" method="post" class="dropzone"#}
+                        {#                                  id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"#}
+                        {#                                  data-upload-preview-template="#uploadPreviewTemplate">#}
+                        {#                                <div class="fallback">#}
+                        {#                                    <input name="file" type="file" multiple/>#}
+                        {#                                </div>#}
+                        {##}
+                        {#                                <div class="dz-message needsclick">#}
+                        {#                                    <i class="h1 text-muted dripicons-cloud-upload"></i>#}
+                        {#                                    <h3>Drop files here or click to upload.</h3>#}
+                        {#                                    <span class="text-muted font-13">(This is just a demo dropzone. Selected files are#}
+                        {#                                                <strong>not</strong> actually uploaded.)</span>#}
+                        {#                                </div>#}
+                        {#                            </form>#}
+                        {##}
+                        {#                            <!-- Preview -->#}
+                        {#                            <div class="dropzone-previews mt-3" id="file-previews"></div>#}
+                        {##}
+                        {#                        </div> <!-- end col-->#}
+                        {##}
+                        {#                        <div class="card-box">#}
+                        {#                            <h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Meta Data</h5>#}
+                        {##}
+                        {#                            <div class="form-group mb-3">#}
+                        {#                                <label for="product-meta-title">Meta title</label>#}
+                        {#                                <input type="text" class="form-control" id="product-meta-title"#}
+                        {#                                       placeholder="Enter title">#}
+                        {#                            </div>#}
+                        {##}
+                        {#                            <div class="form-group mb-3">#}
+                        {#                                <label for="product-meta-keywords">Meta Keywords</label>#}
+                        {#                                <input type="text" class="form-control" id="product-meta-keywords"#}
+                        {#                                       placeholder="Enter keywords">#}
+                        {#                            </div>#}
+                        {##}
+                        {#                            <div class="form-group mb-0">#}
+                        {#                                <label for="product-meta-description">Meta Description </label>#}
+                        {#                                <textarea class="form-control" rows="5" id="product-meta-description"#}
+                        {#                                          placeholder="Please enter description"></textarea>#}
+                        {#                            </div>#}
+                        {#                        </div> <!-- end card-box -->#}
+                        {##}
+                        {#                    </div> <!-- end col-->#}
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center mb-3">
+                                <button type="button" class="btn w-sm btn-light waves-effect">Cancel</button>
+                                <button type="button" id="submit_btn"
+                                        class="btn w-sm btn-success waves-effect waves-light submit_btn">Save
+                                </button>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                </form>
+                <!-- file preview template -->
+                <div class="d-none" id="uploadPreviewTemplate">
+                    <div class="card mt-1 mb-0 shadow-none border">
+                        <div class="p-2">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                </div>
+                                <div class="col pl-0">
+                                    <a href="javascript:void(0);" class="text-muted font-weight-bold" data-dz-name></a>
+                                    <p class="mb-0" data-dz-size></p>
+                                </div>
+                                <div class="col-auto">
+                                    <!-- Button -->
+                                    <a href="#" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                        <i class="dripicons-cross"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).on('click', '.submit_btn', function (e) {
+
+            //prevent Default functionality
+            {#e.preventDefault();#}
+
+            //get the action-url of the form
+            {#var actionurl = e.currentTarget.action;#}
+            {#console.log(actionurl);#}
+            var form = document.getElementById('cat_form');
+            var formData = new FormData(form);
+            //do your own request an handle the results
+            $.ajax({
+                url: '/api/v1/superadmin_api/brand-list/',
+                type: 'post',
+                data: formData,
+                success: function (data) {
+                    console.log("success");
+                    console.log(data);
+                    window.location = '/superadmin/manage-brand/'
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+        })
+        ;
+
+    </script>
+{% endblock content %}

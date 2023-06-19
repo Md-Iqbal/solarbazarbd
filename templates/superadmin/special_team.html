@@ -1,0 +1,387 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+
+	<div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                            </div>
+                            <h4 class="page-title">Special Team Members</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <form class="form-inline">
+
+                                    </form>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="text-lg-right mt-3 mt-lg-0">
+                                        {#                                                <a href="{% url 'e-commerce-product-edit' %}" class="btn btn-danger waves-effect waves-light"><i class="fas fa-plus-circle  mr-1"></i> Add New</a>#}
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                                data-toggle="modal" data-target="#addModal">Add New
+                                        </button>
+                                    </div>
+                                </div><!-- end col-->
+                            </div> <!-- end row -->
+                        </div> <!-- end card-box -->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row-->
+
+                <div class="row" id="team">
+
+
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+    </div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+        $(document).ready(function () {
+            {#e.preventDefaul;t();#}
+            {#var p_id = this.name;#}
+            $.ajax({
+                type: 'get',
+                url: '/api/v1/company/special-team-list/',
+                username: 'saleh',
+                password: '1234',
+                {#dataType: 'json',#}
+                success: function (data) {
+                    try {
+                        var element = '';
+                        var i = 0;
+
+                        $('#team').html('');
+                        for (i = 0; i < data.length; i++) {
+                            element += `<div class="col-md-4 col-sm-3 col-xl-3 product_div" >
+                                        <div class="card-box product-box">
+                                    <div class="product-action">
+                                        <a href="javascript: void(0);" class="btn btn-success btn-xs waves-effect waves-light edit-btn" data-toggle="modal" data-target="#editModal" id="${data[i]['id']}" ><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="javascript: void(0);" class="btn btn-danger btn-xs waves-effect waves-light delete-btn" id="${data[i]['id']}"><i class="fas fa-times"></i></a>
+                                    </div>
+
+                                    <div class="bg-light">
+                                        <img style="height: 250px" src="${data[i]['image']}" alt="special-team-pic" class="img-fluid" />
+                                    </div>
+
+                                    <div class="product-info">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <h5 class="font-16 mt-0 sp-line-1"><a href="ecommerce-product-detail.html" class="text-dark">${data[i]['name']}</a> </h5>
+                                                <h5 class="m-0"> <span class="text-muted">${data[i]['designation']}</span></h5>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="product-price-tag">
+                                                    ${data[i]['priority']}
+                                                </div>
+                                            </div>
+                                        </div> <!-- end row -->
+                                    </div>
+                                    </div>
+                                    </div>`
+
+                        }
+                        var products = $('#team');
+                        products.html(element);
+                    } catch (e) {
+
+                    }
+
+
+                }
+            });
+        })
+            ;
+
+    </script>
+
+
+	<script>
+        $(document).on('click', '.delete-btn', function (e) {
+
+            e.preventDefault();
+            var p_id = this.id;
+            var trow = this.closest('.product_div');
+            $.ajax({
+                type: 'delete',
+                url: '/api/v1/company/special-team-details/' + p_id + '/',
+		             headers: {
+                    "X-CSRFToken": '{{ csrf_token }}'
+                },
+                {#dataType: 'json',#}
+                success: function (data) {
+                    trow.remove();
+                    try {
+                        alert('Product Deleted: ' + p_id);
+                    } catch (e) {
+                    }
+
+
+                }
+            });
+        });
+
+    </script>
+
+
+	<!--add member-->
+
+
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Member</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        	<form id="team_form">{% csrf_token %}
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="designation" class="col-form-label">Designation:</label>
+                                <input type="text" class="form-control" id="designation" name="designation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority" class="col-form-label">Priority:</label>
+                                <input type="number" class="form-control" id="priority" name="priority" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Image:</label>
+                                <br>
+                                <input type="file" id="image" name="image" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success submit_btn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	<script>
+        $(document).on('click', '.submit_btn', function (e) {
+            if( !$('#name').val() || !$('#image').val() || !$('#priority').val()){
+						    alert('Please input name, priority and image')
+								return
+						}
+
+            //prevent Default functionality
+            {#e.preventDefault();#}
+
+            //get the action-url of the form
+            {#var actionurl = e.currentTarget.action;#}
+            {#console.log(actionurl);#}
+            var form = document.getElementById('team_form');
+            var formData = new FormData(form);
+            //do your own request an handle the results
+            $.ajax({
+                url: '/api/v1/company/special-team-list/',
+                type: 'post',
+                data: formData,
+                username: 'saleh',
+                password: '1234',
+                success: function (data) {
+                    console.log("success");
+                    console.log(data);
+                    window.location = '/superadmin/special-team/'
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+        })
+        ;
+
+    </script>
+
+<script>
+        $(document).on('click', '.submit_update_btn', function (e) {
+            if( !$('#edit_name').val() || !$('#edit_image').val() || !$('#edit_priority').val()){
+						    alert('Please input name, priority and image')
+								return
+						}
+						var p_id = this.name;
+            //prevent Default functionality
+            {#e.preventDefault();#}
+
+            //get the action-url of the form
+            {#var actionurl = e.currentTarget.action;#}
+            {#console.log(actionurl);#}
+            var form = document.getElementById('team_update_form');
+            var formData = new FormData(form);
+            //do your own request an handle the results
+            $.ajax({
+                url: '/api/v1/company/special-team-details/'+p_id+'/',
+                type: 'patch',
+                data: formData,
+                username: 'saleh',
+                password: '1234',
+                success: function (data) {
+                    console.log("success");
+                    console.log(data);
+                    window.location = '/superadmin/special-team/'
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+		             headers: {
+                    "X-CSRFToken": '{{ csrf_token }}'
+                }
+            });
+
+        })
+        ;
+
+    </script>
+
+
+
+	<script>
+        $('#addModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
+	<!--End add member-->
+
+
+	<!--Edit member-->
+
+
+
+
+
+	<script>
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+        })
+    </script>
+	<!--End Edit member-->
+
+
+	<script>
+        $(document).on('click', '.edit-btn', function (e) {
+
+            jQuery.noConflict();
+            e.preventDefault();
+            var p_id = this.id;
+            $.ajax({
+                type: 'get',
+                url: '/api/v1/company/special-team-details/' + p_id + '/',
+                username: 'saleh',
+                password: '1234',
+                {#dataType: 'json',#}
+                success: function (data) {
+
+                    try {
+
+                        var element = '';
+                        element += `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Member</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      <form  id="team_update_form"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="edit_name" name="name" value="${data.name}">
+                        </div>
+                        <div class="form-group">
+                            <label for="designation" class="col-form-label">Designation:</label>
+                            <input type="text" class="form-control" name="designation" value="${data.designation}">
+                        </div>
+                        <div class="form-group">
+                            <label for="priority" class="col-form-label">Priority:</label>
+                            <input type="number" class="form-control" id="edit_priority" name="priority" value="${data.priority}">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Image:</label>
+                            <br>
+                            <input type="file" id="edit_image" name="image" value="${data.image.url}">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success submit_update_btn" id="submit_update_btn" name="${data.id}">Save</button>
+                </div>
+            </div>`;
+
+
+                        document.getElementById('modal_dialog').innerHTML = element;
+                        $('#editModal').modal('show');
+
+                    } catch (e) {
+
+                    }
+                }
+
+
+            });
+
+        })
+    </script>
+
+
+
+
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	     aria-hidden="true">
+        <div class="modal-dialog" id="modal_dialog" role="document">
+        </div>
+</div>
+
+
+{% endblock content %}

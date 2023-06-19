@@ -1,0 +1,212 @@
+{% extends 'vendor/master.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                {#                                        <ol class="breadcrumb m-0">#}
+                                {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>#}
+                                {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>#}
+                                {#                                            <li class="breadcrumb-item active">Dashboard</li>#}
+                                {#                                        </ol>#}
+                            </div>
+                            <h4 class="page-title">Daily Sales Report</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-hand-holding-usd"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h3 class="text-dark mt-1"> Tk <span
+                                                data-plugin="counterup">{{ total_revenue.amount_paid__sum }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Total Sales</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-shopping-basket custom_icon"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">Tk {{ total_order }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Total Revenue</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-store-alt custom_icon"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">{{ total_product }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Number of Orders</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_user_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-users custom_icon"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">{{ total_customer }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Transaction</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+
+
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card-box">
+                        <h4 class="header-title mb-3">Transaction by Method</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-centered table-hover mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="border-top-0">Payment Method</th>
+                                    <th class="border-top-0">Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Bkash</td>
+                                    <td>$345.98</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Rocket</td>
+                                    <td>$345.98</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Card</td>
+                                    <td>$345.98</td>
+                                </tr>
+                                <tr>
+                                    <td>Cash on</td>
+                                    <td>$345.98</td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive -->
+
+                    </div> <!-- end card-box-->
+                </div> <!-- end col-->
+
+            </div>
+            <!-- end row-->
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card-box">
+                        <h4 class="header-title mb-3">Orders Transaction Report</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-centered table-hover mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="border-top-0">Order ID</th>
+                                    <th class="border-top-0">Transaction ID</th>
+                                    <th class="border-top-0">Amount</th>
+                                    <th class="border-top-0">Profit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>#45521</td>
+                                    <td>ddd1234</td>
+                                    <td>$345.98</td>
+                                    <td>100</td>
+                                </tr>
+                                <tr>
+                                    <td>#45521</td>
+                                    <td>ddd1234</td>
+                                    <td>$345.98</td>
+                                    <td>100</td>
+                                </tr>
+                                <tr>
+                                    <td>#45521</td>
+                                    <td>ddd1234</td>
+                                    <td>$345.98</td>
+                                    <td>100</td>
+                                </tr>
+                                <tr>
+                                    <td>#45521</td>
+                                    <td>ddd1234</td>
+                                    <td>$345.98</td>
+                                    <td>100</td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive -->
+                    </div> <!-- end card-box-->
+                </div> <!-- end col-->
+
+            </div>
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+                <div class="exzoom hidden" id="exzoom">
+                    <div class="exzoom_img_box">
+                        <ul class='exzoom_img_ul'>
+                            <li><img src="./assets/images/solar/cat1.jpg"/></li>
+                            <li><img src="./assets/images/solar/cat2.jpg"/></li>
+                            <li><img src="./assets/images/solar/cat3.jpg"/></li>
+                        </ul>
+                    </div>
+                    <div class="exzoom_nav"></div>
+                    <p class="exzoom_btn">
+                        <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
+                        <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+                    </p>
+                </div>

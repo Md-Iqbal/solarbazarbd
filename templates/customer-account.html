@@ -1,0 +1,327 @@
+{#{% extends 'master.html' %}#}
+{% block content %}
+	{% load static %}
+	<!-- Navigation-->
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/bootstrap.min.css' %}"
+				media="all"
+		/>
+	<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'assets/css/customer-profile.css' %}"
+			media="all"
+	/>
+	<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'assets/css/font-awesome.min.css' %}"
+			media="all"
+	/>
+	<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'assets/css/techmarket-font-awesome.css' %}"
+			media="all"
+	/>
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link rel="shortcut icon" href="{% static 'assets/img/fortunes_logo/solarbazarfavicon1.png' %}"/>
+	<title>Solarbazarbd.com</title>
+	<body>
+	<div class="alert-container" style="text-align: center; position: unset; z-index: 1000; vertical-align: middle">
+    {% if messages %}
+	    {% for message in messages %}
+		    {% if message.tags == 'error' %}
+			    <div class="alert alert-warning main-alert" style="margin-bottom: 0" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" style="padding-left: 20px">&times;</span>
+                    </button>
+                    <strong>Failed!</strong> {{ message }}
+                </div>
+		    {% elif  message.tags == 'success' %}
+			    <div class="alert alert-primary" style="margin-bottom: 0" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" style="padding-left: 20px">&times;</span>
+                    </button>
+                    <strong>Success!</strong> {{ message }}
+                </div>
+		    {% elif  message.tags == 'warning' %}
+			    <div class="alert alert-warning" style="margin-bottom: 0" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" style="padding-left: 20px">&times;</span>
+                    </button>
+                    <strong>Warning!</strong> {{ message }}
+                </div>
+		    {% endif %}
+
+	    {% endfor %}
+    {% endif %}
+
+	<script>
+        window.setTimeout(function () {
+            $(".alert").fadeTo(3000, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 7000);
+    </script>
+</div>
+		<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+
+
+  <div class="main-content">
+    <!-- Top navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/">Continue Shopping</a>
+	      <div style="float: right">
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/orders/" >TRACK ORDER</a>
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/profile/" >PROFILE</a>
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/customer-logout/" >LOGOUT</a>
+	      </div>
+        <!-- Form -->
+
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 200px; background-image: url({% static 'assets/img/solar/solar.jpg' %}); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8" style="background: linear-gradient(
+87deg
+,#c40000d9 0, #eb202999 100%) !important;
+"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10 pt-5">
+            <h2 class=" text-white">Hello {{ customer.name }}!</h2>
+            <p class="text-white mt-0 mb-5">This is your profile page. You can see all your account information and update. Also you can track your orders from here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow" style="background-color: #f7fafc !important;    min-height: 100%;">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="{% static 'assets\img\customer.png' %}" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div class="d-flex justify-content-between">
+{#                <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>#}
+{#                <a href="#" class="btn btn-sm btn-default float-right">Message</a>#}
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+{#                    <div>#}
+{#                      <span class="heading">22</span>#}
+{#                      <span class="description">Friends</span>#}
+{#                    </div>#}
+{#                    <div>#}
+{#                      <span class="heading">10</span>#}
+{#                      <span class="description">Photos</span>#}
+{#                    </div>#}
+{#                    <div>#}
+{#                      <span class="heading">89</span>#}
+{#                      <span class="description">Comments</span>#}
+{#                    </div>#}
+                  </div>
+                </div>
+              </div>
+	            <div class="row" style="    margin-left: 20px; margin-right: 20px;">
+
+				      <!-- Icon Cards-->
+				        <div class="col-lg-12  col-12 mb-2 mt-4 " style="min-width: 100%;">
+				            <div class="inforide">
+				              <div class="row">
+				                <div class="col-lg-3 col-md-4 col-sm-4 col-4 rideone" onclick="location.href='/orders/'">
+				                    <i class="fa fa-cart-arrow-down" style="padding-top: 10px;" aria-hidden="true"></i>
+				                </div>
+				                <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+				                    <h4 style="margin-bottom: 0">ORDER PLACED</h4>
+				                    <h2 style="margin-top: 0">{{ all_orders }}</h2>
+				                </div>
+				              </div>
+				            </div>
+				        </div>
+
+				        <div class="col-12 mb-2 mt-4" style="min-width: 100%;">
+				            <div class="inforide">
+				              <div class="row">
+				                <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridetwo" onclick="location.href='/orders/'">
+				                    <i class="fa fa-check-square" aria-hidden="true"></i>
+				                </div>
+				                <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+				                    <h4 style="margin-bottom: 0">ORDER COMPLETED</h4>
+				                    <h2 style="margin-top: 0">{{ done_orders }}</h2>
+				                </div>
+				              </div>
+				            </div>
+				        </div>
+
+				        <div class="col-12 mb-2 mt-4" style="min-width: 100%;">
+				            <div class="inforide">
+				              <div class="row">
+				                <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridethree" onclick="location.href='/orders/'">
+				                    <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+				                </div>
+				                <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+				                    <h4 style="margin-bottom: 0">ORDER PENDING</h4>
+				                    <h2 style="margin-top: 0">{{ pending_orders }}</h2>
+				                </div>
+				              </div>
+				            </div>
+				        </div>
+		            <div class="col-12 mb-2 mt-4" style="min-width: 100%;">
+				            <div class="inforide">
+				              <div class="row">
+				                <div class="col-lg-3 col-md-4 col-sm-4 col-4 ridethree" style="background-color: #ff5757">
+				                    <i class="fa fa-money" aria-hidden="true"></i>
+				                </div>
+				                <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+				                    <h4 style="margin-bottom: 0">TRANSACTIONS</h4>
+				                    <h2 style="margin-top: 0">5000</h2>
+				                </div>
+				              </div>
+				            </div>
+				        </div>
+
+				    </div>
+              <div class="text-center">
+                <hr class="my-4">
+                <a href="/orders/">Show Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My account</h3>
+                </div>
+{#                <div class="col-4 text-right">#}
+{#                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>#}
+{#                </div>#}
+              </div>
+            </div>
+            <div class="card-body">
+              <form method="post" action="/profile/" enctype="multipart/form-data">{% csrf_token %}
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-username">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-control form-control-alternative" placeholder="Enter your name" value="{{ customer.name }}">
+                      </div>
+                    </div>
+	                  <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-username">Phone</label>
+                        <input type="text" id="phone" name="phone" class="form-control form-control-alternative" placeholder="Enter your phone" value="{{ customer.phone }}">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="email" id="email" name="email" class="form-control form-control-alternative" placeholder="fortunes@example.com" value="{{ customer.email }}">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-first-name">Short Address</label>
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" name="short_address" placeholder="First name" value="{{ customer.short_address }}">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <hr class="my-4">
+	              <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Delivery Address</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-address">Area</label>
+                        <input id="input-address" name="area" class="form-control form-control-alternative" placeholder="" value="{{ customer.customer_address.area }}" type="text" >
+                      </div>
+                    </div>
+	                <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-country">Zip/Postal Code</label>
+                        <input type="text" id="input-country" name="zip_code" class="form-control form-control-alternative" placeholder="" value="{{ customer.customer_address.zip_code }}">
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city">City</label>
+                        <input type="text" id="input-city" class="form-control form-control-alternative" name="city" placeholder="" value="{{ customer.customer_address.city }}">
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Street</label>
+                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" name="street" placeholder="" value="{{ customer.customer_address.street }}">
+                      </div>
+                    </div>
+	                  <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">House#</label>
+                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="" name="house_number" value="{{ customer.customer_address.house_number }}">
+                      </div>
+                    </div>
+	                  <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Flat#</label>
+                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="" name="flat_number" value="{{ customer.customer_address.flat_number }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+	              <!-- Description -->
+                <h6 class="heading-small text-muted mb-4">Notes</h6>
+                <div class="pl-lg-4">
+                  <div class="form-group focused">
+                    <label>Add Note</label>
+                    <textarea rows="3" class="form-control form-control-alternative" placeholder="This field is optional ..."></textarea>
+                  </div>
+                </div>
+	              <div class="col-12 text-center">
+                  <input type= "submit" class="btn btn-xl btn-primary" value="UPDATE"/>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-6 m-auto text-center">
+        <div class="copyright">
+
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+
+{% endblock %}

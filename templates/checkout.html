@@ -1,0 +1,556 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+
+	<body class="woocommerce-active page-template-default woocommerce-checkout woocommerce-page can-uppercase">
+        <div id="page" class="hfeed site">
+
+	        <!-- .header-v1 -->
+	        <!-- ============================================================= Header End ============================================================= -->
+                <div id="content" class="site-content"> <div class="col-full">
+                    <div class="row">
+                        <nav class="woocommerce-breadcrumb">
+                            <a href="{% url 'home' %}">Home</a>
+                            <span class="delimiter">
+                                <i class="tm tm-breadcrumbs-arrow-right"></i>
+                            </span>
+                            Checkout
+                        </nav>
+	                    <!-- .woocommerce-breadcrumb -->
+                        <div class="content-area" id="primary">
+                            <main class="site-main" id="main">
+                                <div class="type-page hentry">
+                                    <div class="entry-content">
+                                        <div class="woocommerce">
+	                                        <!-- .collapse -->
+                                            <form action="#" class="checkout woocommerce-checkout" method="post" name="checkout" id="checkout-form">
+                                                <div id="customer_details" class="col2-set">
+                                                    <div class="col-1">
+                                                        <div class="woocommerce-billing-fields">
+                                                            <h3>Cusotmer Details</h3>
+                                                            <div class="woocommerce-billing-fields__field-wrapper-outer">
+                                                                <div class="woocommerce-billing-fields__field-wrapper">
+                                                                    <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="name">Name
+                                                                            <abbr title="required" class="required">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" value="{{ customer.name }}" placeholder="" required id="name" name="name" class="input-text"/>
+                                                                    </p>
+                                                                    <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="phone">Phone
+                                                                            <abbr title="required" class="required">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" value="{{ request.user.username }}" required placeholder="" id="phone" name="phone" class="input-text"/>
+                                                                    </p>
+	                                                                <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="email">Email
+	                                                                        <abbr title="required" class="required">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" required value="{{ customer.email }}" placeholder="" id="email" name="email" class="input-text"/>
+                                                                    </p>
+
+                                                                    <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="area">Area
+                                                                            <abbr title="required" class="required">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" value="{{ customer.customer_address.area }}" required placeholder="" id="area" name="area" class="input-text"/>
+                                                                    </p>
+	                                                                   <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="zip_code">Zip Code
+                                                                            <abbr title="required" class="required">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" value="{{ customer.customer_address.zip_code }}" required placeholder="" id="zip_code" name="zip_code" class="input-text"/>
+                                                                    </p>
+                                                                    <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="street">Street
+                                                                            <abbr title="required" class="required">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" value="{{ customer.customer_address.street }}" required placeholder="" id="street" name="street" class="input-text"/>
+                                                                    </p>
+                                                                    <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="house_number">House
+                                                                        </label>
+                                                                        <input type="text" value="{{ customer.customer_address.house_number }}" placeholder="" id="house_number" name="house_number" class="input-text"/>
+                                                                    </p>
+
+                                                                        <input type="hidden" hidden value="None" placeholder="" id="flat_number" name="flat_number" class="input-text"/>
+
+                                                                    <p id="billing_first_name_field" class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field">
+                                                                        <label class="" for="city">City
+                                                                            <abbr title="required" class="required">*</abbr>
+                                                                        </label>
+                                                                        <input type="text" value="{{ customer.customer_address.city }}" required placeholder="" id="city" name="city" class="input-text"/>
+                                                                    </p>
+	                                                                  <p id="billing_first_name_field" class="form-row form-row-wide ">
+                                                                        <label class="" for="order_note">Order Note (if any)
+                                                                        </label>
+		                                                                  <textarea rows="3" placeholder="" id="order_note" name="order_note" class="input-text"></textarea>
+                                                                    </p>
+                                                                    <div class="clear"></div>
+                                                                    <div class="clear"></div>
+                                                                    <div class="woocommerce-info">
+                                                                        Have a coupon?
+                                                                        <a data-toggle="collapse" href="#checkoutCouponForm" aria-expanded="false" aria-controls="checkoutCouponForm" class="showlogin">Click here to enter your code</a>
+                                                                    </div>
+                                                                    <div class="collapse" id="checkoutCouponForm" style="width: 100%">
+                                                                        <div class="row">
+                                                                            <div class="col-8">
+                                                                                <p class="form-row ">
+                                                                                    <input type="text" value="" id="coupon_field" placeholder="Coupon code" class="input-text" name="coupon_code"/>
+	                                                                                <span hidden id="coupon_value"></span>
+	                                                                            </p>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <p class="form-row ">
+                                                                                    <input type="button" value="Apply coupon" id="c_apply_btn" name="apply_coupon" class="button"/>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="clear"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+	                                                        <!-- .woocommerce-billing-fields__field-wrapper-outer -->
+                                                        </div>
+	                                                    <!-- .woocommerce-billing-fields -->
+	                                                    <!-- .woocommerce-account-fields -->
+                                                    </div>
+	                                                <!-- .col-1 -->
+                                                    <div class="col-2"><!-- .woocommerce-shipping-fields -->
+                                                                       <!-- .woocommerce-additional-fields -->
+                                                    </div>
+	                                                <!-- .col-2 -->
+                                                </div>
+	                                            <!-- .col2-set -->
+                                                <h3 id="order_review_heading">Your order</h3>
+                                                <div class="woocommerce-checkout-review-order" id="order_review">
+                                                    <div class="order-review-wrapper">
+                                                        <h3 class="order_review_heading">Your Order</h3>
+                                                        <table class="shop_table woocommerce-checkout-review-order-table" id="order_cart">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="product-name">Product</th>
+                                                                    <th class="product-total">Total (৳)</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr class="cart-subtotal">
+                                                                    <th>Subtotal</th>
+                                                                    <td>
+                                                                        <span class="woocommerce-Price-amount amount">
+                                                                            <span class="woocommerce-Price-currencySymbol">৳ </span><span id="grand_total">0.00</span></span>
+                                                                    </td>
+                                                                </tr>
+	                                                            <tr class="cart-subtotal">
+                                                                    <th>Discount</th>
+                                                                    <td>
+                                                                        <span class="woocommerce-Price-amount amount">
+                                                                            <span class="woocommerce-Price-currencySymbol">৳ </span><span id="discount">0.00</span></span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="order-total">
+                                                                    <th>Total</th>
+                                                                    <td>
+                                                                        <strong>
+                                                                            <span class="woocommerce-Price-amount amount">
+                                                                                <span class="woocommerce-Price-currencySymbol">৳ </span><span id="final_total">0.00</span></span>
+                                                                        </strong>
+                                                                    </td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+	                                                    <!-- /.woocommerce-checkout-review-order-table -->
+                                                        <div class="woocommerce-checkout-payment" id="payment">
+                                                            <ul class="wc_payment_methods payment_methods methods">
+{#                                                                <li class="wc_payment_method payment_method_bacs">#}
+{#                                                                    <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_method" class="input-radio" id="payment_method_bacs"/>#}
+{#                                                                    <label for="payment_method_bacs">Direct bank transfer</label>#}
+{#                                                                </li>#}
+{#                                                                <li class="wc_payment_method payment_method_cheque">#}
+{#                                                                    <input type="radio" data-order_button_text="" value="cheque" name="payment_method" class="input-radio" id="payment_method_cheque"/>#}
+{#                                                                    <label for="payment_method_cheque">Check payments#}
+{#                                                                    </label>#}
+{#                                                                </li>#}
+                                                                <li class="wc_payment_method payment_method_cod">
+                                                                    <input type="radio" data-order_button_text="" value="cod" checked="checked" name="payment_method" class="input-radio" id="payment_method_cod"/>
+                                                                    <label for="payment_method_cod">Cash on delivery
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="form-row place-order">
+                                                                <p class="form-row terms wc-terms-and-conditions woocommerce-validated">
+                                                                    <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+                                                                        <input type="checkbox" id="terms" name="terms" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"/>
+                                                                        <span>I’ve read and accept the
+                                                                            <a class="woocommerce-terms-and-conditions-link" href="/terms-and-conditions/">terms &amp; conditions</a>
+                                                                        </span>
+                                                                        <span class="required">*</span>
+                                                                    </label>
+                                                                    <input type="hidden" value="1" name="terms-field"/>
+                                                                </p>
+                                                                <a class="button wc-forward text-center place-order" id="checkout">Place order</a>
+                                                            </div>
+                                                        </div>
+	                                                    <!-- /.woocommerce-checkout-payment -->
+                                                    </div>
+	                                                <!-- /.order-review-wrapper -->
+                                                </div>
+	                                            <!-- .woocommerce-checkout-review-order -->
+                                            </form>
+	                                        <!-- .woocommerce-checkout -->
+                                        </div>
+	                                    <!-- .woocommerce -->
+                                    </div>
+	                                <!-- .entry-content -->
+                                </div>
+	                            <!-- #post-## -->
+                            </main>
+	                        <!-- #main -->
+                        </div>
+	                    <!-- #primary -->
+                    </div>
+	                <!-- .row -->
+                </div>
+	                <!-- .col-full -->
+            </div>
+	        <!-- #content -->
+	        <!-- .site-footer -->
+	        <p hidden id="is_checkout_page">true</p>
+        </div>
+        <script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+				<script>
+		        $(document).ready(function () {
+                jQuery.noConflict();
+
+                'use strict';
+                $("#checkout-form").validate();
+                var total = 0;
+                var cart = (JSON.parse(localStorage.getItem('cart')) || []);
+                if (cart.length > 0) {
+                    // document.getElementById('empty_bag').style.display = 'none';
+                    cart.forEach(cartItem => {
+                        const product = cartItem;
+                        add_new_item(product.title, product.price, product.quantity, product.name)
+                        {#var itemtotal = product.price * product.quantity;#}
+                    })
+                }
+                summary()
+            });
+
+            function add_new_item(n, p, q, pid) {
+                var element = `"
+											<tr class="cart_item">
+                        <td class="product-name">
+                            <strong class="product-quantity">${q} ×</strong>
+                            ${n}
+                        </td>
+                        <td class="product-total">
+                            <span class="woocommerce-Price-amount amount">
+                                <span class="woocommerce-Price-currencySymbol"></span>${parseFloat(p) * parseFloat(q)}</span>
+                        </td>
+                    </tr>
+											"`
+                var table_body = $('#order_cart').find("tbody");
+                table_body.append(element);
+            }
+
+            function summary() {
+                var total = 0
+                var cart = []
+                cart = (JSON.parse(localStorage.getItem('cart')) || []);
+                cart.forEach(cartItem => {
+                    console.log(cartItem.quantity)
+                    total = total + (parseFloat(cartItem.quantity)) * (parseFloat(cartItem.price))
+                })
+
+                $('#grand_total').text(total)
+                $('#final_total').text(total)
+                {#var $final = (parseFloat($('#other_charges').val()) + total)#}
+                {#$('#final_total').text(!$final > 0 ? 0 : $final)#}
+                $('#discount').text('0')
+                $('#coupon_value').text('')
+                $('#coupon_field').val('')
+
+            }
+
+            $("#c_apply_btn").on('click', function () {
+                var $coupon = $('#coupon_field').val().trim()
+                try {
+                    $.ajax({
+                        type: 'get',
+                        url: '/api/v1/inventory/promocode/' + $coupon + '/',
+                        {#dataType: 'json',#}
+                        success: function (data) {
+                            try {
+                                var $discount = 0
+                                var $final = parseFloat($('#grand_total').text().trim())
+                                if (data.discount_type === 'AMOUNT') {
+                                    $discount = data.discount
+                                } else {
+                                    $discount = (parseFloat(data.discount) * $final) / 100
+                                }
+                                $('#discount').text(!$final > 0 ? '0.00' : $discount)
+                                $('#final_total').text(($final - $discount) < 0 ? 0.00 : ($final - $discount));
+                                $('#coupon_value').text($coupon)
+                            } catch (e) {
+                            }
+                        },
+                        error: function (data) {
+                            console.log("error");
+                            console.log(data);
+                            $('#coupon_value').text('')
+                            $('#coupon_field').val('')
+                            alert('Coupon code is invalid')
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                    });
+                } catch (e) {
+
+                }
+            })
+
+
+            {#$(document).on('click', '.place-order', function (e) {#}
+            {#    e.preventDefault();#}
+            {#    var p_id = this.name;#}
+            {#    console.log(p_id);#}
+            {#    let cart = (JSON.parse(localStorage.getItem('cart')) || []);#}
+            {#    var order_items = {};#}
+            {#    var order_items_array = [];#}
+            {#    var x = 0;#}
+            {#    if (cart.length > 0) {#}
+            {#        cart.forEach(cartItem => {#}
+            {#            order_items[x] = {#}
+            {#                quantity: 20,#}
+            {#                product: 20#}
+            {#            };#}
+            {#            order_items_array.push(order_items[x]);#}
+            {#            x++;#}
+            {#            {#}
+            {#                #order_items.push({product: cartItem.name, quantity: cartItem.quantity})#}
+            {#                ##}
+            {#            }#}
+            {#            {#}
+            {#                #assign(order_items, {#}
+            {#                    product: cartItem.name,#}
+            {#                    quantity: cartItem.quantity#}
+            {#                })#}
+            {#                ##}
+            {#            }#}
+            {#        })#}
+            {#    }#}
+            {#    {#}
+            {#        #order_items = JSON.stringify(order_items)#}
+            {#        ##}
+            {#    }#}
+            {#    console.log(order_items_array);#}
+            {#    order_data = {#}
+            {#        "order_items": [#}
+            {#            {#}
+            {#                "quantity": 1.00,#}
+            {#                "product": 2#}
+            {#            }#}
+            {#        ],#}
+            {#        "order_note": 'hey',#}
+            {#        "order_total": 500,#}
+            {#        "promo_code": 1#}
+            {#    }#}
+            {#    console.log(JSON.stringify({order_data}))#}
+            {#    $.ajax({#}
+            {#        type: 'post',#}
+            {#        data: JSON.stringify({order_data}),#}
+            {#        url: '/api/v1/order/create/',#}
+            {#    {#}
+            {#        #username#}
+            {#    :#}
+            {#        'saleh',#}
+            {#            ##}
+            {#    }#}
+            {#    {#}
+            {#        #password#}
+            {#    :#}
+            {#        '1234',#}
+            {#            ##}
+            {#    }#}
+            {#    dataType: 'json',#}
+            {#        headers#}
+            {#:#}
+            {#    {#}
+            {#        "X-CSRFToken"#}
+            {#    :#}
+            {#        '{{ csrf_token }}'#}
+            {#    }#}
+            {#,#}
+            {#    success: function (data) {#}
+            {#        console.log("success");#}
+            {#        console.log(data);#}
+            {#        {#}
+            {#            #window.location = '/vendor/e-commerce-all-coupon/';#}
+            {#            ##}
+            {#        }#}
+            {#    }#}
+            {#,#}
+            {#    error: function (data) {#}
+            {#        console.log("error");#}
+            {#        console.log(data);#}
+            {#    }#}
+
+            /*
+            "payment": {
+                                              "payment_method": "CASHON",
+                                              "payment_status": "PENDING",
+                                              "amount_paid": "0",
+                                              "transaction_id": "",
+                                              "is_failed": "false"
+                                          },
+             */
+
+        </script>
+        <script>
+            $("#checkout").on('click', function (e) {
+                var isChecked = $('#terms').is(':checked');
+                if (!isChecked) {
+                    alert('You must agree to the terms and conditions');
+                    return false
+                }
+                if(!($('#name').val() && $('#phone').val() && $('#email').val() && $('#area').val() && $('#zip_code').val() && $('#street').val() && $('#city').val())){
+                    alert('Please fill out required fields');
+                    return false
+                }
+
+                var cart = (JSON.parse(localStorage.getItem('cart')) || []);
+                if (cart === []) {
+                    e.preventDefault()
+                    return false
+                }
+                var items = [],
+                    item = ''
+                cart.forEach(cartItem => {
+                    item = '{"product":"' + cartItem.name + '", "quantity":"' + cartItem.quantity + '"}'
+                    items.push(item)
+                })
+                data = `{
+					          "order_items": [${items}],
+
+					          "delivery_address": {
+					              "zip_code": "${
+                    $("#zip_code").val()
+                }",
+					              "area": "${
+                    $("#area").val()
+                }",
+					              "street": "${
+                    $("#street").val()
+                }",
+					              "house_number": "${
+                    $("#house_number").val()
+                }",
+
+					              "city": "${
+                    $("#city").val()
+                }"
+					          },
+					          "ref_code": "null",
+					          "order_note": "${
+                    $("#order_note").val()
+                }",
+					          "customer": "null",
+					          "promo_code_value": "${
+                    $("#coupon_value").text()
+                }",
+					          "ordered_by": "ecommerce",
+					          "name": "${
+                    $("#name").val()
+                }",
+					          "short_address": "${
+                    'House: ' + $("#house_number").val() + ', Street:  ' + $("#street").val() + ', Zip: ' + $("#zip_code").val() + ', City: ' + $("#city").val()
+                }",
+                "email": "${
+                    $("#email").val()
+                }",
+					          "phone": "${
+                    $("#phone").val()
+                }"
+					      }`
+                console.log((data))
+                console.log(JSON.stringify(data))
+                try {
+                    $.ajax({
+                        url: '/api/v1/order/create/',
+                        type: 'post',
+                        data: data,
+                        success: function (response) {
+                            console.log("success");
+                            console.log(response);
+                            {#reset()#}
+		                        window.location = '/create-payment/'+ response['id']+'/'
+		                        /*
+                            $.ajax({
+                                url: '/create-payment/',
+                                type: 'post',
+                                data: response,
+                                dataType: "json",
+                                contentType: "application/json",
+                                cache: false,
+                                success: function (response) {
+                                    console.log("success");
+                                    console.log(response);
+                                },
+                                error: function (data) {
+                                    console.log("error");
+                                    {#alert(data.error())#}
+                                    console.log(data);
+                                },
+                                headers: {
+                                    "X-CSRFToken": '{{ csrf_token }}'
+                                }
+                            });
+                            */
+
+                        },
+                        error: function (data) {
+                            console.log("error");
+                            {#alert(data.error())#}
+                            console.log(data);
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        cache: false,
+                        processData: false,
+                        headers: {
+                            "X-CSRFToken": '{{ csrf_token }}'
+                        }
+                    });
+                } catch (e) {
+                }
+            })
+
+
+            function reset() {
+                {#$('#grand_total').text('0.00')#}
+                {#$('#final_total').text('0.00')#}
+                {#$('#discount_field').text('00')#}
+                {#$('#other_charges').text('00')#}
+                {#$('#discount').text('0.00')#}
+                {#$('#customer_name').val('')#}
+                {#$('#customer_phone').val('')#}
+                {#$('#customer_address').val('')#}
+                $('#order_note').val('')
+                $('#coupon_value').text('')
+                $('#coupon_field').val('')
+                var cart = []
+                localStorage.setItem('cart', JSON.stringify(cart));
+                $('#cart').find('tbody').html('')
+                return false
+            }
+        </script>
+    </body>
+{% endblock %}

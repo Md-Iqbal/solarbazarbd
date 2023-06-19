@@ -1,0 +1,581 @@
+{% extends 'vendor/master.html' %}
+{% load static %}
+{% block content %}
+	<!-- jQuery !-->
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<!-- jQuery UI !-->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	{#<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>#}
+	<style>
+	input[readonly] {
+      cursor: text;
+      background-color: #fff;
+  }
+	</style>
+	<div class="content-page">
+		<div class="content">
+
+			<!-- Start Content-->
+			<div class="container-fluid">
+
+				<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box">
+							<div class="page-title-right">
+								<ol class="breadcrumb m-0">
+{#									<li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>#}
+{#									<li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>#}
+{#									<li class="breadcrumb-item active">Shopping Cart</li>#}
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end page title -->
+				<form autocomplete="off">
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-lg-8">
+										<div class="table-responsive">
+											<table class="table table-borderless table-centered mb-0" id="cart">
+												<thead class="thead-light">
+													<tr>
+														<th>
+															<div class="row">
+																<div class="col-sm-12 col-md-4 col-lg-4">
+																	<input class="form-control input input-active fa" placeholder="&#xf002 Product code"  name="search" id="search_by_code" type="text" />
+																</div>
+																<div class="col-sm-12 col-md-8 col-lg-8">
+																	<input class="form-control input input-active fa" placeholder="&#xf002 Search Product" name="search" id="search" type="text" />
+																</div>
+															</div>
+														</th>
+														<th>Price</th>
+														<th>Qty</th>
+														<th style="min-width: 90px">Total</th>
+														<th style="width: 50px;"></th>
+													</tr>
+												</thead>
+												<tbody>
+
+
+												</tbody>
+											</table>
+										</div> <!-- end table-responsive-->
+										       <!-- Add note input-->
+{#										<div class="mt-3">#}
+{#											<label for="example-textarea">Add a Note:</label>#}
+{#											<textarea class="form-control" id="example-textarea" rows="3" placeholder="Write some note.."></textarea>#}
+{#										</div>#}
+										<div class="row mt-4">
+											<div class="col-6">
+												<input class="form-control" autocomplete="new-password" onfocus="this.removeAttribute('readonly');" readonly id="customer_phone" placeholder="Enter customer phone number" />
+											</div>
+											<div class="col-6">
+												<input class="form-control" autocomplete="new-password" onfocus="this.removeAttribute('readonly');" readonly id="customer_name" placeholder="Customer name" />
+											</div>
+										</div>
+										<div class="row mt-2">
+											<div class="col-6">
+												<input class="form-control" autocomplete="new-password" onfocus="this.removeAttribute('readonly');" readonly id="customer_address" placeholder="Address" />
+											</div>
+											<div class="col-6">
+												<input class="form-control" id="order_note" placeholder="Note...." />
+											</div>
+										</div>
+										       <!-- action buttons-->
+										<div class="row mt-4">
+											<div class="col-sm-6">
+												<a href="ecommerce-products.html" class="btn text-muted d-none d-sm-inline-block btn-link font-weight-semibold">
+													<i class="fas fa-arrow-left"></i> Dashboard</a>
+											</div> <!-- end col -->
+											<div class="col-sm-6">
+												<div class="text-sm-right">
+													<a href="javascript:reset();" class="btn btn-danger"><i class="fas  fa-eraser mr-1"></i>Reset </a>
+													<a href="javascript: void(0);" class="btn btn-success" id="checkout"><i class="fas fa-cart-plus mr-1"></i>Checkout </a>
+												</div>
+											</div> <!-- end col -->
+										</div> <!-- end row-->
+									</div>
+									<!-- end col -->
+
+									<div class="col-lg-4">
+										<div class="border p-3 mt-4 mt-lg-0 rounded">
+											<h4 class="header-title mb-3">Order Summary</h4>
+
+											<div class="table-responsive">
+												<table class="table mb-0">
+													<tbody>
+														<tr>
+															<td>Grand Total :</td>
+															<td>৳ <span id="grand_total"></span></td>
+														</tr>
+														<tr>
+															<td>Discount : </td>
+															<td>৳ <span id="discount">0.00</span> </td>
+														</tr>
+														<tr>
+															<td>Other Charge :</td>
+															<td><input type="number" class="form-control small " id="other_charges" style="width: 90px" value="00"></td>
+														</tr>
+{#														<tr>#}
+{#															<td>D : </td>#}
+{#															<td>৳19.22</td>#}
+{#														</tr>#}
+														<tr>
+															<th>Total :</th>
+															<th>৳ <span id="final_total"></span> </th>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- end table-responsive -->
+										</div>
+
+										<div class="alert alert-warning mt-3" role="alert">
+											Use coupon code <strong>UBTF25</strong> for new members and get 05% discount !
+										</div>
+
+										<div class="input-group mt-3">
+											<input type="text" class="form-control form-control-light" placeholder="Coupon code"
+											       aria-label="Recipient's username" id="coupon_field">
+											<p hidden id="coupon_value"></p>
+											<div class="input-group-append">
+												<button class="btn btn-light" id="c_apply_btn" type="button">Apply</button>
+											</div>
+										</div>
+										<div class="input-group mt-1">
+											<input type="text" class="form-control form-control-light" id="discount_field" placeholder="Discount"
+											       aria-label="Recipient's username">
+											<div class="input-group-append">
+												<button class="btn btn-light" id="d_apply_btn" type="button">Apply</button>
+											</div>
+										</div>
+
+									</div> <!-- end col -->
+
+								</div> <!-- end row -->
+							</div> <!-- end card-body-->
+						</div> <!-- end card-->
+					</div> <!-- end col -->
+				</div>
+					<!-- end row -->
+				</form>
+			</div> <!-- container -->
+
+		</div> <!-- content -->
+		       <!-- Footer Start -->
+		<footer class="footer">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						2015 - <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="#">Coderthemes</a>
+					</div>
+					<div class="col-md-6">
+						<div class="text-md-right footer-links d-none d-sm-block">
+							<a href="javascript:void(0);">About Us</a>
+							<a href="javascript:void(0);">Help</a>
+							<a href="javascript:void(0);">Contact Us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		       <!-- end Footer -->
+
+	</div>
+
+	<script>
+ $(document).ready(function () {
+     jQuery.noConflict();
+     {#e.preventDefaul;t();#}
+     {#var p_id = this.name;#}
+     'use strict';
+     var total = 0;
+     var cart = (JSON.parse(localStorage.getItem('order_cart')) || []);
+     console.log(cart)
+     if (cart.length > 0) {
+         // document.getElementById('empty_bag').style.display = 'none';
+         cart.forEach(cartItem => {
+             const product = cartItem;
+             add_new_item(product.name, product.price, product.code, product.image, product.quantity, false, product.pid)
+             {#var itemtotal = product.price * product.quantity;#}
+         })
+     }
+     summary()
+
+
+     $("#other_charges").on('input', function () {
+         if (!$(this).val()) {
+             $(this).val(0);
+         }
+         var t = $('#grand_total').text().trim()
+         $('#final_total').text(parseFloat(t) + parseFloat($(this).val().trim()))
+     });
+     $("#d_apply_btn").on('click', function () {
+         var $discount = $('#discount_field').val()
+         var $d_type = $discount[$discount.length - 1];
+         var $final = parseFloat($('#other_charges').val()) + parseFloat($('#grand_total').text().trim())
+         {#alert($d_type)#}
+         if (!$discount) {
+             $discount = 0.00;
+         }
+         if ($d_type === '%') {
+             $discount = (parseFloat($discount) * $final) / 100
+         }
+         $('#discount').text(!$final > 0 ? '0.00' : $discount)
+         $('#final_total').text(($final - $discount) < 0 ? 0.00 : ($final - $discount));
+         $('#discount_field').val('')
+		     $('#coupon_value').text('')
+		     $('#coupon_field').val('')
+
+     })
+     $("#c_apply_btn").on('click', function () {
+         var $coupon = $('#coupon_field').val().trim()
+         try {
+             $.ajax({
+                 type: 'get',
+                 url: '/api/v1/inventory/promocode/' + $coupon + '/',
+                 {#dataType: 'json',#}
+                 success: function (data) {
+                     try {
+                         var $discount = 0
+                         var $final = parseFloat($('#other_charges').val()) + parseFloat($('#grand_total').text().trim())
+                         if (data.discount_type === 'AMOUNT') {
+                             $discount = data.discount
+                         } else {
+                             $discount = (parseFloat(data.discount) * $final) / 100
+                         }
+                         $('#discount').text(!$final > 0 ? '0.00' : $discount)
+                         $('#final_total').text(($final - $discount) < 0 ? 0.00 : ($final - $discount));
+                         $('#coupon_value').text($coupon)
+                     } catch (e) {
+                     }
+                 },
+                 error: function (data) {
+                     console.log("error");
+                     console.log(data);
+                     $('#coupon_value').text('')
+		                 $('#coupon_field').val('')
+                     alert('Coupon code is invalid')
+                 },
+                 cache: false,
+                 contentType: false,
+                 processData: false,
+             });
+         } catch (e) {
+
+         }
+     })
+     $("#search_by_code").on('change', function () {
+         if (!$(this).val()) {
+             return false;
+         } else {
+             var $code =$(this).val().trim()
+             try {
+                 $.ajax({
+                     type: 'get',
+                     url: '/api/v1/inventory/get-product-details/' + $code + '/',
+                     {#dataType: 'json',#}
+                     success: function (product) {
+                         try {
+                             console.log(product.product_images)
+                             add_new_item(product.name, product.discounted_price, product.code, product.product_images[0].image, 1, true, product.id)
+															$("#search_by_code").val('')
+															$("#search_by_code").css('border', '1px solid #229d0c')
+															$("#search_by_code").css('color', '#229d0c')
+                         } catch (e) {
+                         }
+                     },
+                     error: function (data) {
+                         console.log("error");
+                         console.log(data);
+                         $("#search_by_code").css('border', '1px solid #b10000')
+		                     $("#search_by_code").css('color', '#b10000')
+                         {#alert('Coupon code is invalid')#}
+                     },
+                     cache: false,
+                     contentType: false,
+                     processData: false,
+                 });
+             } catch (e) {
+
+             }
+         }
+     })
+
+ });
+ $(function () {
+     $("#search").autocomplete({
+         source: '{% url 'autocomplete' %}',
+         minLength: 1,
+         autoFocus: true,
+
+         classes: {
+             "ui-autocomplete": "highlight"
+         },
+         select: function (event, ui) {
+             add_new_item(ui.item.label, ui.item.price, ui.item.code, ui.item.image, 1, true, ui.item.pid)
+             $(this).val('');
+             return false;
+
+         }
+     });
+
+     $("#customer_phone").autocomplete({
+         source: '{% url 'search_customer_by_phone' %}',
+         minLength: 1,
+         autoFocus: true,
+
+         classes: {
+             "ui-autocomplete": "highlight"
+         },
+         select: function (event, ui) {
+             {#add_new_item(ui.item.label,ui.item.price,ui.item.code,ui.item.image,)#}
+             $('#customer_name').val(ui.item.name);
+             $('#customer_address').val(ui.item.add);
+
+         }
+     });
+
+ });
+
+ function add_new_item(n, p, c, i, q, is_new, pid) {
+     if(is_new) {
+         var cart = [], processed = 0
+         cart = (JSON.parse(localStorage.getItem('order_cart')) || []);
+         if (cart.length > 0) {
+             cart.forEach(cartItem => {
+                 if (cartItem.code === c) {
+                     cartItem.quantity = cartItem.quantity + 1
+                     localStorage.setItem('order_cart', JSON.stringify(cart));
+                     var $p = $('.p_code[value=' + c + ']')
+                     var $row = $($p).closest('tr')
+                     var p = parseFloat($row.find('.price').text().trim()).toFixed(2)
+                     $row.find('.sub_total').text(parseFloat(cartItem.quantity) * p)
+                     $row.find('.qty_field').val(parseFloat(cartItem.quantity))
+                     summary()
+                     processed = 1
+                 }
+             })
+         }
+     }
+		 if (! processed) {
+         var element = `"
+<tr class="border-bottom">
+   <td >
+<div class = "row">
+<div class="col-3">
+      <img src="${i}" alt="contact-img"
+         title="product-img" class="rounded mr-3" width="60" style="max-width: 60px"  />
+</div>
+      <div class="col-9 m-0 d-inline-block align-middle font-16">
+         <a href="" class="text-body font-family-secondary" style="color: #0391a2 !important">${n}</a>
+         <br>
+         <small class="mr-2 " name="code"><b>Code:</b> <span class="code"> ${c}</span> </small>
+         <small><b>~</b> ${c} </small>
+					<input class="p_code" type="hidden"value="${c}">
+      </div>
+</div
+   </td>
+   <td>
+      ৳<span class="price">${p}</span>
+   </td>
+   <td>
+      <input type="number" min="1" value="${q}" class="form-control qty_field" placeholder="Qty"  required style="width: 80px;">
+   </td>
+   <td>
+      ৳<span class="sub_total">${p * q}</span>
+   </td>
+   <td>
+      <a href="javascript:void(0);" class="action-icon delete-btn"> <i class="fas fa-trash"></i></a>
+   </td>
+</tr>
+"`
+
+         var table_body = $('#cart').find("tbody");
+         table_body.append(element);
+         const product = {
+             image: i,
+             name: n,
+             code: c,
+             price: p,
+             quantity: q,
+             pid: pid,
+         };
+         if (is_new) {
+             cart = []
+             cart = (JSON.parse(localStorage.getItem('order_cart')) || []);
+             cart.push(product);
+             console.log(cart)
+             localStorage.setItem('order_cart', JSON.stringify(cart));
+         }
+         summary()
+
+         $(".qty_field").on('change', function () {
+             if (!$(this).val()) {
+                 $(this).val(1);
+             }
+         })
+         $(".qty_field").on('input', function () {
+             var $row = $(this).closest('tr')
+             var q = parseFloat($(this).val().trim()).toFixed(2)
+             if (!$(this).val()) {
+                 q = 1;
+             }
+             var p = parseFloat($row.find('.price').text().trim()).toFixed(2)
+             $row.find('.sub_total').text(q * p)
+             console.log(q * p)
+             var $code = $row.find('.code').text()
+             var cart = []
+             cart = (JSON.parse(localStorage.getItem('order_cart')) || []);
+             if (cart.length > 0) {
+                 cart.forEach(cartItem => {
+                     if (cartItem.code === $code.trim()) {
+                         cartItem.quantity = parseInt(q)
+                         localStorage.setItem('order_cart', JSON.stringify(cart));
+
+                     }
+                 })
+             }
+             summary()
+         })
+
+     }
+ }
+
+</script>
+
+	<!-- ============================================================== -->
+	<!-- End Page content -->
+	<!-- ============================================================== -->
+
+
+	<script>
+	$(document).on('click', '.delete-btn', function (e) {
+      e.preventDefault();
+      var $row = $(this).closest('tr')
+      var $code = $row.find('.code').text().trim();
+      {#alert($code)#}
+      var cart = []
+      cart = (JSON.parse(localStorage.getItem('order_cart')) || []);
+      cart = cart.filter(cartItem => cartItem.code !== $code);
+      console.log(cart)
+      console.log($code)
+      localStorage.setItem('order_cart', JSON.stringify(cart));
+      $row.remove();
+      summary()
+      $('#discount').text('0.00')
+  });
+
+  function summary() {
+      var total = 0
+      var cart = []
+      cart = (JSON.parse(localStorage.getItem('order_cart')) || []);
+      cart.forEach(cartItem => {
+          console.log(cartItem.quantity)
+          total = total + (parseFloat(cartItem.quantity)) * (parseFloat(cartItem.price))
+
+      })
+
+      $('#grand_total').text(total)
+      var $final = (parseFloat($('#other_charges').val()) + total)
+      $('#final_total').text(!$final > 0 ? 0 : $final)
+      $('#discount').text('0.00')
+		  $('#coupon_value').text('')
+		  $('#coupon_field').val('')
+
+  }
+
+  {#cart = cart.filter(cartItem => cartItem.code !== code);#}
+
+  function reset() {
+      $('#grand_total').text('0.00')
+      $('#final_total').text('0.00')
+      $('#discount_field').text('00')
+      $('#other_charges').text('00')
+      $('#discount').text('0.00')
+      $('#customer_name').val('')
+      $('#customer_phone').val('')
+      $('#customer_address').val('')
+      $('#order_note').val('')
+		  $('#coupon_value').text('')
+		  $('#coupon_field').val('')
+      var cart = []
+      localStorage.setItem('order_cart', JSON.stringify(cart));
+      $('#cart').find('tbody').html('')
+      return false
+  }
+
+
+  $("#checkout").on('click', function (e) {
+      var cart = (JSON.parse(localStorage.getItem('order_cart')) || []);
+      if (cart === []) {
+          e.preventDefault()
+          return false
+      }
+      var items = [], item = ''
+      cart.forEach(cartItem => {
+          item = '{"product":"' + cartItem.pid + '", "quantity":"' + cartItem.quantity + '"}'
+          items.push(item)
+      })
+      data = `{
+          "order_items": [${items}],
+          "payment": {
+              "payment_method": "CASHON",
+              "payment_status": "PAID",
+              "amount_paid": "0",
+              "transaction_id": "TRANS1234",
+              "is_failed": "false"
+          },
+          "ref_code": "null",
+          "order_note": "${$("#order_note").val()}",
+          "status": "DONE",
+          "other_charges": "${$("#other_charges").val()}",
+          "other_discount": "${parseFloat($("#discount").text())}",
+          "is_payment_successful": "true",
+          "customer": "null",
+          "promo_code_value": "${$("#coupon_value").text()}",
+          "ordered_by": "",
+          "name": "${$("#customer_name").val()}",
+          "short_address": "${$("#customer_address").val()}",
+          "phone": "${$("#customer_phone").val()}"
+      }`
+      console.log((data))
+      console.log(JSON.stringify(data))
+      try {
+          $.ajax({
+              url: '/api/v1/order/create/',
+              type: 'post',
+              data: data,
+              success: function (data) {
+                  console.log("success");
+                  console.log(data);
+                  reset()
+                  {#window.location = '/vendor/sub-category/'#}
+              },
+              error: function (data) {
+                  console.log("error");
+                  console.log(data);
+              },
+              dataType: "json",
+              contentType: "application/json",
+              cache: false,
+              processData: false,
+              headers: {
+                  "X-CSRFToken": '{{ csrf_token }}'
+              }
+          });
+      } catch (e) {
+
+      }
+  })
+	</script>
+
+{% endblock %}
+

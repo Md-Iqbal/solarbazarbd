@@ -1,0 +1,168 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+
+                <!-- end page title -->
+
+                <form method="post" id="cat_form" action="/product-categories/"
+                      enctype="multipart/form-data">{% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Add Category</h5>
+	                              <div class="form-group mb-3">
+                                    <div class="form-group mb-3">
+                                        <label for="department_id">Department <span class="text-danger">*</span></label>
+                                        <select class="form-control select2" name="department" id="department_id">
+                                            <option>Select</option>
+                                            {% for d in departments %}
+																								<option name="department_id" value="{{ d.id }}">{{ d.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                      </div>
+	                              </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="name">Category Name <span class="text-danger">*</span></label>
+                                    <input type="text" id="name" name="name" required class="form-control"
+                                           placeholder="e.g : Solar Panel">
+                                </div>
+
+
+                                <div class="form-group mb-3">
+                                    <label for="product-alternative">Alternative Names </label>
+                                    <input type="text" id="product-alternative" name="alternative_name"
+                                           class="form-control"
+                                           placeholder="e.g : solar light">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="product-description"> Description <span
+                                            class="text-danger"></span></label>
+                                    <textarea class="form-control" id="product-description" name="descriptions" rows="5"
+                                              placeholder="Please enter description"></textarea>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label class="mb-2">Status <span class="text-danger">*</span></label>
+                                    <br/>
+                                    <div class="radio form-check-inline">
+                                        <input type="radio" id="inlineRadio1" value="True" name="is_active"
+                                               checked="">
+                                        <label for="inlineRadio1"> Active </label>
+                                    </div>
+                                    <div class="radio form-check-inline">
+                                        <input type="radio" id="inlineRadio2" value="False" name="is_active">
+                                        <label for="inlineRadio2"> Inactive </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group mb-3">
+                                    <label for="category-icon">Icon<span
+                                            class="text-danger"></span></label>
+                                    <input name="icon" type="file"/>
+
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="image">Image<span
+                                            class="text-danger">*</span></label>
+                                    <input name="image" id="image" type="file" required/>
+                                </div>
+
+                            </div> <!-- end card-box -->
+                        </div> <!-- end col -->
+                  </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center mb-3">
+                                <button type="button" class="btn w-sm btn-light waves-effect">Cancel</button>
+                                <button type="button" id="submit_btn"
+                                        class="btn w-sm btn-success waves-effect waves-light submit_btn">Save
+                                </button>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                </form>
+                <!-- file preview template -->
+                <div class="d-none" id="uploadPreviewTemplate">
+                    <div class="card mt-1 mb-0 shadow-none border">
+                        <div class="p-2">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                </div>
+                                <div class="col pl-0">
+                                    <a href="javascript:void(0);" class="text-muted font-weight-bold" data-dz-name></a>
+                                    <p class="mb-0" data-dz-size></p>
+                                </div>
+                                <div class="col-auto">
+                                    <!-- Button -->
+                                    <a href="#" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                        <i class="dripicons-cross"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).on('click', '.submit_btn', function (e) {
+						if( !$('#name').val() || !$('#image').val()){
+						    alert('Please input category name and image')
+								return
+						}
+            //prevent Default functionality
+            {#e.preventDefault();#}
+
+            //get the action-url of the form
+            {#var actionurl = e.currentTarget.action;#}
+            {#console.log(actionurl);#}
+            var form = document.getElementById('cat_form');
+            var formData = new FormData(form);
+            //do your own request an handle the results
+            $.ajax({
+                url: '/api/v1/inventory/product-categories/',
+                type: 'post',
+                data: formData,
+                success: function (data) {
+                    console.log("success");
+                    console.log(data);
+                    window.location = '/superadmin/category/'
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                    alert(data.responseText.replace(/[_\W]+/g, " "));
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+        })
+        ;
+
+    </script>
+{% endblock content %}

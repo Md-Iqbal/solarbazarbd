@@ -1,0 +1,278 @@
+{% extends 'vendor/master.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .border-info {
+            text-align: center;
+        }
+    </style>
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                {#                                        <ol class="breadcrumb m-0">#}
+                                {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>#}
+                                {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>#}
+                                {#                                            <li class="breadcrumb-item active">Dashboard</li>#}
+                                {#                                        </ol>#}
+                            </div>
+                            <h4 class="page-title">Monthly Sales Report</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-box" style="background-color: #279e9e">
+                            <div class="row">
+                                <div class="col-xl-2 border border-info pb-2">
+                                    <div>
+                                        <label for="product-sub-category " class="text-white"> Monthly Report</label>
+                                        <select
+                                                class="form-control select2" style="width: 100%; "
+                                                name="category" id="product-sub-category"
+                                        >
+                                            <option selected disabled>Select Month</option>
+
+                                            <option>January</option>
+                                            <option>February</option>
+                                            <option>March</option>
+                                            <option>April</option>
+                                            <option>May</option>
+                                            <option>June</option>
+                                            <option>July</option>
+                                            <option>August</option>
+                                            <option>September</option>
+                                            <option>October
+                                            </option>
+                                            <option>November</option>
+                                            <option>December</option>
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 border border-info pb-2">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label for="product-coupon-start" class="text-white"> Start Date </label>
+                                            <input type="date" class="form-control" id="product-coupon-start"
+                                                   name="valid_from">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="product-coupon-start" class="text-white"> End Date </label>
+                                            <input type="date" class="form-control" id="product-coupon-start"
+                                                   name="valid_from">
+                                        </div>
+                                        <div class="col-4">
+                                            <div>
+                                                <label for="product-sub-category " class="text-white"> Date Range</label>
+                                                <input type="button" class="form-control btn-danger" value="Generate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 border border-info pb-2">
+                                    <div>
+                                        <label for="product-sub-category " class="text-white"> Weekly Report</label>
+                                        <input type="button" class="form-control" value="This Week">
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 border border-info pb-2">
+                                    <div>
+                                        <label for="product-sub-category " class="text-white"> Daily Report</label>
+                                        <input type="button" class="form-control" value="Today">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col-->
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6 col-xl-3 ">
+                        <div class="widget-rounded-circle card-box " style="background-color: #ecb944">
+                            <div class="row">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-hand-holding-usd"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12 ">
+                                    <div class="text-center">
+                                        <h3 class="text-white mt-1"> BDT <span
+                                                data-plugin="counterup">{{ today_sales.sum }}</span></h3>
+                                        <p class="text-white mb-1 text-truncate">Total Sales</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box " style="background-color: #ca4c3fde">
+                            <div class="row ">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-shopping-basket custom_icon"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h3 class="text-white mt-1">BDT <span
+                                                data-plugin="counterup">{{ total_order }}</span></h3>
+                                        <p class="text-white mb-1 text-truncate">Total Revenue</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box bg-secondary">
+                            <div class="row">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-store-alt custom_icon"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h3 class="text-white mt-1"><span
+                                                data-plugin="counterup">{{ total_product }}</span></h3>
+                                        <p class="text-white mb-1 text-truncate">Number of Orders</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box bg-dark">
+                            <div class="row">
+                                {#                                <div class="col-6">#}
+                                {#                                    <div class="dash_user_icon">#}
+                                {#                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->#}
+                                {#                                        <i class="fas fa-users custom_icon"></i>#}
+                                {#                                    </div>#}
+                                {#                                </div>#}
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <h3 class="text-white mt-1"><span
+                                                data-plugin="counterup">{{ total_customer }}</span></h3>
+                                        <p class="text-white mb-1 text-truncate">Transaction</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-box">
+                            <h4 class="header-title mb-3">Transaction by Method</h4>
+
+                            <div class="table-responsive">
+                                <table class="table table-centered table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-top-0">Payment Method</th>
+                                        <th class="border-top-0">Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for p in method_amount %}
+                                        <tr>
+                                            <td>{{ p.payment_method }}</td>
+                                            <td>BDT {{ p.amount }}</td>
+                                        </tr>
+
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div> <!-- end table-responsive -->
+
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col-->
+
+                </div>
+                <!-- end row-->
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-box">
+                            <h4 class="header-title mb-3">Orders Transaction Report</h4>
+
+                            <div class="table-responsive">
+                                <table class="table table-centered table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-top-0">Order ID</th>
+                                        <th class="border-top-0">Transaction ID</th>
+                                        <th class="border-top-0">Amount</th>
+                                        <th class="border-top-0">Profit</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for m in monthly_order %}
+                                        <tr>
+                                            <td>{{ m.id }}</td>
+                                            <td>{{ m.order_payment.all.0.transaction_id }}</td>
+                                            <td>{{ m.order_total }}</td>
+                                            <td>100</td>
+                                        </tr>
+                                    {% endfor %}
+                                    {#                                <tr>#}
+                                    {#                                    <td>#45521</td>#}
+                                    {#                                    <td>ddd1234</td>#}
+                                    {#                                    <td>$345.98</td>#}
+                                    {#                                    <td>100</td>#}
+                                    {#                                </tr>#}
+                                    {#                                <tr>#}
+                                    {#                                    <td>#45521</td>#}
+                                    {#                                    <td>ddd1234</td>#}
+                                    {#                                    <td>$345.98</td>#}
+                                    {#                                    <td>100</td>#}
+                                    {#                                </tr>#}
+                                    {#                                <tr>#}
+                                    {#                                    <td>#45521</td>#}
+                                    {#                                    <td>ddd1234</td>#}
+                                    {#                                    <td>$345.98</td>#}
+                                    {#                                    <td>100</td>#}
+                                    {#                                </tr>#}
+
+
+                                    </tbody>
+                                </table>
+                            </div> <!-- end table-responsive -->
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col-->
+
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+    </div>
+
+{% endblock content %}

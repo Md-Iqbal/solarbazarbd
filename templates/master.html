@@ -1,0 +1,1346 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<head>
+		<style>
+        /* Wrapper */
+        .icon-button {
+            background-color: white;
+            border-radius: 3.6rem;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 2.0rem;
+            height: 3.6rem;
+            line-height: 3.6rem;
+            margin: 0 5px;
+            position: relative;
+            text-align: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            width: 3.6rem;
+        }
+
+        /* Circle */
+        .icon-button span {
+            border-radius: 0;
+            display: block;
+            height: 0;
+            left: 50%;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+            width: 0;
+        }
+
+        .icon-button:hover span {
+            width: 3.6rem;
+            height: 3.6rem;
+            border-radius: 3.6rem;
+            margin: -1.8rem;
+        }
+
+        .twitter span {
+            background-color: #C13584;
+        }
+
+        .facebook span {
+            background-color: #3B5998;
+        }
+
+        .google-plus span {
+            background-color: #db5a3c;
+        }
+
+        .fa-instagram {
+            color: #C13584;
+        }
+
+        .fa-facebook {
+            color: #3B5998;
+        }
+
+        .fa-youtube {
+            color: #db5a3c;
+        }
+
+        /* Icons */
+        .icon-button i {
+            background: none;
+            height: 3.6rem;
+            left: 0;
+            line-height: 3.6rem;
+            position: absolute;
+            top: 0;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+            width: 3.6rem;
+            z-index: 10;
+        }
+
+        .icon-button .icon-twitter {
+            color: #4099ff;
+        }
+
+        .icon-button .icon-facebook {
+            color: #3B5998;
+        }
+
+        .icon-button .icon-google-plus {
+            color: #db5a3c;
+        }
+
+        .icon-button:hover .fa-facebook,
+        .icon-button:hover .fa-instagram,
+        .icon-button:hover .fa-youtube {
+            color: white;
+        }
+
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 200;
+            cursor: pointer;
+        }
+
+        @media (min-width: 1590px) {
+            .site-header .primary-navigation {
+                flex: 0 0 70% !important;
+                max-width: 70% !important;
+
+            }
+        }
+		</style>
+		<link href="{% static 'vendor/fonts/fontawesome5/css/all.css' %}" rel="stylesheet" type="text/css"/>
+		<meta charset="UTF-8"/>
+		<meta
+				name="viewport"
+				content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+		/>
+		<title>Solar Bazar</title>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/bootstrap.min.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/font-awesome.min.css' %}"
+				media="all"
+		/>
+		<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/dev.css' %}">
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/bootstrap-grid.min.css' %}"
+				media="all"
+		/>
+
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/bootstrap-reboot.min.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/font-techmarket.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/slick.css' %}"
+				media="all"
+		/>
+		<link rel="stylesheet" href="{% static 'assets/css/new_slick/slick-theme.css' %}">
+		<link rel="stylesheet" href="{% static 'assets/css/new_slick/slick.css' %}">
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/techmarket-font-awesome.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/slick-style.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/animate.min.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/style.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/colors/red.css' %}"
+				media="all"
+		/>
+
+		<link
+				href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,900"
+				rel="stylesheet"
+		/>
+		<link rel="shortcut icon" href="{% static 'assets/img/fortunes_logo/solarbazarfavicon1.png' %}"/>
+	</head>
+	<body>
+
+{#	<script src="{% static 'assets/js/bootstrap.js' %}"></script>#}
+
+		<!-- overlay added for cart -->
+		<div id="overlay" class="overlay" onclick="off()">
+
+		</div>
+
+		<script>
+        function on() {
+            if (document.getElementById("overlay").style.display === "block") {
+                document.getElementById("overlay").style.display = "none";
+            } else {
+                document.getElementById("overlay").style.display = "block";
+            }
+            toggleCart();
+        }
+
+        function off() {
+            document.getElementById("overlay").style.display = "none";
+            toggleCart();
+        }
+		</script>
+		<!-- The Modal -->
+		<div class="modal fade bd-example-modal-lg" id="myModal">
+			<div class="modal-dialog modal-lg modal-dialog-centered" id="modal_dialog">
+
+			</div>
+		</div>
+		<!-- End Modal-->
+
+
+
+		<header class="top_header_new">
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+					<div class="col-md-6 col-12">
+						<div class="great_msg">
+							<p>
+								<marquee direction="left">
+									Welcome to solar bazar
+								</marquee>
+							</p>
+						</div>
+
+					</div>
+					<div class="col-md-6 col-12">
+						<div class="topbar_contact">
+							<ul>
+								<li>
+									<p>
+										<span class="mr-1"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+										info.fortunesgroup@gmail.com
+									</p>
+								</li>
+								<li>
+									<p>
+										<span class="mr-1"><i class="fa fa-phone" aria-hidden="true"></i></span>
+										+8801303862121
+									</p>
+								</li>
+								<li>
+									{% if request.user.is_authenticated %}
+										<a style="color: red; cursor: pointer;" href="/customer-logout/">Logout</a>
+									{% else %}
+										<a style="color: red; cursor: pointer;" data-toggle="modal" data-target="#loginModal">Join</a>
+									{% endif %}
+								</li>
+								<li>
+										<a href="{% url 'vendor_registration' %}">Become Vendor</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- topbar home section end -->
+		<!-- .top-bar-v1 -->
+		<header
+				id="masthead"
+				class="site-header header-v1"
+				style="background-image: none"
+		>
+			<div class="col-full desktop-only">
+				<div class="latest_sticky techmarket-sticky-wrap">
+					<div class="row d-flex align-items-center">
+						<div class="site-branding">
+							<a href="/" class="custom-logo-link" rel="home">
+								<img class="logo_image" src="{{ logo.0.image.url }}" height="100" width="150"/>
+							</a>
+							<!-- /.custom-logo-link -->
+						</div>
+						<!-- /.site-branding -->
+						<!-- ============================================================= End Header Logo ============================================================= -->
+						<nav
+								id="primary-navigation"
+								class="primary-navigation custom_nav"
+								aria-label="Primary Navigation"
+								data-nav="flex-menu"
+						>
+							<ul id="menu-primary-menu" class="nav yamm">
+								<li class="sale-clr yamm-fw menu-item animate-dropdown">
+									<a href="/"
+									>Home
+									</a
+									>
+								</li>
+
+
+								<li class="menu-item animate-dropdown">
+									<a title="Logitech Sale" href="{% url 'vendor_registration' %}"
+									>Become Vendor
+									</a
+									>
+								</li>
+								<li class="menu-item animate-dropdown">
+									<a title="Logitech Sale" href="{% url 'become-agent' %}"
+									>Become Agent
+									</a
+									>
+								</li>
+								<li class="menu-item animate-dropdown">
+									<a title="Headphones Sale" href="/orders/"
+									>Track order
+									</a
+									>
+								</li>
+								<li class="menu-item animate-dropdown">
+									<a title="Headphones Sale" href=""
+									>Store Location
+									</a
+									>
+								</li>
+								<li class="menu-item animate-dropdown">
+									<a title="Headphones Sale" href="/contact/"
+									>Contact us
+									</a
+									>
+								</li>
+								<li class="menu-item animate-dropdown">
+									<a title="Headphones Sale" href="/profile/"
+									>My account
+									</a
+									>
+								</li>
+							</ul>
+							<!-- .nav -->
+						</nav>
+						<!-- .primary-navigation -->
+
+						<!-- .secondary-navigation -->
+					</div>
+					<!-- /.row -->
+					<div class="row align-items-center ">
+						<!-- .departments-menu start -->
+						<div id="departments-menu" class="dropdown departments-menu">
+              <button
+		              class="btn dropdown-toggle btn-block"
+		              type="button"
+		              data-toggle="dropdown"
+		              aria-haspopup="true"
+		              aria-expanded="false"
+              >
+                <i class="tm tm-departments-thin"></i>
+                <span>Department</span>
+              </button>
+              <ul
+		              id="menu-departments-menu "
+		              class="dropdown-menu yamm departments-menu-dropdown my_department"
+              >
+                <!-- <li class="highlight menu-item animate-dropdown">
+                  <a title="Value of the Day" href="home-v2.html"
+                    >Solar Panel</a
+                  >
+                </li> -->
+	              {% for d in departments %}
+		              <li
+				              class=" menu-item-has-children animate-dropdown"
+		              >
+                  <a
+		                  title=""
+		                  onclick="void(0)"
+		                  data-toggle="dropdown"
+		                  class="dropdown-toggle"
+		                  aria-haspopup="true"
+		                  href="{% url 'department_view' d.slug %}"
+                  >{{ d.name }} <span class="caret"></span
+                  ></a>
+			              <!-- Category part start -->
+                        <div class="mega_menu_body">
+
+                          <div class="solar_lists">
+                            <h2>{{ d.name }}</h2>
+                            <ul>
+	                            {% for c in d.department_category.all %}
+		                            <li><a href="{% url 'shop' c.slug %}">{{ c.name }}</a>
+			                            <!-- Sub category part start -->
+		                              <div class="dep_subcategory">
+		                                <h2>{{ c.name }}</h2>
+		                                <ul>
+			                                {% for s in c.product_subcategory_category.all %}
+			                                  <li><a href="{% url 'shop' s.slug %}">{{ s.name }}</a>
+				                                  <!-- Last sub category Part start -->
+				                                  <div class="sub_cat_last">
+				                                    <h2>{{ s.name }}</h2>
+				                                    <ul>
+					                                    {% for m in s.minicategory_subcategory.all %}
+				                                        <li><a href="{% url 'shop' m.slug %}">{{ m.name }}</a></li>
+				                                      {% endfor %}
+				                                    </ul>
+				                                  </div>
+				                                  <!-- Last sub category Part end -->
+			                                  </li>
+			                                {% endfor %}
+		                                </ul>
+		                              </div>
+			                            <!-- Sub category part end -->
+                              </li>
+	                            {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+
+			              <!-- Category part end -->
+                </li>
+	              {% endfor %}
+              </ul>
+            </div>
+						<!-- .departments-menu end -->
+						<form class="navbar-search" method="get" action="">
+							<label class="sr-only screen-reader-text" for="search"
+							>Search for:
+							</label
+							>
+							<div class="input-group">
+								<input
+										type="text"
+										id="search"
+										class="form-control search-field product-search-field"
+										dir="ltr"
+										value=""
+										name="s"
+										placeholder="Search for products"
+								/>
+								<div class="input-group-addon search-categories popover-header">
+									<select
+											name="product_cat"
+											id="product_cat"
+											class="postform resizeselect"
+									>
+										<option value="0" selected="selected" disabled>
+											All Categories
+										</option>
+										{% for c in categories %}
+												<option class="level-0" value="{{ c.slug }}">
+													{{ c.name }}
+												</option>
+										{% endfor %}
+
+									</select>
+								</div>
+								<!-- .input-group-addon -->
+								<div class="input-group-btn input-group-append">
+									<input
+											type="hidden"
+											id="search-param"
+											name="post_type"
+											value="product"
+									/>
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-search"></i>
+										<span class="search-btn">Search</span>
+									</button>
+								</div>
+								<!-- .input-group-btn -->
+							</div>
+							<!-- .input-group -->
+						</form>
+						<!-- .navbar-search -->
+
+						<!-- .header-compare -->
+						<ul class="header-wishlist nav navbar-nav">
+							<li class="nav-item">
+								<a href="/wishlist/" class="nav-link">
+									<i class="tm tm-favorites"></i>
+									<span  id="wishlistcount" class="value">0</span>
+								</a>
+							</li>
+						</ul>
+						<!-- .site-header-cart -->
+						<!-- .header-wishlist -->
+						<ul id="site-header-cart" class="site-header-cart menu">
+							<li class="animate-dropdown dropdown custom_dropdown" id="dropdownMenuButton" onclick="on();">
+								<a
+										class="cart-contents"
+										href="javascript:void(0)"
+
+										title="View your shopping cart"
+								>
+									<i class="tm tm-shopping-bag"></i>
+									<span class="count floatingtotalitems" id="floatingtotalitems">0</span>
+									<span class="amount "><span class="cart_total" id="cart_total">0 </span>&nbsp;</span>
+									৳
+								</a>
+
+								<!-- .dropdown-menu-mini-cart -->
+							</li>
+							<ul class="dropdown-menu-mini-cart custom_drop_item card mt-2" id="custom_drop_item_id">
+								{#																<div class="close_drop_cart">#}
+								{#																		<div class="close_func_class" onclick="toggleCart()">#}
+								{#																				close#}
+								{#																		</div>#}
+								{#																</div>#}
+								<li>
+									<div class="widget woocommerce widget_shopping_cart cart shadow-lg" id="cart_to_remove">
+										<div class="widget_shopping_cart_content">
+											<ul
+													class="woocommerce-mini-cart cart_list product_list_widget"
+													id="cartlist"
+													style="padding-top: 30px"
+											>
+
+											</ul>
+											<!-- .cart_list -->
+											<p class="woocommerce-mini-cart__total total">
+												<strong>Subtotal:</strong>
+												<span class="woocommerce-Price-amount amount">
+												                            <span
+														                            class="woocommerce-Price-currencySymbol"
+												                            >৳</span
+												                            ><span id="floatcarttotal"> 0</span></span
+												>
+											</p>
+											<p class="woocommerce-mini-cart__buttons buttons">
+												{#																								<a#}
+												{#																										href="{% url 'cart' %}" class="button wc-forward"#}
+												{#																								>View cart#}
+												{#																								</a>#}
+												<a
+														id="placeorderbtn"
+														href="javascript:void(0)"
+														class="button checkout checkout_btn wc-forward"
+												>Checkout
+												</a>
+											</p>
+										</div>
+										<!-- .widget_shopping_cart_content -->
+									</div>
+									<!-- .widget_shopping_cart -->
+								</li>
+							</ul>
+						</ul>
+						<!-- .site-header-cart -->
+					</div>
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- .col-full -->
+			<div class="col-full handheld-only">
+				<div class="handheld-header">
+					<div class="row">
+
+						<div class="site-branding d-flex align-items-center">
+							<a href="/" class="custom-logo-link" rel="home">
+								<img class="logo_image" src="{{ logo.0.image1.url }}">
+							</a>
+							<!-- /.custom-logo-link -->
+						</div>
+
+
+						<div class="mobile_user">
+							<ul class="text-right">
+
+								<li class="wishlist">
+									<a href="/wishlist/" class="has-icon">
+										<i class="tm tm-favorites"></i>
+
+									</a>
+									<sup>
+										<span class="count" id="mobilewishlistcount">0</span>
+									</sup>
+								</li>
+								{% if request.user.is_authenticated %}
+									<li class="my-account">
+										<a href="/profile/" class="has-icon">
+											<i class="tm tm-login-register"></i>
+										</a>
+									</li>
+								{% else %}
+									<li class="my-account">
+										<a href="javascript:void(0)" class="has-icon" data-toggle="modal" data-target="#loginModal">
+											<i class="tm tm-login-register"></i>
+										</a>
+									</li>
+								{% endif %}
+							</ul>
+						</div>
+						<!-- .columns-3 -->
+
+						<!-- /.site-branding -->
+						<!-- ============================================================= End Header Logo ============================================================= -->
+
+						<!-- .handheld-header-links -->
+					</div>
+					<!-- /.row -->
+					<div class="techmarket-sticky-wrap">
+						<div class="row">
+							<!-- Mobile menu part Start from antu -->
+                <nav
+                  id="handheld-navigation"
+                  class="handheld-navigation"
+                  aria-label="Handheld Navigation"
+                >
+                  <button class="btn navbar-toggler" type="button">
+                    <i class="tm tm-departments-thin"></i>
+                    <span>Menu</span>
+                  </button>
+                  <div class="handheld-navigation-menu">
+                    <span class="tmhm-close"></span>
+                    <div class="mobile_menu_new">
+                      <button type="button" class="mobile_dept"> All Department <i class="fa fa-chevron-down mob_top_icn" aria-hidden="true"></i></button>
+                        <div class="content">
+                       <div class="mobile_dept_main">
+                        <div id="accordion">
+	                        {% for d in departments %}
+	                          <div class="card">
+	                            <div class="card-header" id="headingOne">
+	                              <h5 class="mb-0">
+	                                <button class="btn  mob_collapse_btn" data-toggle="collapse" data-target="#d{{ d.slug }}" aria-expanded="true" aria-controls="collapseOne">
+	                                {{ d.name }}
+	                                </button>
+	                              </h5>
+	                            </div>
+
+	                            <div id="d{{ d.slug }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+	                              <div class="card-body sub_cat_body">
+		                              {% for c in d.department_category.all %}
+		                                <div class="card">
+		                                  <div class="card-header mob_header" id="headingTwo">
+		                                    <h5 class="mb-0">
+		                                      <button class="btn collapsed mob_collapse_btn" data-toggle="collapse" data-target="#c{{ c.slug }}" >
+		                                       {{ c.name }}
+		                                      </button>
+		                                    </h5>
+		                                  </div>
+		                                  <div id="c{{ c.slug }}" class="collapse" >
+		                                    <div class="card-body sub_cat_body_content">
+		                                      <ul>
+			                                      {% for s in c.product_subcategory_category.all %}
+			                                        <li><a href="{% url 'shop' s.slug %}"   >{{ s.name }}</a>
+{#			                                        data-toggle="collapse" data-target="#s{{ s.slug }}"#}
+			                                          <div id="s{{ s.slug }}" class="collapse" >
+			                                            <div class="card-body sub_cat_body_content">
+			                                              <ul>
+				                                              {% for m in s.minicategory_subcategory.all %}
+			                                                <li><a href="{% url 'shop' m.slug %}">{{ m.name }}</a></li>
+			                                                {% endfor %}
+			                                              </ul>
+			                                            </div>
+			                                          </div>
+		                                          </li>
+			                                      {% endfor %}
+		                                      </ul>
+		                                    </div>
+		                                  </div>
+		                                </div>
+		                              {% endfor %}
+	                              </div>
+	                            </div>
+	                          </div>
+	                        {% endfor %}
+                        </div>
+
+                       </div>
+
+                        </div>
+                    </div>
+                    <!-- Mobile nav part start -->
+                    <div class="mobile_nav_antu">
+                      <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'vendor_registration' %}">Become Vendor</a></li>
+                        <li><a href="{% url 'become-agent' %}">Become Agent</a></li>
+                        <li><a href="/orders/">Track Order</a></li>
+                        <li><a href="">Store Location</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                        <li><a href="/profile/">Account</a></li>
+	                      {% if request.user.is_authenticated %}
+		                      <li><a  href="/customer-logout/">Logout</a></li>
+												{% else %}
+		                      <li><a data-toggle="modal" data-target="#loginModal">Login</a></li>
+												{% endif %}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- .handheld-navigation-menu -->
+                </nav>
+                   <!-- Mobile menu part end from antu -->
+							<!-- .handheld-navigation -->
+							<div class="site-search">
+								<div class="widget woocommerce widget_product_search">
+									<form
+											role="search"
+											method="get"
+											class="woocommerce-product-search"
+											action=""
+									>
+										<label
+												class="screen-reader-text"
+												for="woocommerce-product-search-field-0"
+										>Search for:
+										</label
+										>
+										<input
+												type="search"
+												id="woocommerce-product-search-field-0"
+												class="search-field"
+												placeholder="Search products&hellip;"
+												value=""
+												name="s"
+										/>
+										<input type="submit" value="Search"/>
+										<input type="hidden" name="post_type" value="product"/>
+									</form>
+								</div>
+								<!-- .widget -->
+							</div>
+							<!-- .site-search -->
+							<a
+									class="handheld-header-cart-link has-icon"
+									href="/cart/"
+									title="View your shopping cart"
+									onclick="on();"
+							>
+								<i class="tm tm-shopping-bag"></i>
+								<span class="count " id="mobiletotalitems">0</span>
+							</a>
+						</div>
+						<!-- /.row -->
+					</div>
+					<!-- .techmarket-sticky-wrap -->
+				</div>
+				<!-- .handheld-header -->
+			</div>
+			<!-- .handheld-only -->
+		</header>
+		{% block content %}
+
+
+		{% endblock content %}
+
+
+
+
+
+		<footer class="site-footer footer-v1">
+
+			<div class="col-full">
+
+				<!-- .before-footer-wrap -->
+				<div class="footer-widgets-block">
+					<div class="container-fluid">
+
+
+						<div class="footer-newsletter">
+							<div class="media">
+								<i class="footer-newsletter-icon tm tm-newsletter"></i>
+								<div class="media-body">
+									<div class="clearfix">
+										<!-- <div class="newsletter-header">
+                      <h5 class="newsletter-title">Sign up to Newsletter</h5>
+                      <span class="newsletter-marketing-text"
+                        >...and receive
+                        <strong>৳ 500 coupon for first shopping</strong>
+                      </span>
+                    </div> -->
+										<!-- .newsletter-header -->
+										<div class="newsletter-body">
+											<form class="newsletter-form">
+												<input
+														type="text"
+														placeholder="Enter your email address"
+												/>
+												<button class="button" type="button">Sign up</button>
+											</form>
+										</div>
+										<!-- .newsletter body -->
+									</div>
+									<!-- .clearfix -->
+								</div>
+								<!-- .media-body -->
+							</div>
+							<!-- .media -->
+						</div>
+
+
+						<div class="row justify-content-center pt-4">
+							<div class="col-md-3 py-2">
+								<div class="footer_con_body">
+									<h5>About us</h5>
+									<div class="footer_logo">
+										<a href="">
+											<img src="{{ logo.0.image1.url }}" alt="Footer Logo"
+											     class="img-responsive img-fluid logo_image">
+										</a>
+									</div>
+									<div class="row pt-2">
+										<div class="col-md-2">
+											<div class="icn">
+												<h2>
+													<i class="fa fa-map-marker" aria-hidden="true"></i>
+												</h2>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<p>House No:1, (8th Floor), Road No: 1, Janata Housing Society Ltd, Dhaka:
+											   1207</p>
+										</div>
+									</div>
+									<div class="row pt-2">
+										<div class="col-md-2">
+											<div class="icn">
+												<h2>
+													<i class="fa fa-envelope" aria-hidden="true"></i>
+												</h2>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<p>info.fortunesgroup@gmail.com</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-9 py-2">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="footer_con_body">
+											<h5>Customer Service</h5>
+											<ul class="footer_lst">
+
+												<li>
+													<a href="{% url 'terms-and-conditions' %}">Terms & Conditions</a>
+												</li>
+												<li>
+													<a href="/privacy-policy/">Privacy Policy</a>
+												</li>
+												<li>
+													<a href="/return-refund-policy/">Return and Refund Policy</a>
+												</li>
+												<li>
+													<a href="{% url 'store_location' %}">Store Location</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="footer_con_body">
+											<h5>Information</h5>
+											<ul class="footer_lst">
+												<li>
+													<a href="/about/">About Us</a>
+												</li>
+												<li>
+													<a href="/contact/">Contact Us</a>
+												</li>
+												<li>
+													<a href="{% url 'vendor_registration' %}">Become Vendor</a>
+												</li>
+												<li>
+													<a href="{% url 'agent-registration' %}">Become Sales Agent</a>
+												</li>
+
+{#												<li>#}
+{#													<a href="{% url 'blog' %}">Blog</a>#}
+{#												</li>#}
+
+											</ul>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="footer_con_body">
+											<h5>Customer Account</h5>
+											<ul class="footer_lst">
+												<li>
+													<a href="/profile/">Profile</a>
+												</li>
+												<li>
+													<a href="{% url 'faq' %}">FAQ</a>
+												</li>
+												<li>
+													<a href="/wishlist/">Wishlist</a>
+												</li>
+												<li>
+													<a href="/customer-logout/">Logout</a>
+												</li>
+
+											</ul>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="footer_con_body">
+											<h5>Connect With Us</h5>
+											<ul class="footer_lst footer_scl">
+												<li>
+													<a href="">
+														<i class="fa fa-facebook" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li>
+													<a href="">
+														<i class="fa fa-twitter" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li>
+													<a href="">
+														<i class="fa fa-instagram" aria-hidden="true"></i>
+													</a>
+												</li>
+												<li>
+													<a href="">
+														<i class="fa fa-linkedin" aria-hidden="true"></i>
+													</a>
+												</li>
+
+											</ul>
+										</div>
+									</div>
+									<div class="col-md-10">
+										<div class="payment_mthd">
+											<div class="row">
+												<div class="col-md-2 col-12 pay_title">
+													<p>Pay With</p>
+												</div>
+												<div class="col-md-10 col-12">
+													<div class="pay_icn">
+														<a href="">
+															<img src="{% static './assets/img/visa.png' %}" alt="">
+														</a>
+														<a href="">
+															<img src="{% static './assets/img/bkash.png' %}" alt="">
+														</a>
+														<a href="">
+															<img src="{% static './assets/img/nogod.png' %}" alt="">
+														</a>
+														<a href="">
+															<img src="{% static './assets/img/ssl.png' %}" alt="">
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="site-info">
+					<div class="col-full">
+						<div class="copyright">
+							Copyright &copy; 2021
+							<a href="https://fortunes-group.com">Fortunes Group</a>
+							All rights reserved.
+						</div>
+						<!-- .copyright -->
+{#						<div class="credit">#}
+{#							Made with#}
+{#							<i class="fa fa-heart"></i>#}
+{#							by Somikoron.#}
+{#						</div>#}
+						<!-- .credit -->
+					</div>
+					<!-- .col-full -->
+				</div>
+				<!-- .site-info -->
+			</div>
+			<!-- .col-full -->
+		</footer>
+
+		<!-- login modal -->
+
+		{#<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"#}
+		{#        data-whatever="@getbootstrap">Open modal for @getbootstrap#}
+		{#</button>#}
+
+		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		     aria-hidden="true"
+				style="z-index: 4000000 !important;"
+		>
+			<div class="modal-dialog .modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="login-area">
+						<div class="row">
+							<div class="mx-auto p-0">
+								<div class="card" style="left: 0px">
+									<div class="login-box" style="min-height: 590px !important;">
+										<div class="login-snip " style="padding-top: 30px">
+											<input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+											<label for="tab-1" class="tab" style="color: white">Login</label>
+											<input id="tab-2" type="radio" name="tab" class="sign-up">
+											<label for="tab-2" class="tab" style="color: white">Sign Up</label>
+
+											<div class="login-space">
+												<form method="post" action="/customer-login/">{% csrf_token %}
+													<input type="hidden" name="next" value="{{ request.get_full_path }}">
+													<div class="login">
+														<div class="group">
+															<label for="user" class="label">Phone Number</label>
+															<input id="user" type="text" class="input" name="username" placeholder="Enter your phone number">
+														</div>
+														<div class="group">
+															<label for="pass" class="label">Password</label>
+															<input id="pass" type="password" class="input" name="password" data-type="password" placeholder="Enter your password">
+														</div>
+														<div class="group">
+															<input id="check" type="checkbox" class="check" checked>
+															<label for="check">
+																<span class="icon"></span>
+																Keep me Signed in
+															</label>
+														</div>
+														<div class="group">
+															<input type="submit" class="button" value="Sign In">
+														</div>
+														<div class="hr"></div>
+														<div class="foot">
+															<a href="#">Forgot Password?</a>
+														</div>
+													</div>
+												</form>
+												<form method="post" action="/customer-signup/">{% csrf_token %}
+													<input type="hidden" name="next" value="{{ request.get_full_path }}">
+													<div class="sign-up-form">
+														<div class="group">
+															<label for="user" class="label">Phone Number</label>
+															<input id="user" type="text" class="input" name="username" placeholder="Create your phone number">
+														</div>
+														<div class="group">
+															<label for="pass" class="label">Password</label>
+															<input id="pass" type="password" class="input" name="password" data-type="password" placeholder="Create your password">
+														</div>
+														<div class="group">
+															<label for="pass" class="label">Repeat Password</label>
+															<input id="pass" type="password" class="input" data-type="password" placeholder="Repeat your password">
+														</div>
+														<div class="group">
+															<label for="pass" class="label">Email Address (optional)</label>
+															<input id="pass" type="text" class="input" name="email" placeholder="Enter your email address">
+														</div>
+														<div class="group">
+															<input type="submit" class="button" value="Sign Up">
+														</div>
+														<label style="text-align: center; width: 100%" for="tab-1">Already Member?</label>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- end login modal -->
+		<!-- start otp modal -->
+		<div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true" style="z-index: 4000000 !important;">
+			<div class="modal-dialog .modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="login-area">
+						<div class="row">
+							<div class="mx-auto p-0">
+								<div class="card" style="left: 0px">
+									<div class="login-box" style="min-height: 590px !important;">
+										<div class="login-snip " style="padding-top: 30px">
+											<div class="login-space">
+												<form method="post" action="/otp-verification/">{% csrf_token %}
+													<input type="hidden" name="next" value="{{ request.get_full_path }}">
+													<div class="login">
+														<div class="group">
+															<label for="user" class="label">NUMBER VERIFICATION CODE</label>
+															<input id="user" type="text" class="input" name="otp"
+																placeholder="Enter your OTP">
+														</div>
+														<div class="group">
+															<input type="submit" class="button" value="Sign In">
+														</div>
+														<div class="group">
+															<input type="submit" class="button" value="Resend OTP">
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end otp modal -->
+<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/tether.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+{#			<script type="text/javascript" src="{% static 'assets/js/bootstrap.js' %}"></script>#}
+		<script
+				type="text/javascript"
+				src="{% static 'assets/js/jquery-migrate.min.js' %}"
+		></script>
+		<script
+				type="text/javascript"
+				src="{% static 'assets/js/hidemaxlistitem.min.js' %}"
+		></script>
+		<script type="text/javascript" src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+		<script
+				type="text/javascript"
+				src="{% static 'assets/js/hidemaxlistitem.min.js' %}"
+		></script>
+		<script
+				type="text/javascript"
+				src="{% static 'assets/js/jquery.easing.min.js' %}"
+		></script>
+		<script type="text/javascript" src="{% static 'assets/js/scrollup.min.js' %}"></script>
+		<script
+				type="text/javascript"
+				src="{% static 'assets/js/jquery.waypoints.min.js' %}"
+		></script>
+		<script
+				type="text/javascript"
+				src="{% static 'assets/js/waypoints-sticky.min.js' %}"
+		></script>
+		<script type="text/javascript" src="{% static 'assets/js/pace.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/slick.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/scripts.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/cart_js.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/wishlist.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+
+		<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: '/api/v1/superadmin_api/static-files-upload/',
+                success: function (data) {
+                    try {
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            if (data[i].title === 'logo-img') {
+
+                                $('.logo_image').attr('src', data[i].image1);
+                                console.log(data.image1)
+                            }
+                        }
+                    } catch (e) {
+                        console.log(e);
+                    }
+
+                }
+
+            });
+
+        })
+		</script>
+		<script>
+        $(document).on('click', '.quick-btn', function (e) {
+            e.preventDefault();
+            var p_id = this.name;
+            console.log(p_id)
+            $.ajax({
+                type: 'get',
+                url: '/api/v1/inventory/product-details/' + p_id + '/',
+                username: 'saleh',
+                password: '1234',
+                {#dataType: 'json',#}
+                success: function (data) {
+                    try {
+
+                        var element = '';
+                        element += `<div style="min-height: 300px !important;" class="modal-content">
+														<div class="modal-body">
+
+                              <div class="media">
+                                <div class="row" style="width: 100% !important;">
+                                   <div class="col-6">
+                                      <div class="techmarket-product-gallery images techmarket-3-2-3-gallery">
+                                              <img src="${data.product_images[0].image}">
+
+																</div>
+
+                                </div>
+                                     <div class="col-6">
+                                        <div class="media-body pt-3">
+                                                  <span class="price">
+                                                    <ins>
+                                                      <span class="woocommerce-Price-amount amount">
+                                                        <span class="woocommerce-Price-currencySymbol">৳</span>` + data.discounted_price + `</span>
+                                                    </ins>`
+                        if (parseFloat(data.discounted_price) < parseFloat(data.price)) {
+
+                            element += `<del>
+                                                      <span class="woocommerce-Price-amount amount">
+																												<span class="woocommerce-Price-currencySymbol">৳</span>
+																														           ${data.price}
+																												</span>
+                                                    </del>`
+                        }
+
+                        element += `</span>
+																								<h2 class="woocommerce-loop-product__title">
+																									<h4 class="modal-title">` + data.name + `</h4>
+																								</h2>
+																								<div class="ribbon green-label" style="max-width: 100px">
+																									<span>In Stock</span>
+																								</div>
+																								<div class="techmarket-product-rating">
+																											<div class="woocommerce-product-details__short-description text-justify">
+																														` + data.description + `
+																											</div>
+																										</div>
+																						<div style="position: relative;bottom: 0; width: 100%; margin-top: 25px" class="cartable">
+																								<p hidden class="product__image_src">${data.product_images[0].image}</p>
+																								<p hidden class="product__name">${data.id}</p>
+																								<p hidden class="product__title">${data.name}</p>
+																								<p hidden class="product__price">${data.discounted_price}</p>
+																							<a  class="button btn-block text-center" name="btn${data.id}" data-action="ADD_TO_CART" style="border-radius: 50px; width: 90% !important; margin: auto" href="javascript:void(0)">Add to cart</a>
+						                                </div>
+                                                </div>
+																							</div>
+																				    </div>
+
+																			</div>
+
+																</div>`;
+
+                        document.getElementById('modal_dialog').innerHTML = element;
+                        $('#myModal').modal('show')
+
+                        var script = document.createElement("script");
+                        script.type = "text/javascript";
+                        script.src = "{% static 'assets/js/cart_js.js' %}";
+                        document.getElementsByTagName("head")[0].appendChild(script);
+
+                    } catch (e) {
+                        console.log(e);
+                    }
+
+
+                }
+            });
+        });
+        $(function () {
+            $("#searchby").change(function () {
+                var value = this.value;
+                $('#srch_box').attr("placeholder", "Please enter the " + value);
+            });
+        });
+
+        $(document).on('click', '.checkout_btn', function (e) {
+            var logged_in = {% if request.user.is_authenticated %}true{% else %}false{% endif %};
+            if (logged_in) {
+                window.location = '/checkout/'
+            } else {
+                $('#loginModal').modal('show')
+            }
+        })
+
+
+		</script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="sweetalert2.all.min.js"></script>
+	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+    {% if messages %}
+	    {% for message in messages %}
+		    {% if message.tags == 'error' %}
+			    <script>
+                  Swal.fire({
+                      position: 'top-end',
+                      icon: 'error',
+                      title: '{{ message }}',
+                      showConfirmButton: false,
+                      timer: 2000
+                  })
+                </script>
+		    {% elif  message.tags == 'success' %}
+			    <script>
+                  Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: '{{ message }}',
+                      showConfirmButton: false,
+                      timer: 2000
+                  })
+                </script>
+		    {% elif  message.tags == 'warning' %}
+			    <script>
+                  Swal.fire({
+                      position: 'top-end',
+                      icon: 'warning',
+                      title: '{{ message }}',
+                      showConfirmButton: false,
+                      timer: 2000
+                  })
+                </script>
+		    {% endif %}
+
+	    {% endfor %}
+    {% endif %}
+
+	<!-- ************* chatbot ************* -->
+	                        
+<script src="//code.tidio.co/v56f4gh4vphbneigx1rtetlhnykxtb1c.js" async></script>
+                    
+	<!-- ************* end chatbot ************* -->
+
+	</body>
+</html>

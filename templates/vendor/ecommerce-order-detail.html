@@ -1,0 +1,334 @@
+{% extends 'vendor/master.html' %}
+{% load static %}
+{% block content %}
+
+
+	<div class="content-page">
+        <div class="content mt-2">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-4" style="min-height: inherit">
+                        <div class="card" style="min-height: 90% !important;">
+                            <div class="card-body"  style="height: 100%;">
+                                <h4 class="header-title mb-3">Track Order</h4>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <h5 class="mt-0">Order ID: </h5>
+                                            <p>#{{ order.id }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-4">
+                                            <h5 class="mt-0">Tracking ID: </h5>
+                                            <p>{{ order.id }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="track-order-list">
+                                    <ul class="list-unstyled" >
+	                                    {% if order.status == 'PENDING' %}
+		                                    <li>
+                                        <span class="active-dot dot"></span>
+                                            <h5 class="mt-0 mb-1">Order Placed (pending for approval)</h5>
+                                            <p class="text-muted">{{ order.created }}</p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1">Accepted</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1">On the way</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1"> Delivered</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+
+	                                    {% elif order.status == 'ACCEPTED' %}
+		                                    <li class="completed">
+
+                                            <h5 class="mt-0 mb-1">Order Placed</h5>
+                                            <p class="text-muted">{{ order.created }}</p>
+                                        </li>
+		                                    <li>
+                                        <span class="active-dot dot"></span>
+                                            <h5 class="mt-0 mb-1">Accepted</h5>
+                                            <p class="text-muted">{{ order.accepted_date }}</p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1">On the way</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1"> Delivered</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+	                                    {% elif order.status == 'SHIPPING' %}
+		                                    <li class="completed">
+                                            <h5 class="mt-0 mb-1">Order Placed </h5>
+                                            <p class="text-muted">{{ order.created }}</p>
+                                        </li>
+		                                    <li class="completed">
+                                            <h5 class="mt-0 mb-1">Accepted</h5>
+                                            <p class="text-muted">{{ order.accepted_date }}</p>
+                                        </li>
+		                                    <li>
+                                         <span class="active-dot dot"></span>
+                                            <h5 class="mt-0 mb-1">On the way</h5>
+                                            <p class="text-muted">{{ order.shipping_start_date }}</p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1"> Delivered</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+	                                    {% elif order.status == 'DONE' %}
+		                                    <li class="completed">
+                                            <h5 class="mt-0 mb-1">Order Placed</h5>
+                                            <p class="text-muted">{{ order.created }}</p>
+                                        </li>
+		                                    <li class="completed">
+                                            <h5 class="mt-0 mb-1">Accepted</h5>
+                                            <p class="text-muted">{{ order.accepted_date }}</p>
+                                        </li>
+		                                    <li class="completed">
+                                            <h5 class="mt-0 mb-1">On the way</h5>
+                                            <p class="text-muted">{{ order.shipping_start_date }}</p>
+                                        </li>
+		                                    <li class="completed">
+                                        <span class="active-dot dot"></span>
+                                            <h5 class="mt-0 mb-1"> Delivered</h5>
+                                            <p class="text-muted">{{ order.completed_date }}</p>
+                                        </li>
+	                                    {% elif order.status == 'CANCELED' %}
+		                                    <li>
+                                            <h5 class="mt-0 mb-1">Order Placed (pending for approval)</h5>
+                                            <p class="text-muted">{{ order.created }}</p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1">Accepted</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1">On the way</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+		                                    <li>
+                                            <h5 class="mt-0 mb-1"> Delivered</h5>
+                                            <p class="text-muted"></p>
+                                        </li>
+		                                    <li>
+		                                     <span class="active-dot dot"></span>
+                                            <h5 class="mt-0 mb-1">Order Canceled</h5>
+                                            <p class="text-muted">{{ order.updated }}</p>
+                                        </li>
+
+	                                    {% endif %}
+                                    </ul>
+
+                                    <div class="text-center mt-4">
+                                        <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary " style="color: white">
+	                                        <i class="far fa-edit"></i>&nbsp;&nbsp;Update Order Status</a>
+	                                    <a href="{% url 'pos-invoice' order.id %}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;&nbsp;Print Receipt</a>
+	                                    <a href="{% url 'pos-invoice' order.id %}" class="btn btn-primary"><i class="fa fa-file" aria-hidden="true"></i>&nbsp;&nbsp;Invoice</a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-3">Items from Order #{{ order.id }}</h4>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-centered mb-0">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th>Product name</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+	                                        {% for i in order.order_items.all %}
+		                                        <tr>
+	                                            <th scope="row">{{ i.product.name }}</th>
+	                                            <td>{{ i.quantity|floatformat:0 }}</td>
+	                                            <td>{{ i.unit_price }}</td>
+	                                            <td>{% widthratio i.unit_price 1 i.quantity %}</td>
+                                            </tr>
+	                                        {% endfor %}
+
+	                                        <tr>
+                                            <th scope="row" colspan="3" class="text-right">Sub Total :</th>
+                                            <td>
+                                                <div class="font-weight-bold">{{ order.sub_total|floatformat:2 }}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="3" class="text-right">Discount :</th>
+                                            <td>{{ order.total_discount|floatformat:2 }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="3" class="text-right">Delivery Charge :</th>
+                                            <td>{{ order.delivery_charge }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="3" class="text-right">Estimated Tax :</th>
+                                            <td>{{ order.total_tax }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" colspan="3" class="text-right">Total :</th>
+                                            <td>
+                                                <div class="font-weight-bold">{{ order.total_payable }}</div>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+	            <!-- end row -->
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-3">Delivery Information</h4>
+
+                                <h5 class="font-family-primary font-weight-semibold">{{ order.customer.name }}</h5>
+
+                                <p class="mb-2"><span class="font-weight-semibold mr-2">Address:</span> {{ order.customer.short_address }}</p>
+                                <p class="mb-2"><span class="font-weight-semibold mr-2">Phone:</span> {{ order.customer.phone }}</p>
+                                <p class="mb-0"><span class="font-weight-semibold mr-2">Email:</span> {{ order.customer.email }}
+	                            <p class="mb-0"><span class="font-weight-semibold mr-2"></span></p>
+
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-3">Billing Information</h4>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <p class="mb-2"><span class="font-weight-semibold mr-2">Payment Status: </span> {{ order.payment.payment_status}}
+                                        <p class="mb-2"><span class="font-weight-semibold mr-2">Payment Method:</span>
+	                                        {% if order.payment.payment_method == 'CASHON' %}
+		                                        Cash
+	                                        {% else %}
+		                                        {{ order.payment.payment_method }}
+	                                        {% endif %}
+                                        </p>
+                                        <p class="mb-2"><span class="font-weight-semibold mr-2">Transaction Identity:</span> {{ order.payment.transaction_id }}</p>
+                                        <p class="mb-2"><span class="font-weight-semibold mr-2">Updated Date:</span> {{ order.payment.updated}}</p>
+{#                                        <p class="mb-0"><span class="font-weight-semibold mr-2">CVV:</span> xxx</p>#}
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mb-3">Delivery Info</h4>
+
+                                <div class="text-center">
+                                    <i class="fas fa-shipping-fast h2 text-muted"></i>
+                                    <h5><b>
+	                                    {% if order.ordered_by == 'ecommerce' %}
+		                                    Tijarat Delivery System
+	                                    {% else %}
+		                                    Picked up from Tijarat store
+	                                    {% endif %}
+                                    </b></h5>
+                                    <p class="mb-1"><span class="font-weight-semibold">Order ID :</span> #{{ order.id }}</p>
+                                    <p class="mb-0"><span class="font-weight-semibold">Payment Method :
+                                        </span>
+	                                    {% if order.payment.payment_method == 'CASHON' %}
+		                                    Cash
+	                                    {% else %}
+		                                    {{ order.payment.payment_method }}
+	                                    {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+	            <!-- end row -->
+            </div> <!-- container -->
+        </div> <!-- content -->
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+	     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Order Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+             <form action="/vendor/order-details/{{ order.id }}/" method="post">{% csrf_token %}
+
+                <div class="modal-body">
+                    <div class="card-box">
+
+                        <div class="form-group mb-3">
+                            <label for="product-name">Payment Status <span class="text-danger">*</span></label>
+                            <select class="form-control" name="p_status">
+                                <option {% if order.payment.payment_status == 'PENDING' %}selected{% endif %}  value="PENDING">PENDING</option>
+                                <option {% if order.payment.payment_status == 'PAID' %}selected{% endif %} value="PAID">PAID</option>
+                                <option {% if order.payment.payment_status == 'PARTIAL' %}selected{% endif %} value="PARTIAL">PARTIAL</option>
+                                <option {% if order.payment.payment_status == 'FAILED' %}selected{% endif %} value="FAILED">FAILED</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <label for="product-alternative">Order Status <span
+		                            class="text-danger">*</span></label>
+                            <select class="form-control" name="o_status">
+                                <option {% if order.status == 'PENDING' %}selected{% endif %} value="PENDING">PENDING</option>
+                                <option {% if order.status == 'ACCEPTED' %}selected{% endif %} value="ACCEPTED">ACCEPTED</option>
+                                <option {% if order.status == 'SHIPPING' %}selected{% endif %} value="SHIPPING">SHIPPING</option>
+                                <option {% if order.status == 'CANCELED' %}selected{% endif %} value="CANCELED">CANCELED</option>
+                                <option {% if order.status == 'DONE' %}selected{% endif %} value="DONE">DONE</option>
+                            </select>
+
+                        </div>
+
+
+                    </div> <!-- end card-box -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

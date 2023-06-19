@@ -1,0 +1,265 @@
+{#{% extends 'master.html' %}#}
+{% load static %}
+{% block content %}
+	{#	<link href="{% static 'vendor/css/app.min.css' %}" rel="stylesheet" type="text/css" id="app-default-stylesheet"/>#}
+
+	{#{% extends 'master.html' %}#}
+
+		<!-- Navigation-->
+	<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/bootstrap.min.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/customer-profile.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/font-awesome.min.css' %}"
+				media="all"
+		/>
+		<link
+				rel="stylesheet"
+				type="text/css"
+				href="{% static 'assets/css/techmarket-font-awesome.css' %}"
+				media="all"
+		/>
+
+
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+	<link rel="shortcut icon" href="{% static 'assets/img/fortunes_logo/solarbazarfavicon1.png' %}"/>
+	<title>Solarbazarbd.com</title>
+		<body>
+  <div class="main-content">
+    <!-- Top navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/">Continue Shopping</a>
+	      <div style="float: right">
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/orders/">TRACK ORDER</a>
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/profile/">PROFILE</a>
+        <a class="h4 mb-0 text-white text-uppercase  d-lg-inline-block" href="/customer-logout/">LOGOUT</a>
+	      </div>
+        <!-- Form -->
+
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 200px; background-image: url({% static 'assets/img/solar/solar.jpg' %}); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8" style="background: linear-gradient(
+87deg
+,#c40000d9 0, #eb202999 100%) !important;
+"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10 pt-5">
+            <h2 class=" text-white">Hello {{ orders.0.customer.name }}!</h2>
+            <p class="text-white mt-0 mb-5">This is your profile page. You can see all your account information and update. Also you can track your orders from here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+            <div class="card-header text-center">
+              <h3>My Orders</h3>
+              <h6>{{ request.user.username }}</h6>
+            </div>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-centered table-nowrap mb-0 " id="order_table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th style="width: 20px;">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"
+                                               id="customCheck1">
+                                        <label class="custom-control-label"
+                                               for="customCheck1">&nbsp;</label>
+                                    </div>
+                                </th>
+                                <th>Order ID</th>
+                                <th>Products</th>
+                                <th>Date</th>
+                                <th>Payment Status</th>
+                                <th>Total</th>
+                                <th>Payment Method</th>
+                                <th>Order Status</th>
+                                <th style="width: 125px;">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                              {% for o in orders %}
+                                <tr>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"
+                                               id="customCheck2">
+                                        <label class="custom-control-label"
+                                               for="customCheck2">&nbsp;</label>
+                                    </div>
+                                </td>
+                                <td><a href=""
+                                       class="text-body">{{ o.id }}</a></td>
+                                <td>{% for i in o.order_items.all %}
+                                  <a href=""><img style="max-width: 50px;display: inline"
+                                                  src="{{ i.product.product_images.all.0.image.thumbnail.url }}"
+                                                  alt="{{ i.product.name }}" title="{{ i.product.name }}" height="32"/></a>
+                                {% endfor %}
+
+                                </td>
+                                <td>
+                                   {{ o.created }}
+                                  <small class="text-muted"></small>
+                                </td>
+                                <td>
+                                    <h5>{% if  o.is_payment_successful %}
+                                          <span class="badge bg-soft-success text-success"><i
+                                        class="mdi mdi-coin"></i>Paid</span>
+	                                    {% else %}
+	                                    <span class="badge bg-soft-success text-danger"><i
+                                        class="mdi mdi-coin"></i>Pending</span>
+                                    {% endif %}
+
+                                    </h5>
+                                </td>
+                                <td>
+                                    {{ o.order_total }}
+                                </td>
+                                <td>
+                                    {{ o.payment.payment_method }}
+                                </td>
+                                <td>
+                                    <h5><span class="badge badge-info">{{ o.status }}</span></h5>
+                                </td>
+                                <td>
+{#	                                            /vendor/order-details/{{ o.id }}/                {% url 'e-commerce-order-details' o.id %}              #}
+                                    <a type="button" href="/order-details/{{ o.id }}/" class="action-icon " style="text-align: center; margin: auto; width: 100%">
+                                        <i style="font-size: 35px; text-align: center; color: #ef224b; !important;" class="fa fa-sign-out" aria-hidden="true"></i></a>
+{#                                                <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="action-icon "> <i#}
+{#		                                                class="far fa-edit"></i></a>#}
+{#                                                <a href="javascript:void(0);" class="action-icon"> <i#}
+{#		                                                class="fas fa-trash"></i></a>#}
+                                </td>
+                            </tr>
+                              {% endfor %}
+
+                              {#                                        <tr>#}
+{#                                            <td>#}
+{#                                                <div class="custom-control custom-checkbox">#}
+{#                                                    <input type="checkbox" class="custom-control-input"#}
+{#                                                           id="customCheck3">#}
+{#                                                    <label class="custom-control-label"#}
+{#                                                           for="customCheck3">&nbsp;</label>#}
+{#                                                </div>#}
+{#                                            </td>#}
+{#                                            <td><a href="{% url 'e-commerce-order-details' %}"#}
+{#                                                   class="text-body font-weight-bold">#UB9707</a></td>#}
+{#                                            <td>#}
+{#                                                <a href="{% url 'e-commerce-order-details' %}"><img#}
+{#                                                        src="{% static 'vendor/images/solar/solar-3.jpg' %}"#}
+{#                                                        alt="product-img" height="32"/></a>#}
+{#                                                <a href="{% url 'e-commerce-order-details' %}"><img#}
+{#                                                        src="{% static 'vendor/images/solar/solar-1.jpg' %}"#}
+{#                                                        alt="product-img" height="32"/></a>#}
+{#                                                <a href="{% url 'e-commerce-order-details' %}"><img#}
+{#                                                        src="{% static 'vendor/images/solar/solar-5.jpg' %}"#}
+{#                                                        alt="product-img" height="32"/></a>#}
+{#                                            </td>#}
+{#                                            <td>August 04 2018 <small class="text-muted">08:18 AM</small></td>#}
+{#                                            <td>#}
+{#                                                <h5><span class="badge bg-soft-warning text-warning"><i#}
+{#                                                        class="mdi mdi-timer-sand"></i> Awaiting Authorization</span>#}
+{#                                                </h5>#}
+{#                                            </td>#}
+{#                                            <td>#}
+{#                                                $1,458.65#}
+{#                                            </td>#}
+{#                                            <td>#}
+{#                                                Visa#}
+{#                                            </td>#}
+{#                                            <td>#}
+{#                                                <h5><span class="badge badge-warning">Processing</span></h5>#}
+{#                                            </td>#}
+{#                                            <td>#}
+{#                                                <a type="button" href="/vendor/order-details/">#}
+{#                                                    <i class="far fa-eye"></i></a>#}
+{#                                                <a type="button" data-toggle="modal" data-target="#exampleModalCenter" class="action-icon"> <i#}
+{#                                                        class="far fa-edit"></i></a>#}
+{#                                                <a href="javascript:void(0);" class="action-icon"> <i#}
+{#                                                        class="fas fa-trash"></i></a>#}
+{#                                            </td>#}
+{#                                        </tr>#}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+{#                                <ul class="pagination pagination-rounded justify-content-end my-2">#}
+{#                                    <li class="page-item">#}
+{#                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">#}
+{#                                            <span aria-hidden="true">«</span>#}
+{#                                            <span class="sr-only">Previous</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a>#}
+{#                                    </li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>#}
+{#                                    <li class="page-item">#}
+{#                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">#}
+{#                                            <span aria-hidden="true">»</span>#}
+{#                                            <span class="sr-only">Next</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-6 m-auto text-center">
+        <div class="copyright">
+
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+
+
+
+
+	{#	<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />#}
+	{#	<script src="https://ajax.googleapis.com//ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+	{#	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>#}
+	{#	<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>#}
+	{#	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>#}
+	{#	<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>#}
+
+	{#	</div>#}
+{% endblock content %}

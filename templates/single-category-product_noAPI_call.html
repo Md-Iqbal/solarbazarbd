@@ -1,0 +1,564 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block content %}
+	<style>
+      .btn-light:hover {
+          background-color: #f5363e !important;
+          color: white !important;
+      }
+
+      .btn-light {
+          font-size: 14px;
+          background-color: #ffe8e9;
+          color: black;
+          width: 49%
+      }
+
+      .inner-panel .card {
+          border: 0.001em solid #f5363e !important
+      }
+
+	</style>
+	  <body class="woocommerce-active left-sidebar">
+    <div id="page" class="hfeed site">
+			<!-- topbar home section start -->
+
+			<!-- topbar home section end -->
+			<!-- .top-bar-v1 -->
+			<!-- .header-v1 -->
+			<!-- ============================================================= Header End ============================================================= -->
+			<!-- main content -->
+			<div id="content" class="site-content" tabindex="-1">
+        <div class="col-full">
+          <div class="row">
+	          <div id="primary" class="content-area">
+	              <main id="main" class="site-main">
+
+							<h2 class="text-center text-danger"></h2>
+							<div class="jumbotron bg-danger">
+								{% for b in static_files %}
+									{% if b.title == 'single-category-top-banner' %}
+										<div class="col-md-12">
+{#											<div class="ad_image"#}
+{#											     style="background: url({{ b.image1.url }}); height: 200px !important;width: auto">#}
+												<div class="ad_image"
+															 style="height:unset !important">
+															<img src="{{ b.image1.url }}" alt="">
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+
+						<div class="products">															<!-- /.product-outer -->
+							{% for sp in products %}
+								<div class="product mb-5">
+										<div class="yith-wcwl-add-to-wishlist">
+												<a
+														href="javascript:void(0)"
+														rel="nofollow"
+														class="add_to_wishlist"
+														data-action="ADD_TO_WISHLIST"
+												>
+														Add to Wishlist
+												</a
+												>
+										</div>
+										<a
+												href="{% url 'single-product-fullwidth' sp.id %}"
+												class="woocommerce-LoopProduct-link"
+										>
+	                      {% if sp.discounted_price < sp.price %}
+	                      <span class="onsale">
+	                        <span
+	                                class="woocommerce-Price-amount amount"
+	                        >
+	                          <span
+	                                  class="woocommerce-Price-currencySymbol"
+	                          >৳</span
+	                          >{{ sp.price|sub:sp.discounted_price }} OFF</span
+	                        >
+	                      </span>
+											{% endif %}
+												<img
+														src="{{ sp.product_images.all.0.image.thumbnail.url }}"
+														width="224"
+														height="197"
+														class="wp-post-image"
+														alt=""
+												/>
+												<span class="price">
+	                        <ins>
+	                          <span class="amount">৳ {{ sp.discounted_price }}</span>
+	                        </ins>
+													{% if sp.discounted_price < sp.price %}
+	                        <del>
+	                          <span class="amount">{{ sp.price }}</span>
+	                        </del>
+													{% endif %}
+	                        <span class="amount"> </span>
+	                      </span>
+												<!--price -->
+												<h2 class="woocommerce-loop-product__title">
+														{{ sp.name }}
+												</h2>
+										</a>
+										<div class="hover-area cartable">
+												<p hidden
+												   class="product__image_src">{{ sp.product_images.all.0.image.thumbnail.url }}</p>
+												<p hidden class="product__name">{{ sp.id }}</p>
+												<p hidden class="product__title">{{ sp.name }}</p>
+												<p hidden class="product__price">{{ sp.discounted_price }}</p>
+												<a class="button quick-btn" name="{{ sp.id }}">
+														Quick View
+												</a>
+												<a class="button" name="btn{{ sp.id }}"
+												   data-action="ADD_TO_CART">Add to cart
+												</a>
+										</div>
+								</div>
+							{% endfor %}															<!-- /.product-outer -->
+						</div>
+
+
+
+
+
+	{#						<div class="row">#}
+	{#							{% for p in products %}#}
+	{#								<div class="col-3 inner-panel text-center">#}
+	{##}
+	{#									<div class="card">#}
+	{#										<a href="{% url 'single-product-fullwidth' p.id %}">#}
+	{#											<img src="{{ p.product_images.all.0.image.url }}" class="card-img-top" alt="..." style="height: 200px !important; width: auto !important; margin: auto">#}
+	{#										</a>#}
+	{#										<div class="card-body">#}
+	{#											<span class="text-center" style="color:  #f5363e">{{ p.discounted_price }}</span>#}
+	{#											{% if p.discounted_price < p.price %}#}
+	{#	                      <del>#}
+	{#	                        <span class="amount" style="font-size: small">{{ p.price }}</span>#}
+	{#	                      </del>#}
+	{#											{% endif %}#}
+	{#											<h5 class="woocommerce-loop-product__title" title="{{ p.name }}" style="font-size: 18px; font-weight: 400;">#}
+	{#												{% if p.name|length > 22 %}#}
+	{#													{{ p.name|slice:"19" }}...#}
+	{#												{% else %}#}
+	{#													{{ p.name }}#}
+	{#												{% endif %}#}
+	{#											</h5>#}
+	{#											<div class="custom-btn cartable">#}
+													{#                                        <a  name="{{ p.id }}" class="btn btn-light">Quick View</a>#}
+													{#                                        <a href="#" class="btn btn-light">Add to Cart</a>#}
+	{#												<p hidden#}
+	{#												   class="product__image_src">{{ p.product_images.all.0.image.url }}</p>#}
+	{#												<p hidden class="product__name">{{ p.id }}</p>#}
+	{#												<p hidden class="product__title">{{ p.name }}</p>#}
+	{#												<p hidden class="product__price">{{ p.discounted_price }}</p>#}
+	{#												<a class="btn btn-light quick-btn" name="{{ p.id }}">#}
+	{#													Quick View#}
+	{#												</a>#}
+	{#												<a class="btn btn-light" name="btn{{ p.id }}" data-action="ADD_TO_CART">#}
+	{#													Add#}
+	{#													to cart#}
+	{#												</a>#}
+	{#											</div>#}
+	{#										</div>#}
+	{#									</div>#}
+	{#									<!-- .woocommerce-LoopProduct-link -->#}
+	{##}
+	{#									<!-- .hover-area -->#}
+	{#								</div>#}
+	{#							{% endfor %}#}
+	{#						</div>#}
+
+
+
+
+
+
+							<div class="jumbotron bg-danger mt-5">
+								{% for b in static_files %}
+									{% if b.title == 'single-category-bottom-banner' %}
+										<div class="col-md-12">
+											<div class="ad_image"
+															 style="height:unset !important">
+															<img src="{{ b.image1.url }}" alt="">
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+	              </main>
+	          </div>
+          <!-- #primary -->
+            <div
+              id="secondary"
+              class="widget-area shop-sidebar"
+              role="complementary"
+            >
+              <div
+                class="widget woocommerce widget_product_categories techmarket_widget_product_categories"
+                id="techmarket_product_categories_widget-2"
+              >
+                <ul class="product-categories">
+                  <li class="product_cat">
+                    <span>Select Brand</span>
+                    <ul>
+                    <li class="cat-item">
+                        <a href="{{ request.path }}">
+                          <span class="child-indicator">
+                            <i class="fa fa-angle-right"></i> </span
+                          >All Brand</a
+                        >
+                      </li>
+	                    {% for b in brands %}
+	                      <li class="cat-item">
+	                        <a href="{{ request.path }}?brand={{b.slug}}">
+	                          <span class="child-indicator">
+	                            <i class="fa fa-angle-right"></i> </span
+	                          >{{ b.brand_name }}</a
+	                        >
+	                      </li>
+	                    {% endfor %}
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+{#              <div#}
+{#                id="techmarket_products_filter-3"#}
+{#                class="widget widget_techmarket_products_filter"#}
+{#              >#}
+{#                <span class="gamma widget-title">Filters</span>#}
+{#                <div#}
+{#                  class="widget woocommerce widget_price_filter"#}
+{#                  id="woocommerce_price_filter-2"#}
+{#                >#}
+{#                  <p>#}
+{#                    <span class="gamma widget-title">Filter by price</span>#}
+{#                  </p>#}
+{##}
+{#                  <div class="price_slider_amount">#}
+{#                    <input#}
+{#                      id="amount"#}
+{#                      type="text"#}
+{#                      placeholder="Min price"#}
+{#                      data-min="6"#}
+{#                      value="33"#}
+{#                      name="min_price"#}
+{#                      style="display: none"#}
+{#                    />#}
+{#                    <button class="button" type="submit">Filter</button>#}
+{#                  </div>#}
+{#                  <div id="slider-range" class="price_slider"></div>#}
+{#                </div>#}
+{#                <div#}
+{#                  class="widget woocommerce widget_layered_nav maxlist-more"#}
+{#                  id="woocommerce_layered_nav-2"#}
+{#                >#}
+{#                  <span class="gamma widget-title">Brands</span>#}
+{#                  <ul>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">apple</a>#}
+{#                      <span class="count">(2)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">bosch</a>#}
+{#                      <span class="count">(1)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">cannon</a>#}
+{#                      <span class="count">(1)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">connect</a>#}
+{#                      <span class="count">(1)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">galaxy</a>#}
+{#                      <span class="count">(3)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">gopro</a>#}
+{#                      <span class="count">(1)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">kinova</a>#}
+{#                      <span class="count">(1)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">samsung</a>#}
+{#                      <span class="count">(1)</span>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <!-- .woocommerce widget_layered_nav -->#}
+{#                <div#}
+{#                  class="widget woocommerce widget_layered_nav maxlist-more"#}
+{#                  id="woocommerce_layered_nav-3"#}
+{#                >#}
+{#                  <span class="gamma widget-title">Color</span>#}
+{#                  <ul>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Black</a>#}
+{#                      <span class="count">(4)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Blue</a>#}
+{#                      <span class="count">(4)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Green</a>#}
+{#                      <span class="count">(5)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Orange</a>#}
+{#                      <span class="count">(5)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Red</a>#}
+{#                      <span class="count">(4)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Yellow</a>#}
+{#                      <span class="count">(5)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Green</a>#}
+{#                      <span class="count">(5)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Orange</a>#}
+{#                      <span class="count">(5)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Red</a>#}
+{#                      <span class="count">(4)</span>#}
+{#                    </li>#}
+{#                    <li class="wc-layered-nav-term">#}
+{#                      <a href="#">Yellow</a>#}
+{#                      <span class="count">(5)</span>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                </div>#}
+{#                <!-- .woocommerce widget_layered_nav -->#}
+{#              </div>#}
+{#              <div class="widget widget_techmarket_products_carousel_widget">#}
+{#                <section#}
+{#                  id="single-sidebar-carousel"#}
+{#                  class="section-products-carousel"#}
+{#                >#}
+{#                  <header class="section-header">#}
+{#                    <h2 class="section-title">Latest Products</h2>#}
+{#                    <nav class="custom-slick-nav"></nav>#}
+{#                  </header>#}
+{#                  <!-- .section-header -->#}
+{#                  <div#}
+{#                    class="products-carousel"#}
+{#                    data-ride="tm-slick-carousel"#}
+{#                    data-wrap=".products"#}
+{#                    data-slick='{"infinite":false,"slidesToShow":1,"slidesToScroll":1,"rows":2,"slidesPerRow":1,"dots":false,"arrows":true,"prevArrow":"&lt;a href=\"#\"&gt;&lt;i class=\"tm tm-arrow-left\"&gt;&lt;\/i&gt;&lt;\/a&gt;","nextArrow":"&lt;a href=\"#\"&gt;&lt;i class=\"tm tm-arrow-right\"&gt;&lt;\/i&gt;&lt;\/a&gt;","appendArrows":"#single-sidebar-carousel .custom-slick-nav"}'#}
+{#                  >#}
+{#                    <div class="container-fluid">#}
+{#                      <div class="woocommerce columns-1">#}
+{#                        <div class="products">#}
+{#                          <div class="landscape-product-widget product">#}
+{#                            <a#}
+{#                              class="woocommerce-LoopProduct-link"#}
+{#                              href="single-product-fullwidth.html"#}
+{#                            >#}
+{#                              <div class="media">#}
+{#                                <img#}
+{#                                  class="wp-post-image"#}
+{#                                  src="assets/img/solar//solar-1.jpg"#}
+{#                                  alt=""#}
+{#                                />#}
+{#                                <div class="media-body">#}
+{#                                  <span class="price">#}
+{#                                    <ins>#}
+{#                                      <span class="amount"> 5099</span>#}
+{#                                    </ins>#}
+{#                                    <del>#}
+{#                                      <span class="amount">2699</span>#}
+{#                                    </del>#}
+{#                                  </span>#}
+{#                                  <!-- .price -->#}
+{#                                  <h2 class="woocommerce-loop-product__title">#}
+{#                                    Portable Triple#}
+{#                                  </h2>#}
+{#                                  <div class="techmarket-product-rating">#}
+{#                                    <div#}
+{#                                      title="Rated 0 out of 5"#}
+{#                                      class="star-rating"#}
+{#                                    >#}
+{#                                      <span style="width: 0%">#}
+{#                                        <strong class="rating">0</strong> out of#}
+{#                                        5</span#}
+{#                                      >#}
+{#                                    </div>#}
+{#                                    <span class="review-count">(0)</span>#}
+{#                                  </div>#}
+{#                                  <!-- .techmarket-product-rating -->#}
+{#                                </div>#}
+{#                                <!-- .media-body -->#}
+{#                              </div>#}
+{#                              <!-- .media -->#}
+{#                            </a>#}
+{#                            <!-- .woocommerce-LoopProduct-link -->#}
+{#                          </div>#}
+{#                          <div class="landscape-product-widget product">#}
+{#                            <a#}
+{#                              class="woocommerce-LoopProduct-link"#}
+{#                              href="single-product-fullwidth.html"#}
+{#                            >#}
+{#                              <div class="media">#}
+{#                                <img#}
+{#                                  class="wp-post-image"#}
+{#                                  src="assets/img/solar/solar-10.jpg"#}
+{#                                  alt=""#}
+{#                                />#}
+{#                                <div class="media-body">#}
+{#                                  <span class="price">#}
+{#                                    <ins>#}
+{#                                      <span class="amount"> 5099</span>#}
+{#                                    </ins>#}
+{#                                    <del>#}
+{#                                      <span class="amount">2699</span>#}
+{#                                    </del>#}
+{#                                  </span>#}
+{#                                  <!-- .price -->#}
+{#                                  <h2 class="woocommerce-loop-product__title">#}
+{#                                    Garden Light#}
+{#                                  </h2>#}
+{#                                  <div class="techmarket-product-rating">#}
+{#                                    <div#}
+{#                                      title="Rated 0 out of 5"#}
+{#                                      class="star-rating"#}
+{#                                    >#}
+{#                                      <span style="width: 0%">#}
+{#                                        <strong class="rating">0</strong> out of#}
+{#                                        5</span#}
+{#                                      >#}
+{#                                    </div>#}
+{#                                    <span class="review-count">(0)</span>#}
+{#                                  </div>#}
+{#                                  <!-- .techmarket-product-rating -->#}
+{#                                </div>#}
+{#                                <!-- .media-body -->#}
+{#                              </div>#}
+{#                              <!-- .media -->#}
+{#                            </a>#}
+{#                            <!-- .woocommerce-LoopProduct-link -->#}
+{#                          </div>#}
+{#                          <div class="landscape-product-widget product">#}
+{#                            <a#}
+{#                              class="woocommerce-LoopProduct-link"#}
+{#                              href="single-product-fullwidth.html"#}
+{#                            >#}
+{#                              <div class="media">#}
+{#                                <img#}
+{#                                  class="wp-post-image"#}
+{#                                  src="assets/img/solar/solar-2.jpg"#}
+{#                                  alt=""#}
+{#                                />#}
+{#                                <div class="media-body">#}
+{#                                  <span class="price">#}
+{#                                    <ins>#}
+{#                                      <span class="amount"> 5099</span>#}
+{#                                    </ins>#}
+{#                                    <del>#}
+{#                                      <span class="amount">2899</span>#}
+{#                                    </del>#}
+{#                                  </span>#}
+{#                                  <!-- .price -->#}
+{#                                  <h2 class="woocommerce-loop-product__title">#}
+{#                                    Emergency Light#}
+{#                                  </h2>#}
+{#                                  <div class="techmarket-product-rating">#}
+{#                                    <div#}
+{#                                      title="Rated 0 out of 5"#}
+{#                                      class="star-rating"#}
+{#                                    >#}
+{#                                      <span style="width: 0%">#}
+{#                                        <strong class="rating">0</strong> out of#}
+{#                                        5</span#}
+{#                                      >#}
+{#                                    </div>#}
+{#                                    <span class="review-count">(0)</span>#}
+{#                                  </div>#}
+{#                                  <!-- .techmarket-product-rating -->#}
+{#                                </div>#}
+{#                                <!-- .media-body -->#}
+{#                              </div>#}
+{#                              <!-- .media -->#}
+{#                            </a>#}
+{#                            <!-- .woocommerce-LoopProduct-link -->#}
+{#                          </div>#}
+{#                          <div class="landscape-product-widget product">#}
+{#                            <a#}
+{#                              class="woocommerce-LoopProduct-link"#}
+{#                              href="single-product-fullwidth.html"#}
+{#                            >#}
+{#                              <div class="media">#}
+{#                                <img#}
+{#                                  class="wp-post-image"#}
+{#                                  src="assets/img/solar/solar-4.jpg"#}
+{#                                  alt=""#}
+{#                                />#}
+{#                                <div class="media-body">#}
+{#                                  <span class="price">#}
+{#                                    <ins>#}
+{#                                      <span class="amount"> 5099</span>#}
+{#                                    </ins>#}
+{#                                    <del>#}
+{#                                      <span class="amount">2699</span>#}
+{#                                    </del>#}
+{#                                  </span>#}
+{#                                  <!-- .price -->#}
+{#                                  <h2 class="woocommerce-loop-product__title">#}
+{#                                    Poly Plate#}
+{#                                  </h2>#}
+{#                                  <div class="techmarket-product-rating">#}
+{#                                    <div#}
+{#                                      title="Rated 0 out of 5"#}
+{#                                      class="star-rating"#}
+{#                                    >#}
+{#                                      <span style="width: 0%">#}
+{#                                        <strong class="rating">0</strong> out of#}
+{#                                        5</span#}
+{#                                      >#}
+{#                                    </div>#}
+{#                                    <span class="review-count">(0)</span>#}
+{#                                  </div>#}
+{#                                  <!-- .techmarket-product-rating -->#}
+{#                                </div>#}
+{#                                <!-- .media-body -->#}
+{#                              </div>#}
+{#                              <!-- .media -->#}
+{#                            </a>#}
+{#                            <!-- .woocommerce-LoopProduct-link -->#}
+{#                          </div>#}
+{#                        </div>#}
+{#                        <!-- .products -->#}
+{#                      </div>#}
+{#                      <!-- .woocommerce -->#}
+{#                    </div>#}
+{#                    <!-- .container-fluid -->#}
+{#                  </div>#}
+{#                  <!-- .products-carousel -->#}
+{#                </section>#}
+{#                <!-- .section-products-carousel -->#}
+{#              </div>#}
+              <!-- .widget_techmarket_products_carousel_widget -->
+            </div>
+            <!-- #secondary -->
+					</div>
+        </div>
+			</div>
+			<!-- main content end -->
+			<!-- #content -->
+			<!-- .site-footer -->
+		</div>
+	</body>
+
+{% endblock content %}

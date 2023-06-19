@@ -1,0 +1,107 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block content %}
+		<style>
+        .custom-btn .btn:hover {
+            background-color: #f5363e !important;
+            color: white !important;
+        }
+
+		</style>
+		<body class=" can-uppercase">
+				<div id="page" class="hfeed site">
+						<!-- topbar home section start -->
+						<!-- topbar home section end -->
+						<!-- .top-bar-v1 -->
+						<!-- .header-v1 -->
+						<!-- ============================================================= Header End ============================================================= -->
+						<!-- main content -->
+						<main>
+								<section>
+										<div class="container">
+												<h2 class="text-center text-danger">Products</h2>
+												<div class="row">
+														<!--  -->
+														{% for sub in category_wise_product %}
+															{% if sub.product_category.all|length > 0 %}
+																<div class="col-md-6 col-sm-12 ">
+																		<div class="panel card" style="margin-bottom: 35px">
+																				<h3>{{ sub.name }}</h3>
+																				<div class="row">
+
+																						{% for p in sub.product_category.all|slice:"4" %}
+
+																								<div class="col-6 inner-panel text-center">
+																										<div class="card" style="height: 100%">
+
+																												<a href="{% url 'single-product-fullwidth' p.id %}">
+																														<img src="{{ p.product_images.all.0.image.url }}" class="card-img-top" alt="..." style="height: 200px !important;">
+																												</a>
+																												<div class="card-body">
+																														<span class="text-center" style="color: #f5363e">{{ p.discounted_price }}</span>
+																																	{% if p.discounted_price < p.price %}
+                                                                  <del>
+                                                                    <span class="amount" style="font-size: small">{{ p.price }}</span>
+                                                                  </del>
+																																	{% endif %}
+																														<h5 class="woocommerce-loop-product__title" title="{{ p.name }}" style="font-size: 18px; font-weight: 400;">
+																																{% if p.name|length > 22 %}
+																																		{{ p.name|slice:"19" }}...
+																																{% else %}
+																																		{{ p.name }}
+																																{% endif %}
+																														</h5>
+																														<div class="custom-btn cartable">
+																																<p hidden
+																																   class="product__image_src">{{ p.product_images.all.0.image.url }}</p>
+																																<p hidden class="product__name">{{ p.id }}</p>
+																																<p hidden class="product__title">{{ p.name }}</p>
+																																<p hidden class="product__price">{{ p.discounted_price }}</p>
+																																<a class="btn btn-light quick-btn" name="{{ p.id }}" style="font-size: 14px;background-color: #ffe8e9;color: black; width: 49%">
+																																		Quick View
+																																</a>
+																																<a class="btn btn-light" name="btn{{ p.id }}" data-action="ADD_TO_CART" style="font-size: 14px;background-color: #ffe8e9;color: black; width: 49%">
+																																		Add to cart
+																																</a>
+																														</div>
+																												</div>
+																										</div>
+																								</div>
+
+																						{% endfor %}
+
+																				</div>
+																				<button class="btn btn-danger" onclick='location.href="{% url 'shop' sub.slug %}"'>
+																						view all
+																				</button>
+																		</div>
+																</div>
+															{% endif %}
+														{% endfor %}
+														<!--  -->
+
+														<!--  -->
+												</div>
+												<div class="jumbotron bg-danger">
+														{% for b in static_files %}
+																{% if b.title == 'all-category-bottom-banner' %}
+																		<div class="col-md-12">
+																				<div class=""
+																						 style="height:unset !important">
+																						<img src="{{ b.image1.url }}" alt="">
+																				</div>
+																		</div>
+																{% endif %}
+														{% endfor %}
+												</div>
+										</div>
+
+								</section>
+						</main>
+						<!-- main content end -->
+						<!-- #content -->
+						<!-- .site-footer -->
+				</div>
+		</body>
+{% endblock content %}

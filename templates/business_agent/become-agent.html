@@ -1,0 +1,414 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+    <body
+            class="woocommerce-active page-template-default woocommerce-checkout woocommerce-page can-uppercase"
+    >
+    <div id="page" class="hfeed site">
+        <!-- .top-bar-v1 -->
+        <!-- .header-v1 -->
+        <!-- ============================================================= Header End ============================================================= -->
+        <div id="content" class="site-content">
+            <div class="col-full">
+                <div class="row">
+                    <!-- .woocommerce-breadcrumb -->
+                    <div class="content-area" id="primary">
+                        <main class="site-main" id="main">
+                            <div class="type-page hentry">
+                                <div class="entry-content">
+                                    <div class="woocommerce">
+                                        <div class="woocommerce-info">
+                                            Already have an account?
+                                            <a
+                                                    data-toggle="collapse"
+                                                    href="#login-form"
+                                                    aria-expanded="false"
+                                                    aria-controls="login-form"
+                                                    class="showlogin"
+                                            >Click here to login</a
+                                            >
+                                        </div>
+                                        <div class="collapse" id="login-form">
+
+                                            <form
+                                                    method="post"
+                                                    class="woocomerce-form woocommerce-form-login login"
+                                            >
+                                                <p class="form-row form-row-first">
+                                                    <label
+                                                            for="username"
+                                                    >Username or email
+                                                        <span class="required">*</span>
+                                                    </label>
+                                                    <input
+                                                            type="text"
+                                                            id="username"
+                                                            name="username"
+                                                            class="input-text"
+                                                    />
+                                                </p>
+                                                <p class="form-row form-row-last">
+                                                    <label
+                                                            for="password"
+                                                    >Password
+                                                        <span class="required">*</span>
+                                                    </label>
+                                                    <input
+                                                            type="password"
+                                                            id="password"
+                                                            name="password"
+                                                            class="input-text"
+                                                    />
+                                                </p>
+                                                <div class="clear"></div>
+                                                <p class="form-row">
+                                                    <input
+                                                            type="submit"
+                                                            value="Login"
+                                                            name="login"
+                                                            class="button"
+                                                    />
+                                                    <label
+                                                            class="woocommerce-form__label woocommerce-form__label-for-checkbox inline"
+                                                    >
+                                                        <input
+                                                                type="checkbox"
+                                                                value="forever"
+                                                                id="rememberme"
+                                                                name="rememberme"
+                                                                class="woocommerce-form__input woocommerce-form__input-checkbox"
+                                                        />
+                                                        <span>Remember me</span>
+                                                    </label>
+                                                </p>
+                                                <p class="lost_password">
+                                                    <a href="#">Lost your password?</a>
+                                                </p>
+                                                <div class="clear"></div>
+                                            </form>
+                                        </div>
+                                        <!-- .collapse -->
+                                        <form
+                                                style="width: 80%; margin: auto"
+                                                action="/business-agent/agent-registration/"
+                                                class="checkout woocommerce-checkout"
+                                                method="post"
+                                                name="checkout"
+                                                id="agent_form"
+                                                type=""
+                                        >
+                                            {% csrf_token %}
+                                            <div class="woocommerce-billing-fields">
+
+                                                <h3>Agent Application</h3>
+                                                <div
+                                                        class="woocommerce-billing-fields__field-wrapper-outer"
+                                                >
+                                                    <div
+                                                            class="woocommerce-billing-fields__field-wrapper"
+                                                    >
+                                                        <p
+                                                                id="billing_first_name_field"
+                                                                class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_first_name"
+                                                            >Business Agent ID:
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                >
+                                                            </label>
+                                                            <input
+                                                                    type="text"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_first_name"
+                                                                    name="business_center_id"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+                                                        <p
+                                                                id="billing_first_name_field"
+                                                                class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_first_name"
+                                                            >Full Name
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                >
+                                                            </label>
+                                                            <input
+                                                                    type="text"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_first_name"
+                                                                    name="full_name"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+
+                                                        <p
+                                                                id="billing_first_name_field"
+                                                                class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_first_name"
+                                                            >Father Name
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                >
+                                                            </label>
+                                                            <input
+                                                                    type="text"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_first_name"
+                                                                    name="father_name"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+
+
+                                                        <p
+                                                                id="billing_last_name_field"
+                                                                class="form-row form-row-last validate-required"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_last_name"
+                                                            >Address
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                >
+                                                            </label>
+                                                            <input
+                                                                    type="text"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_last_name"
+                                                                    name="address"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+
+                                                        <p
+                                                                id="billing_first_name_field"
+                                                                class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_first_name"
+                                                            >Email
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                >
+                                                            </label>
+                                                            <input
+                                                                    type="text"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_first_name"
+                                                                    name="email"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+
+                                                        <div class="clear"></div>
+
+                                                        <p
+                                                                id="billing_company_field"
+                                                                class="form-row form-row-first validate-required"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_city"
+                                                            >Profile Picture
+                                                            </label>
+                                                            <input
+                                                                    type="file"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_city"
+                                                                    name="profile_image"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+                                                        <p
+                                                                id="billing_company_field"
+                                                                class="form-row form-row-first validate-required"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_company"
+                                                            >Phone
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                ></label
+                                                            >
+                                                            <input
+                                                                    type="text"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_company"
+                                                                    name="phone"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+
+
+                                                        <p
+                                                                id="billing_company_field"
+                                                                class="form-row form-row-first validate-required"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_city"
+                                                            >NID Front Page
+                                                            </label>
+                                                            <input
+                                                                    type="file"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_city"
+                                                                    name="nid_front"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+                                                        <p
+                                                                id="billing_company_field"
+                                                                class="form-row form-row-first"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_city"
+                                                            >NID Back Page
+                                                            </label>
+                                                            <input
+                                                                    type="file"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_city"
+                                                                    name="nid_back"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+                                                        <p
+                                                                id="billing_company_field"
+                                                                class="form-row form-row-first validate-required"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_company"
+                                                            >Password
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                ></label
+                                                            >
+                                                            <input
+                                                                    type="password"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_company"
+                                                                    name="password"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+                                                        <p
+                                                                id="billing_company_field"
+                                                                class="form-row form-row-first validate-required"
+                                                        >
+                                                            <label
+                                                                    class="" for="billing_company"
+                                                            >Confirm Password
+                                                                <abbr
+                                                                        title="required" class="required"
+                                                                >*</abbr
+                                                                ></label
+                                                            >
+                                                            <input
+                                                                    type="password"
+                                                                    value=""
+                                                                    placeholder=""
+                                                                    id="billing_company"
+                                                                    name="confirm_password"
+                                                                    class="input-text"
+                                                            />
+                                                        </p>
+                                                        <div style="width: 20%; margin: auto">
+                                                            <button class="button text-center btn-block submit-btn"
+                                                                    type="submit">Submit Application
+                                                            </button>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- .woocommerce-billing-fields__field-wrapper-outer -->
+                                            </div>
+                                            <!-- .woocommerce-billing-fields -->
+                                        </form>
+                                    </div>
+                                    <!-- .col-2 -->
+                                </div>
+                                <!-- .woocommerce-checkout -->
+                            </div>
+                            <!-- .woocommerce -->
+                        </main>
+                    </div>
+                    <!-- .entry-content -->
+                </div>
+                <!-- #post-## -->
+                </main>
+                <!-- #main -->
+            </div>
+            <!-- #primary -->
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .col-full -->
+    </div>
+    <!-- #content -->
+    <!-- .site-footer -->
+    </div>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script>
+        $(document).on('click', '.submit-btn', function (e) {
+
+            //prevent Default functionality
+            {#e.preventDefault();#}
+
+            //get the action-url of the form
+            {#var actionurl = e.currentTarget.action;#}
+            {#console.log(actionurl);#}
+            var form = document.getElementById('vendor_form');
+            var formData = new FormData(form);
+            console.log(formData);
+            //do your own request an handle the results
+            $.ajax({
+                url: '/api/v1/vendor/vendor-list/',
+                type: 'post',
+                data: formData,
+                username: 'saleh',
+                password: '1234',
+                headers: {
+                    "X-CSRFToken": '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    console.log("success");
+                    console.log(data);
+                    window.location = '/vendor/login/';
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+        })
+        ;
+    </script>
+    </body>
+{% endblock %}

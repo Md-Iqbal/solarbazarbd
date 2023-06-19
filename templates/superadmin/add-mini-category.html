@@ -1,0 +1,153 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+
+	<div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <!-- start page title -->
+            <!-- end page title -->
+                <form class="container-fluid" method="post" id="subcatform" action="/product-minicategories/"
+                      enctype="multipart/form-data">{% csrf_token %}
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-box">
+                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">ADD Mini Category</h5>
+
+
+                            <div class="form-group mb-3">
+                                <label for="product-sub-category">Sub-Category <span
+		                                class="text-danger">*</span></label>
+                                <select class="form-control select2" id="category" name="sub_category_id" id="product-sub-category">
+                                    <option value="">Select</option>
+	                                {% for c in sub_category %}
+		                                <option value="{{ c.id }}">{{ c.name }}</option>
+	                                {% endfor %}
+
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="name">Mini Category Name <span class="text-danger">*</span></label>
+                                <input type="text" id="name" class="form-control"
+                                       placeholder="e.g : Solar Panel" name="name">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="product-alternative">Alternative Names <span
+		                                class="text-danger">*</span></label>
+                                <input type="text" id="product-alternative" class="form-control"
+                                       placeholder="e.g : solar light" name="alternative_name">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="product-description"> Description <span class="text-danger"></span></label>
+                                <textarea class="form-control" id="product-description" rows="5"
+                                          placeholder="Please enter description" name="descriptions"></textarea>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="mb-2">Status <span class="text-danger">*</span></label>
+                                <br />
+                                <div class="radio form-check-inline">
+                                    <input type="radio" id="inlineRadio1" value="True" name="is_active" checked="">
+                                    <label for="inlineRadio1"> Active </label>
+                                </div>
+                                <div class="radio form-check-inline">
+                                    <input type="radio" id="inlineRadio2" value="False" name="is_active">
+                                    <label for="inlineRadio2"> Inactive </label>
+                                </div>
+                            </div>
+
+
+
+                        </div> <!-- end card-box -->
+                    </div> <!-- end col -->
+
+                </div>
+	                <!-- end row -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center mb-3">
+                            <button type="button" class="btn w-sm btn-light waves-effect">Cancel</button>
+                            <button type="button" id="submit_btn" class="btn w-sm btn-success waves-effect waves-light submit_btn">Save</button>
+                        </div>
+                    </div> <!-- end col -->
+                </div>
+	                <!-- end row -->
+	                <!-- file preview template -->
+                <div class="d-none" id="uploadPreviewTemplate">
+                    <div class="card mt-1 mb-0 shadow-none border">
+                        <div class="p-2">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                                </div>
+                                <div class="col pl-0">
+                                    <a href="javascript:void(0);" class="text-muted font-weight-bold" data-dz-name></a>
+                                    <p class="mb-0" data-dz-size></p>
+                                </div>
+                                <div class="col-auto">
+                                    <!-- Button -->
+                                    <a href="#" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                        <i class="dripicons-cross"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+        $(document).on('click', '.submit_btn', function (e) {
+            if (!$('#name').val() ||  $('#subcategory').val() === "") {
+                alert('Please enter sub-category, mini-category name')
+                return
+            }
+            //prevent Default functionality
+            {#e.preventDefault();#}
+
+            //get the action-url of the form
+            {#var actionurl = e.currentTarget.action;#}
+            {#console.log(actionurl);#}
+            var form = document.getElementById('subcatform');
+            var formData = new FormData(form);
+            console.log(formData);
+            //do your own request an handle the results
+            $.ajax({
+                url: '/api/v1/inventory/product-minicategories/',
+                type: 'post',
+                data: formData,
+                success: function (data) {
+                    console.log("success");
+                    console.log(data);
+                    window.location = '/superadmin/mini-category/'
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+        })
+        ;
+
+    </script>
+
+
+
+{% endblock content %}

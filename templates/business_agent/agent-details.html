@@ -1,0 +1,135 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+
+    <title>Agent Details</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        html, body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Roboto", sans-serif
+        }
+    </style>
+    <body class="w3-light-grey">
+
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+        <!-- The Grid -->
+        <div class="w3-row-padding">
+
+            <!-- Left Column -->
+            {#        <div class="w3-third">#}
+            {##}
+            {#            <div class="w3-white w3-text-grey w3-card-4">#}
+            {#                <div class="w3-display-container">#}
+            {#                    <img src="{% static 'business_agent/img/profile-pics/profile-pic-2.jpg' %}" style="width:100%"#}
+            {#                         alt="Avatar">#}
+            {#                    <div class="w3-display-bottomleft w3-container w3-text-black">#}
+            {#                        <h2>Jane Doe</h2>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#                <div class="w3-container">#}
+            {#                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>#}
+            {#                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>#}
+            {#                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>#}
+            {#                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <br>#}
+            {##}
+            {#            <!-- End Left Column -->#}
+            {#        </div>#}
+
+            <!-- Right Column -->
+            <div class="w3-twothird" style="margin-left: 220px; margin-top: 45px">
+                <form>{% csrf_token %}
+
+                    <div class="w3-container w3-card w3-white w3-margin-bottom">
+                        <div class="row">
+                            <div class="col-6">
+                                <h2 class="w3-text-grey w3-padding-16">Business Agent Info</h2>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-4">
+                                <img style="height: 80px; width: 50%"
+                                     src="{% static 'assets/img/fortunes-ecommerce-log.png' %}" alt="">
+                            </div>
+                            <hr>
+                            <div class="w3-container">
+                                <div>
+
+                                    <img src="{{ agent_details.profile_image.url }}"
+                                         style="width:20%"
+                                         alt="Avatar">
+                                </div>
+
+                                <br>
+                                <div>
+                                    <h5 class="w3-opacity"><b>Full Name:</b> {{ agent_details.full_name }}</h5>
+                                    <h5 class="w3-opacity"><b>Business Center
+                                        ID:</b> {{ agent_details.business_center_id }} </h5>
+                                    <h5 class="w3-opacity"><b>Reference Code:</b> {{ agent_details.reference_code }}
+                                    </h5>
+                                    <h5 class="w3-opacity" name="email"><b>Email:</b> {{ agent_details.email }}</h5>
+                                    <h5 class="w3-opacity"><b>Phone:</b>{{ agent_details.phone }}</h5>
+                                    <h5 class="w3-opacity"><b>Father Name:</b> {{ agent_details.father_name }}</h5>
+                                    <h5 class="w3-opacity"><b>Address:</b> {{ agent_details.address }}</h5></div>
+
+                                <div>
+                                    <br>
+                                    <div class="row pb-5">
+                                        <div class="col-md-6 d-flex">
+                                            <h5 class="w3-opacity"><b>NID Front:</b></h5>
+                                            <img class="p-b-10" src=" {{ agent_details.nid_front.url }}" alt=""
+                                                 style="height:200px; width:100%">
+                                        </div>
+
+                                        <div class="col-md-6 d-flex">
+                                            <h5 class="w3-opacity"><b>NID Front:</b></h5>
+                                            <img class="p-b-10" src="{{ agent_details.nid_back.url }}" alt=""
+                                                 style="height:200px; width:100%">
+                                        </div>
+                                        <br>
+                                        <div>
+                                            {#                                    <select class="form-select-lg mt-3">#}
+                                            {#                                        <option selected >{{ agent_details.status }}</option>#}
+                                            {#                                        <option value="1">Active</option>#}
+                                            {#                                        <option value="2">Disabled</option>#}
+                                            {#                                        <option value="3">Pending</option>#}
+                                            {#                                        <option value="3">Declined</option>#}
+                                            {#                                    </select>#}
+                                            <br>
+                                            <div class="text-center">
+                                                <button type="button"
+                                                        onclick=location.href="/business-agent/create-agent-user/{{ agent_details.phone }}/"
+                                                        class="btn btn-success">Accept
+                                                </button>
+                                                <button type="button" class="btn btn-danger">Declined</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                </form>
+
+            </div>
+
+            <!-- End Grid -->
+        </div>
+
+        <!-- End Page Container -->
+    </div>
+
+
+    </body>
+{% endblock content %}

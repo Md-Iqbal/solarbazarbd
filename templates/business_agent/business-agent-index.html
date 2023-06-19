@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if IE 9 ]>
+<html class="ie9"><![endif]-->
+
+<!-- Mirrored from byrushan.com/projects/mae/1-0/profile-photos.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Jan 2021 16:05:13 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Business Agent</title>
+
+    <!-- Vendor CSS -->
+    <link href="{% static  'business_agent/vendors/bower_components/animate.css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static  'business_agent/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css' %}"
+          rel="stylesheet">
+    <link href="{% static  'business_agent/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css' %}"
+          rel="stylesheet">
+    <link href="{% static  'business_agent/vendors/bower_components/lightgallery/dist/css/lightgallery.min.css' %}" rel="stylesheet">
+    <link href="{% static  'business_agent/vendors/bower_components/google-material-color/dist/palette.css' %}" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="{% static 'business_agent/css/app.min.1.css' %}" rel="stylesheet">
+    <link href="{% static 'business_agent/css/app.min.2.css' %}" rel="stylesheet">
+</head>
+
+<body data-ma-header="teal">
+<header id="header" class="media" style="height: 20px">
+    <div class="pull-left h-logo">
+        <a href="#" class="hidden-xs">
+            <img style="height: 80px; width: auto" src="{% static 'business_agent/img/contacts/fortunes-ecommerce-log.png' %}" alt="">
+        </a>
+
+        <div class="menu-collapse" data-ma-action="sidebar-open" data-ma-target="main-menu">
+            <div class="mc-wrap">
+                <div class="mcw-line top palette-White bg"></div>
+                <div class="mcw-line center palette-White bg"></div>
+                <div class="mcw-line bottom palette-White bg"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="main">
+    <section id="content">
+        <div class="container">
+            <div class="c-header">
+                <h2>Malinda Hollaway <small>Fortunes Solar Agent</small></h2>
+            </div>
+
+            <div class="card" id="profile-main">
+                <div class="pm-overview c-overflow">
+                    <div class="pmo-pic">
+                        <div class="p-relative">
+                            <a href="#">
+                                <img class="img-responsive" src="{% static 'business_agent/img/profile-pics/profile-pic-2.jpg' %}" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="pmo-block pmo-contact hidden-xs">
+                        <h2>Contact</h2>
+
+                        <ul>
+                            <li><i class="zmdi zmdi-phone"></i> 00971 12345678 9</li>
+                            <li><i class="zmdi zmdi-email"></i> malinda-h@gmail.com</li>
+                            <li>
+                                <i class="zmdi zmdi-pin"></i>
+                                <address class="m-b-0 ng-binding">
+                                    44-46 Morningside Road,<br>
+                                    Edinburgh,<br>
+                                    Scotland
+                                </address>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+                <div class="pm-body clearfix">
+                    <ul class="tab-nav tn-justified" style="height: 30px; text-align: center; padding-top: 5px">
+                        <li class="waves-effect tablink" onclick="openPage('Dashboard')" id="defaultOpen" >Dashboard</li>
+                        <li class="waves-effect tablink" onclick="openPage('Orders')">Profile</li>
+                        <li class="waves-effect active tablink" onclick="openPage('ConnectedCustomers')">Connected
+                            Customers
+                        </li>
+
+                    </ul>
+
+                    <div id="Dashboard" class="tabcontent">
+
+                        <div class="pmb-block">
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card c-dark palette-Light-Blue bg">
+                                        <div class="card-header">
+                                            <h2>Website Impressions <small>Consectetur Ultricies Porta Fringilla</small>
+                                            </h2>
+
+                                            <ul class="actions a-alt">
+                                                <li class="dropdown">
+                                                    <a href="#" data-toggle="dropdown">
+                                                        <i class="zmdi zmdi-more-vert"></i>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li>
+                                                            <a href="#">Change Date Range</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Change Graph Type</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Other Settings</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body card-padding">
+                                            <h2 class="m-t-0 m-b-15 c-white">
+                                                <i class="zmdi zmdi-caret-up-circle m-r-5"></i>
+                                                987,453
+                                            </h2>
+
+                                            <div class="sparkline-1 text-center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card c-dark palette-Green-A700 bg">
+                                        <div class="card-header">
+                                            <h2>Website Traffics <small>Nullam Adipiscing Pellentesque</small></h2>
+
+                                            <ul class="actions a-alt">
+                                                <li class="dropdown">
+                                                    <a href="#" data-toggle="dropdown">
+                                                        <i class="zmdi zmdi-more-vert"></i>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li>
+                                                            <a href="#">Change Date Range</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Change Graph Type</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Other Settings</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body card-padding">
+                                            <h2 class="m-t-0 m-b-15 c-white">
+                                                <i class="zmdi zmdi-caret-up-circle m-r-5"></i>
+                                                356,785K
+                                            </h2>
+                                            <div class="sparkline-2 text-center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card c-dark palette-Blue-Grey bg">
+                                        <div class="card-header">
+                                            <h2>Total Sales <small>Purus Malesuada Consectetur</small></h2>
+
+                                            <ul class="actions a-alt">
+                                                <li class="dropdown">
+                                                    <a href="#" data-toggle="dropdown">
+                                                        <i class="zmdi zmdi-more-vert"></i>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li>
+                                                            <a href="#">Change Date Range</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Change Graph Type</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Other Settings</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body card-padding">
+                                            <h2 class="m-t-0 m-b-15 c-white">
+                                                <i class="zmdi zmdi-caret-down-circle m-r-5"></i>
+                                                $458,778
+                                            </h2>
+                                            <div class="sparkline-3 text-center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <h2>Order By Reference Customers:</h2>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Customer Name</th>
+                                        <th>Orderd Products</th>
+                                        <th>Order Total</th>
+                                        <th>Commissions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Alexandra</td>
+                                        <td>Christopher</td>
+                                        <td>@makinton</td>
+                                        <td>Ducky</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Madeleine</td>
+                                        <td>Hollaway</td>
+                                        <td>@hollway</td>
+                                        <td>Cheese</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Sebastian</td>
+                                        <td>Johnston</td>
+                                        <td>@sebastian</td>
+                                        <td>Jaycee</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Mitchell</td>
+                                        <td>Christin</td>
+                                        <td>@mitchell4u</td>
+                                        <td>AdskiDeAnus</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Elizabeth</td>
+                                        <td>Belkitt</td>
+                                        <td>@belkitt</td>
+                                        <td>Goat</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Benjamin</td>
+                                        <td>Parnell</td>
+                                        <td>@wayne234</td>
+                                        <td>Pokie</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Katherine</td>
+                                        <td>Buckland</td>
+                                        <td>@anitabelle</td>
+                                        <td>Wokie</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Nicholas</td>
+                                        <td>Walmart</td>
+                                        <td>@mwalmart</td>
+                                        <td>Spike</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+
+                                <div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div id="ConnectedCustomers" class="tabcontent">
+                        <div class="pmb-block">
+
+
+                            <div class="contacts c-profile clearfix row">
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="c-item">
+                                        <div class="c-info">
+                                            <strong>Name:Cathy Shelton</strong>
+                                            <strong>Address:Cathy Shelton</strong>
+                                            <strong>Phone:0185464456</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="load-more">
+                                <a href="#"><i class="zmdi zmdi-refresh-alt"></i> Load More...</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Orders" class="tabcontent">
+
+
+                        <div class="pmb-block">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-account m-r-5"></i> Basic Information</h2>
+
+                                <ul class="actions">
+                                    <li class="dropdown">
+                                        <a href="#" data-toggle="dropdown">
+                                            <i class="zmdi zmdi-more-vert"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a data-pmb-action="edit" href="#">Edit</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <div class="pmbb-view">
+                                    <dl class="dl-horizontal">
+                                        <dl class="dl-horizontal">
+                                            <dt>Business Center ID</dt>
+                                            <dd>#00145</dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Reference Code</dt>
+                                            <dd>FFEEA</dd>
+                                        </dl>
+                                        <dt>Full Name</dt>
+                                        <dd>
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control"
+                                                >
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                    <dl class="dl-horizontal">
+                                        <dt>Father Name</dt>
+                                        <dd>
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control"
+                                                >
+                                            </div>
+                                        </dd>
+                                    </dl>
+
+                                    <dl class="dl-horizontal">
+                                        <dt>Address</dt>
+                                        <dd>
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control"
+                                                >
+                                            </div>
+                                        </dd>
+                                    </dl>
+
+                                    <dl class="dl-horizontal">
+                                        <dt>Email</dt>
+                                        <dd>
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control"
+                                                >
+                                            </div>
+                                        </dd>
+                                    </dl>
+
+                                    <dl class="dl-horizontal">
+                                        <dt>Phone</dt>
+                                        <dd>
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control"
+                                                >
+                                            </div>
+                                        </dd>
+                                    </dl>
+
+                                    <dl class="dl-horizontal">
+                                        <dt>Image</dt>
+                                        <dd>
+                                            <div class="fg-line">
+                                                <input type="file" class="form-control"
+                                                >
+                                            </div>
+                                        </dd>
+                                    </dl>
+
+                                    <dl class="dl-horizontal">
+                                        <div class="row">
+                                            <div class="col-md-6 d-flex">
+                                                <dt>NID Front</dt>
+                                                <img class="p-b-10" src="{% static 'business_agent/img/contacts/111.jpg' %}" alt=""
+                                                     style="height:200px; width:100%">
+                                                <input class="form-control" type="file">
+                                            </div>
+
+                                            <div class="col-md-6 d-flex ">
+                                                <dt>NID Back</dt>
+                                                <img class="p-b-10" src="{% static 'business_agent/img/contacts/222.jpg' %}" alt=""
+                                                     style="height:200px; width:100%">
+                                                <input class="form-control" type="file">
+                                            </div>
+
+
+                                        </div>
+                                    </dl>
+
+                                    <div style="text-align: center"><button type="button" class="btn btn-success"  style="height: 40px; width: 80px">Save</button></div>
+
+
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+<!-- Page Loader -->
+<div class="page-loader palette-Teal bg">
+    <div class="preloader pl-xl pls-white">
+        <svg class="pl-circular" viewBox="25 25 50 50">
+            <circle class="plc-path" cx="50" cy="50" r="20"/>
+        </svg>
+    </div>
+</div>
+
+<!-- Older IE warning message -->
+<!--[if lt IE 9]>
+<div class="ie-warning">
+    <h1 class="c-white">Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers
+        to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="{% static 'business_agent/img/browsers/chrome.png' %}" alt="">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="{% static 'business_agent/img/browsers/firefox.png' %}" alt="">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="{% static 'business_agent/img/browsers/opera.png' %}" alt="">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="{% static 'business_agent/img/browsers/safari.png' %}" alt="">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="{% static 'business_agent/img/browsers/ie.png' %}" alt="">
+                    <div>IE (New)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+
+
+<!-- Javascript Libraries -->
+<script src="{% static  'business_agent/vendors/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static  'business_agent/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static  'business_agent/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static  'business_agent/vendors/bower_components/Waves/dist/waves.min.js' %}"></script>
+<script src="{% static  'business_agent/vendors/bootstrap-growl/bootstrap-growl.min.js' %}"></script>
+<script src="{% static  'business_agent/vendors/bower_components/lightgallery/dist/js/lightgallery-all.min.js' %}"></script>
+
+<!-- Placeholder for IE9 -->
+<!--[if IE 9 ]>
+<script src="{% static  'business_agent/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js' %}"></script>
+<![endif]-->
+
+<script src=" {% static 'business_agent/js/functions.js' %}"></script>
+<script src="{% static 'business_agent/js/actions.js' %}"></script>
+<script src="{% static 'business_agent/js/demo.js' %}"></script>
+
+
+<script>
+    function openPage(pageName, elmnt, color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+    }
+
+    document.getElementById("defaultOpen").click();
+</script>
+
+
+</body>
+
+<!-- Mirrored from byrushan.com/projects/mae/1-0/profile-photos.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Jan 2021 16:05:13 GMT -->
+
+</html>

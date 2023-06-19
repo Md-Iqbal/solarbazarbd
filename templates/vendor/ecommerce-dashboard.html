@@ -1,0 +1,391 @@
+{% extends 'vendor/master.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                {#                                        <ol class="breadcrumb m-0">#}
+                                {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>#}
+                                {#                                            <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>#}
+                                {#                                            <li class="breadcrumb-item active">Dashboard</li>#}
+                                {#                                        </ol>#}
+                            </div>
+                            <h4 class="page-title">Dashboard</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="dash_icon">
+                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->
+                                        <i class="fas fa-wallet custom_icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-right">
+                                        <h3 class="text-dark mt-1"> Tk <span data-plugin="counterup">{{ total_revenue.amount_paid__sum}}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Total Revenue</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="dash_icon">
+                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->
+                                        <i class="fas fa-shopping-basket custom_icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-right">
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ total_order }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Orders</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="dash_icon">
+                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->
+                                        <i class="fas fa-store-alt custom_icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-right">
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ total_product }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Products</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+
+                    <div class="col-md-6 col-xl-3">
+                        <div class="widget-rounded-circle card-box">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="dash_user_icon">
+                                        <!-- <i class="dripicons-wallet font-24 avatar-title text-primary"></i> -->
+                                        <i class="fas fa-users custom_icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-right">
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ total_transaction }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Total Transaction</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end row-->
+                        </div> <!-- end widget-rounded-circle-->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+
+                {#                        <div class="row">#}
+                {#                            <div class="col-xl-8">#}
+                {#                                <div class="card-box pb-2">#}
+                {#                                    <div class="float-right d-none d-md-inline-block">#}
+                {#                                        <div class="btn-group mb-2">#}
+                {#                                            <button type="button" class="btn btn-xs btn-light">Today</button>#}
+                {#                                            <button type="button" class="btn btn-xs btn-light">Weekly</button>#}
+                {#                                            <button type="button" class="btn btn-xs btn-secondary">Monthly</button>#}
+                {#                                        </div>#}
+                {#                                    </div>#}
+                {##}
+                {#                                    <h4 class="header-title mb-3">Sales Analytics</h4>#}
+                {##}
+                {#                                    <div class="row text-center">#}
+                {#                                        <div class="col-md-4">#}
+                {#                                            <p class="text-muted mb-0 mt-3">Current Week</p>#}
+                {#                                            <h2 class="font-weight-normal mb-3">#}
+                {#                                                <small class="mdi mdi-checkbox-blank-circle text-primary align-middle mr-1"></small>#}
+                {#                                                <span>$58,254</span>#}
+                {#                                            </h2>#}
+                {#                                        </div>#}
+                {#                                        <div class="col-md-4">#}
+                {#                                            <p class="text-muted mb-0 mt-3">Previous Week</p>#}
+                {#                                            <h2 class="font-weight-normal mb-3">#}
+                {#                                                <small class="mdi mdi-checkbox-blank-circle text-success align-middle mr-1"></small>#}
+                {#                                                <span>$69,524</span>#}
+                {#                                            </h2>#}
+                {#                                        </div>#}
+                {#                                        <div class="col-md-4">#}
+                {#                                            <p class="text-muted mb-0 mt-3">Targets</p>#}
+                {#                                            <h2 class="font-weight-normal mb-3">#}
+                {#                                                <small class="mdi mdi-checkbox-blank-circle text-success align-middle mr-1"></small>#}
+                {#                                                <span>$95,025</span>#}
+                {#                                            </h2>#}
+                {#                                        </div>#}
+                {#                                    </div>#}
+                {##}
+                {#                                    <div id="revenue-chart" class="apex-charts mt-3" data-colors="#6658dd,#1abc9c"></div>#}
+                {#                                    #}
+                {#                                </div> <!-- end card-box -->#}
+                {#                            </div> <!-- end col-->#}
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card-box">
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                </div>
+                            </div>
+
+                            <h4 class="header-title mb-0">Total Revenue</h4>
+
+                            <div class="widget-chart text-center" dir="ltr">
+
+                                <div id="total-revenue" class="mt-0"  data-colors="#f1556c"></div>
+
+                                <h5 class="text-muted mt-0">Total sales made today</h5>
+                                <h2>৳ {% if today_sales.sum is None %}0 {% else %}{{ today_sales.sum }}{% endif %}</h2>
+
+                                <p class="text-muted w-75 mx-auto sp-line-2">Traditional heading elements are designed
+                                    to work best in the meat of your page content.</p>
+
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
+                                        <h4><i class="fe-arrow-down text-danger mr-1"></i>
+                                            {% if lastMonth_sales.sum is None %}
+                                                ৳ 0
+                                            {% else %}
+                                                ৳ {{ lastMonth_sales.sum|add:"5000.00" }}
+                                            {% endif %}
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
+                                        <h4><i class="fe-arrow-up text-success mr-1"></i>
+                                            {% if lastWeek_sales.sum is None %}
+                                                ৳ 0
+                                            {% else %}
+                                                ৳ {{ lastWeek_sales.sum }}
+                                            {% endif %}
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-muted font-15 mb-1 text-truncate">This week</p>
+                                        <h4><i class="fe-arrow-down text-danger mr-1"></i>
+                                            {% if thisWeek_sales.sum is None %}
+                                                ৳ 0
+                                            {% else %}
+                                                ৳ {{ thisWeek_sales.sum }}
+                                            {% endif %}
+                                        </h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div> <!-- end card-box -->
+                    </div> <!-- end col-->
+
+                    <div class="col-lg-8">
+                        <div class="card-box pb-2">
+                            <div class="float-right d-none d-md-inline-block">
+                                <div class="btn-group mb-2">
+                                    <!-- <button type="button" class="btn btn-xs btn-light">Today</button>
+                                    <button type="button" class="btn btn-xs btn-light">Weekly</button> -->
+                                    <button type="button" class="btn btn-xs btn-secondary">Monthly</button>
+                                </div>
+                            </div>
+
+                            <h4 class="header-title mb-3">Sales Analytics</h4>
+
+                            <div dir="ltr">
+                                <div id="sales-analytics" class="mt-4" data-colors="#1abc9c,#4a81d4"></div>
+                            </div>
+                        </div> <!-- end card-box -->
+                    </div> <!-- end col-->
+                </div>
+
+            </div>
+            <!-- end row -->
+
+
+            <div class="row">
+                <!-- **************transaction history*************** -->
+
+                <!-- <div class="col-xl-6">
+                    <div class="card-box">
+                        <h4 class="header-title mb-3">Transaction History</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-centered table-hover mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="border-top-0">Name</th>
+                                    <th class="border-top-0">Payment Method</th>
+                                    <th class="border-top-0">Date</th>
+                                    <th class="border-top-0">Amount</th>
+                                    <th class="border-top-0">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="{% static 'vendor/images/users/user-2.jpg' %}" alt="user-pic"
+                                             class="rounded-circle avatar-sm bx-shadow-lg"/>
+                                        <span class="ml-2">Imelda J. Stanberry</span>
+                                    </td>
+                                    <td>
+                                        <img src="{% static 'vendor/images/cards/visa.png' %}" alt="user-card"
+                                             height="24"/>
+                                        <span class="ml-2">**** 3256</span>
+                                    </td>
+                                    <td>27.03.2018</td>
+                                    <td>$345.98</td>
+                                    <td><span class="badge badge-pill badge-danger">Failed</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>  //end table-responsive
+
+                    </div>  //end card-bo
+                </div> -->
+
+                <!-- ***********top selling product********** -->
+                <!--<div class="col-xl-6">
+                    <div class="card-box">
+                        <h4 class="header-title mb-3">Top Selling Products</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-centered table-hover mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="border-top-0">Product</th>
+                                    <th class="border-top-0">Category</th>
+                                    <th class="border-top-0">Added Date</th>
+                                    <th class="border-top-0">Amount</th>
+                                    <th class="border-top-0">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span class="ml-2">SOlar</span>
+                                        </td>
+                                        <td>
+                                            Solar
+                                        </td>
+                                        <td>27.03.2018</td>
+                                        <td>$345.98</td>
+                                        <td><span class="badge bg-soft-success text-success">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>  //end table-responsive
+                    </div> //end card-bo
+                </div>
+            </div>
+            end row-->
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card-box">
+                        <h4 class="header-title mb-3">Top Customer</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-centered table-hover mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="border-top-0">Name</th>
+                                    <th class="border-top-0">Total Transaction</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in top_customers %}
+                                    <tr>
+                                        <td>
+                                            <span class="ml-2">{{ p.customer.name }}</span>
+                                        </td>
+                                        <td>&#2547;{{ p.order_total }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive -->
+
+                    </div> <!-- end card-box-->
+                </div> <!-- end col-->
+                <div class="col-xl-6">
+                    <div class="card-box">
+                        <h4 class="header-title mb-3">Recent Products</h4>
+
+                        <div class="table-responsive">
+                            <table class="table table-centered table-hover mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="border-top-0">Product</th>
+                                    <th class="border-top-0">Category</th>
+                                    <th class="border-top-0">Added Date</th>
+                                    <th class="border-top-0">Amount</th>
+                                    <th class="border-top-0">Active Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in recent_products %}
+                                    <tr>
+                                        <td>
+                                            <b class="ml-2">{{ p.name }}</b>
+                                        </td>
+                                        <td>{{ p.category.name }}</td>
+                                        <td>{{ p.updated }}</td>
+                                        {% if p.discounted_price < p.price %}
+                                            <td>&#2547;{{ p.discounted_price }}</td>
+                                        {% else %}
+                                            <td>&#2547;{{ p.price }}</td>
+                                        {% endif %}
+                                        <td><span class="badge bg-soft-success text-success">{{ p.is_active }}</span></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive -->
+                    </div> <!-- end card-box-->
+                </div> <!-- end col-->
+            </div>
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+
+
+
+{% endblock content %}

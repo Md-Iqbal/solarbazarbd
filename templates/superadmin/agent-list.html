@@ -1,0 +1,127 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title">Agent List</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+{#                                <div class="row mb-2">#}
+{#                                    <div class="col-md-8">#}
+{#                                        <form class="search-bar form-inline">#}
+{#                                            <div class="position-relative">#}
+{#                                                <input type="text" class="form-control" placeholder="Search...">#}
+{#                                                <span class="mdi mdi-magnify"></span>#}
+{#                                            </div>#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                    <div class="col-md-4">#}
+{#                                        <div class="col-sm-12">#}
+{#                                            <div class="text-sm-right">#}
+{#                                                <button type="button" class="btn btn-primary mb-2 mr-1">Import</button>#}
+{#                                                <button type="button" class="btn btn-success mb-2">Export</button>#}
+{#                                            </div>#}
+{#                                        </div><!-- end col-->#}
+{#                                    </div><!-- end col-->#}
+{#                                </div>#}
+
+                                <div class="table-responsive">
+                                    <table class="table table-centered table-nowrap table-borderless table-hover mb-0">
+                                        <thead class="thead-light" style="background-color: #ffcdcd">
+                                        <tr>
+                                            <th>Agent Name</th>
+                                            <th>BC ID</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>Address</th>
+                                            <th>Total Wallets</th>
+                                            <th>Status</th>
+                                            <th style="width: 82px;">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for v in agent_list %}
+                                        <tr>
+
+                                            <td class="table-user">
+                                                <a href="javascript:void(0);" class="text-body font-weight-semibold">{{ v.full_name }}</a>
+                                            </td>
+	                                          <td>
+                                                <i class="mdi mdi-star text-warning"></i> {{ v.business_center_id }}
+                                            </td>
+
+                                            <td>
+                                                <i class="mdi mdi-star text-warning"></i> {{ v.email }}
+                                            </td>
+                                            <td>
+                                                <span class="font-weight-semibold">{{ v.phone }}</span>
+                                            </td>
+                                            <td>
+                                                {{ v.address }}
+                                            </td>
+
+                                            <td>
+                                                --
+                                            </td>
+
+                                            <td>
+                                                <span class="label label-success">{{ v.status }}</span>
+                                            </td>
+
+                                            <td>
+                                                <a href="/superadmin/agent-details/{{ v.id }}" class="btn btn-info">Details</a>
+{#                                                <a href="javascript:void(0);" class="btn btn-info">Products</a>#}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+{#                                <ul class="pagination pagination-rounded justify-content-end my-2">#}
+{#                                    <li class="page-item">#}
+{#                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">#}
+{#                                            <span aria-hidden="true">«</span>#}
+{#                                            <span class="sr-only">Previous</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a>#}
+{#                                    </li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>#}
+{#                                    <li class="page-item">#}
+{#                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">#}
+{#                                            <span aria-hidden="true">»</span>#}
+{#                                            <span class="sr-only">Next</span>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+{% endblock content %}

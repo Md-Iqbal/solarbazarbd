@@ -1,0 +1,127 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+	<body class="page home page-template-default">
+		<div id="page" class="hfeed site">
+			<!-- .top-bar-v1 -->
+
+			<!-- .header-v1 -->
+			<!-- ============================================================= Header End ============================================================= -->
+			<div id="content" class="site-content">
+				<div class="col-full">
+					<div class="row">
+						<nav class="woocommerce-breadcrumb">
+							<a href="{% url 'home' %}">Home</a>
+							<span class="delimiter">
+                <i class="tm tm-breadcrumbs-arrow-right"></i>
+              </span>
+							Cart
+						</nav>
+						<!-- .woocommerce-breadcrumb -->
+						<div id="primary" class="content-area" style="padding-right: 15px !important;">
+							<main id="main" class="site-main">
+								<div class="type-page hentry">
+									<div class="entry-content">
+										<div class="woocommerce">
+											<!-- .header-wishlist -->
+{#											<ul id="site-header-cart" class="site-header-cart menu">#}
+{#												<li class="animate-dropdown dropdown custom_dropdown" id="dropdownMenuButton" onclick="on();">#}
+{#													<a#}
+{#															class="cart-contents"#}
+{#															href="javascript:void(0)"#}
+{##}
+{#															title="View your shopping cart"#}
+{#													>#}
+{#														<i class="tm tm-shopping-bag"></i>#}
+{#														<span class="count " id="floatingtotalitems">0</span>#}
+{#														<span class="amount "><span class="cart_total" id="cart_total">0 </span>&nbsp;</span>#}
+{#														৳#}
+{#													</a>#}
+{##}
+{#													<!-- .dropdown-menu-mini-cart -->#}
+{#												</li>#}
+												<div class=" card mt-2 " id="custom_drop_item_id">
+													{#																<div class="close_drop_cart">#}
+													{#																		<div class="close_func_class" onclick="toggleCart()">#}
+													{#																				close#}
+													{#																		</div>#}
+													{#																</div>#}
+													<div class="">
+														<div class="widget woocommerce widget_shopping_cart cart shadow-lg" id="cart_to_remove">
+															<div class="widget_shopping_cart_content">
+																<h5 class="text-center pt-3 pb-3 border-bottom card-header">My Cart</h5>
+																<ul
+																		class="woocommerce-mini-cart cart_list product_list_widget container"
+																		id="cartlist"
+																		style="padding-top: 10px"
+																>
+
+																</ul>
+																<!-- .cart_list -->
+																<p class="woocommerce-mini-cart__total total">
+																	<strong>Subtotal:</strong>
+																	<span class="woocommerce-Price-amount amount">
+																	                            <span
+																			                            class="woocommerce-Price-currencySymbol"
+																	                            >৳</span
+																	                            ><span id="cart_total"> 0</span></span
+																	>
+																	<p hidden id="floatcarttotal">
+																	<p hidden id="floatingtotalitems">
+																</p>
+																<p class="woocommerce-mini-cart__buttons buttons">
+																	{#																								<a#}
+																	{#																										href="{% url 'cart' %}" class="button wc-forward"#}
+																	{#																								>View cart#}
+																	{#																								</a>#}
+																	<a
+																			id="placeorderbtn"
+																			href="javascript:void(0)"
+																			class="button checkout checkout_btn wc-forward"
+																	>Checkout
+																	</a>
+																</p>
+															</div>
+															<!-- .widget_shopping_cart_content -->
+														</div>
+														<!-- .widget_shopping_cart -->
+													</div>
+												</div>
+											<!-- .site-header-cart -->
+
+										</div>
+										<!-- .woocommerce -->
+									</div>
+									<!-- .entry-content -->
+								</div>
+								<!-- .hentry -->
+							</main>
+							<!-- #main -->
+						</div>
+						<!-- #primary -->
+					</div>
+					<!-- .row -->
+				</div>
+				<!-- .col-full -->
+			</div>
+			<!-- #content -->
+
+			<!-- .col-full -->
+
+			<!-- .site-footer -->
+		</div>
+
+
+		<script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script>
+        $(document).ready(function () {
+            document.getElementById('site-header-cart').remove()
+            'use strict';
+            let cart = (JSON.parse(localStorage.getItem('cart')) || []);
+            console.log(cart);
+
+        })
+		</script>
+
+	</body>
+{% endblock %}

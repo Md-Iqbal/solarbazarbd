@@ -1,0 +1,182 @@
+{% extends 'superadmin/master.html' %}
+{% load static %}
+{% block content %}
+	{##}
+	{#    <meta charset="UTF-8">#}
+	{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+	{#    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">#}
+	{#    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>#}
+	{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
+	{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"#}
+	{#          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">#}
+	{#    <style>#}
+	{#        html, body, h1, h2, h3, h4, h5, h6 {#}
+	{#            font-family: "Roboto", sans-serif#}
+	{#        }#}
+	{#    </style>#}
+	<!-- Page Container -->
+	<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="content-page">
+
+        <!-- Left Column -->
+        {#        <div class="w3-third">#}
+        {##}
+        {#            <div class="w3-white w3-text-grey w3-card-4">#}
+        {#                <div class="w3-display-container">#}
+        {#                    <img src="{% static 'business_agent/img/profile-pics/profile-pic-2.jpg' %}" style="width:100%"#}
+        {#                         alt="Avatar">#}
+        {#                    <div class="w3-display-bottomleft w3-container w3-text-black">#}
+        {#                        <h2>Jane Doe</h2>#}
+        {#                    </div>#}
+        {#                </div>#}
+        {#                <div class="w3-container">#}
+        {#                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Designer</p>#}
+        {#                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>London, UK</p>#}
+        {#                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>#}
+        {#                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#            <br>#}
+        {##}
+        {#            <!-- End Left Column -->#}
+        {#        </div>#}
+
+        <!-- Right Column -->
+        <div class="">
+            <form>{% csrf_token %}
+							<div class="card">
+								<div class="card-header " style="background-color: #ebfffa">
+									<h2 class="text-center">Vendor Info</h2>
+								</div>
+                <div class=" w3-margin-bottom">
+
+                    <div class="card-body p-3">
+	                    <table class="table table-hover">
+		                    <tbody>
+											    <tr>
+											      <td >Shop Name</td>
+											      <th scope="row">{{ vendor_details.name }}</th>
+											    </tr>
+											    <tr>
+											      <td>Company Name</td>
+											      <th scope="row">{{ vendor_details.company_name }}</th>
+											    </tr>
+											    <tr>
+											      <td >Email</td>
+											      <th scope="row">{{ vendor_details.email }}</th>
+											    </tr>
+			                    <tr>
+											      <td>Phone</td>
+											      <th scope="row">{{ vendor_details.mobile }}</th>
+											    </tr>
+			                    <tr>
+											      <td >Address</td>
+											      <th scope="row">{{ vendor_details.address }}</th>
+											    </tr>
+			                    <tr>
+											      <td >Type of Business</td>
+											      <th scope="row">{{ vendor_details.type_of_business }}</th>
+											    </tr>
+
+			                    <tr>
+											      <td >NID Front</td>
+											      <th scope="row"><img class="p-b-10" src=" {{ vendor_details.nid_front_image.url }}" alt=""
+                                         style="max-height:200px; max-width:100%"></th>
+											    </tr>
+			                    <tr>
+											      <td >NID Back</td>
+											      <th scope="row"><img class="p-b-10" src=" {{ vendor_details.nid_back_image.url }}" alt=""
+                                         style="max-height:200px; max-width:100%"></th>
+											    </tr>
+			                    <tr>
+											      <td >Legal Document</td>
+											      <th scope="row"><img class="p-b-10" src=" {{ vendor_details.legal_document_img.url }}" alt=""
+                                         style="max-height:300px; max-width:100%"></th>
+											    </tr>
+
+			                    <tr>
+											      <td colspan="2" class="card-header"><h3 class="text-center">Bank Account Details</h3></td>
+											    </tr>
+
+			                    <tr>
+											      <td >Account Name</td>
+											      <th scope="row">{{ vendor_details.account_name }}</th>
+											    </tr>
+			                    <tr>
+											      <td >Account Number</td>
+											      <th scope="row">{{ vendor_details.account_number }}</th>
+											    </tr>
+			                    <tr>
+											      <td >Bank Name</td>
+											      <th scope="row">{{ vendor_details.bank_name }}</th>
+											    </tr>
+			                    <tr>
+											      <td >Branch Name</td>
+											      <th scope="row">{{ vendor_details.branch_name }}</th>
+											    </tr>
+			                    <tr>
+											      <td >Routing No</td>
+											      <th scope="row">{{ vendor_details.routing_no }}</th>
+											    </tr>
+			                    <tr>
+											      <td >Cheque Copy</td>
+											      <th scope="row"><img class="p-b-10" src=" {{ vendor_details.cheque_img.url }}" alt=""
+                                         style="max-height:300px; max-width:100%"></th>
+											    </tr>
+
+											  </tbody>
+	                    </table>
+	                    <div>
+		                    {% if vendor_details.status == 'Pending' %}
+{#                                    <select class="form-select-lg mt-3">#}
+{#                                        <option selected >{{ vendor_details.status }}</option>#}
+{#                                        <option value="1">Active</option>#}
+{#                                        <option value="2">Disabled</option>#}
+{#                                        <option value="3">Pending</option>#}
+{#                                        <option value="3">Blocked</option>#}
+{#                                    </select>#}
+                            <br>
+                            <div class="text-center">
+                               <button type="button"  onclick=window.location.href="/superadmin/change-vendor-status/{{ vendor_details.id }}/Active/" class="btn btn-success">Accept</button>
+                                <button type="button"  onclick=window.location.href="/superadmin/change-vendor-status/{{ vendor_details.id }}/Declined/" class="btn btn-danger">Decline</button>
+
+                            </div>
+			                    {% elif vendor_details.status == 'Active'%}
+			                    <br>
+                            <div class="text-center">
+                               <button type="button"  onclick=window.location.href="/superadmin/change-vendor-status/{{ vendor_details.id }}/Disabled/" class="btn btn-warning">Disable</button>
+                               <button type="button"  onclick=window.location.href="/superadmin/change-vendor-status/{{ vendor_details.id }}/Blocked/" class="btn btn-danger">Block</button>
+
+                            </div>
+			                    {% elif vendor_details.status == 'Blocked'%}
+			                    <br>
+                            <div class="text-center">
+                               <button type="button"  onclick=window.location.href="/superadmin/change-vendor-status/{{ vendor_details.id }}/Active/" class="btn btn-success">Unblock</button>
+
+                            </div>
+			                    {% elif vendor_details.status == 'Disabled'%}
+			                    <br>
+                            <div class="text-center">
+                               <button type="button"  onclick=window.location.href="/superadmin/change-vendor-status/{{ vendor_details.id }}/Disabled/" class="btn btn-success">Activate</button>
+                               <button type="button"  onclick=window.location.href="/superadmin/change-vendor-status/{{ vendor_details.id }}/Blocked/" class="btn btn-danger">Block</button>
+
+                            </div>
+		                    {% endif %}
+                        </div>
+                    </div>
+							</div>
+							</div>
+            </form>
+
+
+
+        </div>
+
+        <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+</div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+.panel{
+    border: 1px solid red;
+    padding: 10px;
+}
+
+.inner-panel {
+    padding-bottom: 10px;
+}
+
+.custom-btn{
+    display: flex;
+    justify-content: space-between;
+}
+.custom-btn a {
+    font-size: 15px;
+}

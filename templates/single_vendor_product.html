@@ -1,0 +1,398 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block content %}
+<style>
+	.btn-light:hover {
+		background-color: #f5363e !important;
+		color: white !important;
+	}
+
+	.btn-light {
+		font-size: 14px;
+		background-color: #ffe8e9;
+		color: black;
+		width: 49%
+	}
+
+	.inner-panel .card {
+		border: 0.001em solid #f5363e !important
+	}
+</style>
+
+<body class="woocommerce-active left-sidebar">
+	<div id="page" class="hfeed site">
+		<!-- topbar home section start -->
+
+		<!-- topbar home section end -->
+		<!-- .top-bar-v1 -->
+		<!-- .header-v1 -->
+		<!-- ============================================================= Header End ============================================================= -->
+		<!-- main content -->
+		<div id="content" class="site-content" tabindex="-1">
+			<div class="col-full">
+				<div class="row">
+					<div id="primary" class="content-area">
+						<main id="main" class="site-main">
+							<h2 class="text-center text-danger"></h2>
+
+								
+                <div class="shop-archive-header">
+                    <div class="jumbotron row">
+										<div class="col-4" style="background-color:#ffd4000f">
+											<div class="jumbotron-caption">
+												<p>	
+													<h3 class="jumbo-title">{{ vendor_info.name }}</h3>
+													<h4>Contact Us:</h4>
+													{{ vendor_info.email }} <br>
+													{{ vendor_info.mobile }} <br>
+													{{ vendor_info.telephone }} <br>
+												</p>
+											</div>
+                                        </div>
+										<div class="col-8">
+											<div class="jumbotron-img">
+												<img alt="" src="{{ vendor_info.banner_image.url }}" class="jumbo-image">
+											</div>
+										</div>
+                                        <!-- .jumbotron-caption -->
+                                    </div>
+                                    <!-- .jumbotron -->
+                                </div>
+								<div class="shop-control-bar" id="product-section">
+									<!-- .handheld-sidebar-toggle -->
+									<h1 class="woocommerce-products-header__title page-title">Shop</h1>
+									<form class="form-inline">
+										<div class="form-group mx-sm-3">
+											<label for="status-select" class="mr-2">Sort By</label>
+											<select class="custom-select" id="sort_order">
+												<option selected="" value="-updated">Lates</option>
+												<option value="-views">Popular</option>
+												<option value="price">Price Low</option>
+												<option value="-price">Price High</option>
+												<option value="stock_quantity">Stock Low</option>
+												<option value="-stock_quantity">Stock High</option>
+												<option value="name">Product Name</option>
+											</select>
+										</div>
+										<!-- *******for price range slider******* -->
+
+
+										<!-- <div class="form-group mx-sm-3 mt-4">
+																								<input id="min-amount" type="number" placeholder="Min price" name="min_price">
+																							</div>
+																							<div class="form-group mx-sm-3 mt-3">
+																								<input id="max-amount" type="number" placeholder="Max price" name="max_price">
+																							</div>
+																							<div id="slider-range" class="form-group mt-3 price_slider mt-3"></div>
+																							<button type="button" class="btn btn-primary mt-2 ml-3" onclick="getInputValue();">Filter</button> -->
+									</form>
+								</div>
+                                <!-- .shop-archive-header -->
+
+								<div class="products" id="product">
+									<!-- /.product-outer -->
+									<!-- /.product-outer -->
+								</div>
+								<!-- stats pagination -->
+								<div class="row">
+									<div class="col-12">
+										<div class="content_detail__pagination cdp" actpage="1" id="_pagination">
+
+										</div>
+									</div>
+{#									<div class="col-4"> </div>#}
+								</div>
+								<!-- ends pagination -->
+								<div class="jumbotron bg-danger mt-5">
+									{% for b in static_files %}
+									{% if b.title == 'single-category-bottom-banner' %}
+									<div class="col-md-12">
+										<div class="" style="height:unset !important">
+											<img src="{{ b.image1.url }}" alt="">
+										</div>
+									</div>
+									{% endif %}
+									{% endfor %}
+								</div>
+						</main>
+					</div>
+					<!-- #primary -->
+					<div id="secondary" class="widget-area shop-sidebar" role="complementary">
+						<div class="widget woocommerce widget_product_categories techmarket_widget_product_categories position-sticky"
+							id="techmarket_product_categories_widget-2">
+							<div class="widget widget_text" id="text-2">
+								<ul class="product-categories">
+									<li class="product_cat">
+										<span>Select Brand</span>
+										<ul>
+											<li class="cat-item">
+												<a href="{{ request.path }}">
+													<span class="child-indicator">
+														<i class="fa fa-angle-right"></i> </span><b>All Brand</b>
+												</a>
+											</li>
+											{% for b in brands %}
+											<li class="cat-item">
+												<!-- <a href="{{ request.path }}?brand={{b.slug}}"> -->
+												<span class="child-indicator mr-2">
+													<input type="checkbox" data-filter="brand-select" value="{{ b.id }}"
+														id="brand" class="filter-checkbox">
+												</span><b>{{ b.brand_name }}</b>
+												<!-- </a> -->
+											</li>
+											{% endfor %}
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- #secondary -->
+					</div>
+				</div>
+			</div>
+			<!-- main content end -->
+			<!-- #content -->
+			<!-- .site-footer -->
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<input type="hidden" id="vendor_id" name="vendor_id" value="{{ vendor_id }}">
+		<input type="hidden" id="items_per_page" name="vendor_id" value="20">
+		<p type="hidden" hidden id="page_no">1</p>
+
+	</div>
+</body>
+	<link rel="stylesheet" href="{% static 'assets/css/pagination.css' %}">
+<script>
+/*
+this javascript is only to change the "actpage" attribut on the .cdp div
+*/
+
+window.onload = function(){
+  var paginationPage = parseInt($('.cdp').attr('actpage'), 10);
+  $('.cdp_i').on('click', function(){
+    var go = $(this).attr('href').replace('#!', '');
+    if (go === '+1') {
+      paginationPage++;
+    } else if (go === '-1') {
+      paginationPage--;
+    }else{
+      paginationPage = parseInt(go, 10);
+    }
+    $('.cdp').attr('actpage', paginationPage);
+  });
+};
+
+
+
+	var vendor_id;
+	let Brand_filter = [];
+	var brand_filter_string;
+	$(document).ready(function () {
+		vendor_id = parseInt(document.getElementById("vendor_id").value);
+		$("#sort_order").change(function () {
+			loadData()
+		})
+
+		$(".filter-checkbox").on('click', function () {
+			jQuery.noConflict();
+			i = 0
+			$(".filter-checkbox").each(function (index, ele) {
+				Brand_filter[i] = Array.from(document.querySelectorAll('input[data-filter="brand-select"]:checked')).map(function (el) {
+					return el.value;
+					i++;
+				})
+			})
+			loadData()
+		})
+		loadData()
+	});
+	function loadData() {
+		var sort = $('#sort_order').val()
+		var page_no = $('#page_no').text();
+		var items_per_page = document.getElementById("items_per_page").value;
+		console.log(items_per_page)
+		if (Brand_filter == null || Brand_filter == '') {
+			Brand_filter.length = 0;
+			$.ajax({
+				type: 'get',
+				url: '/api/v1/inventory/single-vendor-product/' + vendor_id + '/?sort_order=' + sort + '&page_no=' + page_no + '&items_per_page=' + items_per_page,
+				success: function (data) {
+					console.log(data)
+					render_products(data, false)
+				}
+			})
+		}
+		else {
+			var join_char = "_"
+			brand_filter_string = Brand_filter.toString();
+			brand_filter_string = brand_filter_string.split(",").join("_");
+			console.log(Brand_filter)
+			console.log(brand_filter_string)
+			$.ajax({
+				type: 'get',
+				url: '/api/v1/inventory/single-vendor-product/' + vendor_id + '/?sort_order=' + sort + '&brand=' + brand_filter_string + '&page_no=' + page_no + '&items_per_page=' + items_per_page,
+				success: function (data) {
+					console.log(data)
+					render_products(data, false)
+				}
+			});
+		}
+	}
+
+	function render_products(data, is_page_load) {
+		if (data.length > 0) {
+			numb_pages = data[0].number_of_pages
+			current_page = data[0].page_number
+		}
+		else {
+			numb_pages = 0
+			current_page = 0
+		}
+		try {
+			var element = '';
+			var i = 0;
+			var image = ''
+			$('#product').html('');
+			for (i = 0; i < data.length; i++) {
+				if (!is_page_load) {
+					image = data[i]['image']
+					// console.log(image)
+					var price = data[i]['price']
+					var discount_price = data[i]['discounted_price']
+					var discount = price - discount_price
+					console.log(price)
+					console.log(discount_price)
+					console.log(discount)
+				}
+				else {
+					var img_url = data[i].product_images[0]['image']
+					image = img_url
+					var img_thumb = ''
+					try {
+						var idx = img_url.lastIndexOf(".");
+						if (idx > -1)
+							img_thumb = img_url.substr(0, idx) + ".thumbnail" + img_url.substr(idx);
+						image = img_thumb
+					}
+					catch (e) {
+
+					}
+					console.log(image)
+				}
+				element += `<div class="product mb-5">
+								<div class="yith-wcwl-add-to-wishlist">
+									<a href="javascript:void(0)" rel="nofollow" class="add_to_wishlist" data-action="ADD_TO_WISHLIST">
+														Add to Wishlist
+									</a>
+								</div>
+								<a href="/product/${data[i]['id']}" class="woocommerce-LoopProduct-link">`
+				if (discount_price < price) {
+					element += `
+										<span class="onsale">
+		                        			<span class="woocommerce-Price-amount amount">
+	    	                      				<span class="woocommerce-Price-currencySymbol">৳</span>
+												${discount} OFF
+											</span>
+	                	      			</span>`
+				}
+				element += `
+									  <img src="${image}" width="224" height="197" class="wp-post-image" alt=""/>
+									<span class="price">
+	                        			<ins>
+		                          			<span class="amount">৳ ${discount_price}</span>
+		                        		</ins>`
+				if (discount_price < price) {
+					element += `<del>
+											<span class="amount">${price}</span>
+										</del>`
+				}
+				element += `<span class="amount"> </span>
+							</span>
+							<!--price -->
+							<h2 class="woocommerce-loop-product__title">
+								${data[i]['name']}
+							</h2>
+										</a>
+										<div class="hover-area cartable">
+												<p hidden
+												   class="product__image_src">${image}</p>
+									<p hidden class="product__name">${data[i]['id']}</p>
+									<p hidden class="product__title">${data[i]['name']}</p>
+									<p hidden class="product__price">${discount_price}</p>
+									<a class="button quick-btn" name="${data[i]['id']}">Quick View</a>
+									<a class="button" name="btn${data[i]['id']}" data-action="ADD_TO_CART">Add to cart</a>
+								</div>
+							</div>`
+			}
+			var products = $('#product');
+			products.html(element);
+			var pg_elem = ''
+			if (current_page == 1) {
+				console.log("if condition of current page")
+				console.log("total page: " + numb_pages)
+				console.log("current page: " + current_page)
+				pg_elem = pg_elem + `<a disabled href="#!-1" class="cdp_i">prev</a>`
+			} else {
+				pg_elem = pg_elem + `<a href="#!-1" onclick="change_page(${current_page},2)" class="cdp_i">prev</a>`
+			}
+			for (i = 1; i <= numb_pages; i++) {
+				if (i == current_page) {
+					pg_elem = pg_elem + `<a href="#!${i}"  onclick="change_page(${i},0)" class="cdp_i">${i}</a>`
+						$('.cdp').attr('actpage', i)
+				} else {
+					pg_elem = pg_elem + `<a href="#!${i}" onclick="change_page(${i},0)" class="cdp_i">${i}</a>`
+				}
+			}
+			if (current_page == numb_pages) {
+				pg_elem = pg_elem + `<a href="#!+1" disabled class="cdp_i">next</a>`
+			} else {
+				pg_elem = pg_elem + `<a href="#!+1" onclick="change_page(${current_page},1)" class="cdp_i">next</a>`
+			}
+
+
+			// {#$('.paginator').html('');# }
+			var ul = $('#_pagination');
+			ul.html('');
+			ul.html(pg_elem);
+		} catch (e) {
+			console.log(e)
+		}
+		var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "{% static 'assets/js/cart_js.js' %}";
+    document.getElementsByTagName("head")[0].appendChild(script);
+    var script1 = document.createElement("script");
+    script1.type = "text/javascript";
+    script1.src = "{% static 'assets/js/wishlist.js' %}";
+    document.getElementsByTagName("head")[0].appendChild(script1);
+	}
+
+</script>
+
+<!-- jQuery.noConflict(); -->
+
+<script>
+	function change_page(next, is_n_or_p) {
+		$('#page_no').text('')
+		var page = 1
+		if (is_n_or_p == 0) {
+			page = parseInt(next)
+		}
+		else if (is_n_or_p == 1) {
+			page = parseInt(next) + 1
+		}
+		else if (is_n_or_p == 2) {
+			page = parseInt(next) - 1
+		}
+		else {
+			page = parseInt(next)
+		}
+		$('#page_no').text(page)
+		loadData()
+		$('html,body').animate({ scrollTop: $("#product-section").offset().top }, 'slow');
+	}
+
+</script>
+
+{% endblock content %}
